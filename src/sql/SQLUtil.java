@@ -84,6 +84,8 @@ public class SQLUtil {
     public static String SELECT_BY_ID_CONTROLE_FINANCEIRO = "select * from controle_financeiro where id=?";
     public static String SELECT_BY_ID_AVALIACAO = "select * from avaliacao where id=?";
     public static String SELECT_BY_ALUNO_AVALIACAO = "select * from avaliacao where aluno_id=?";
+    public static String SELECT_BY_DATA_CONTROLE_FINANCEIRO = "select * from controle_financeiro where data "
+            + "between ? and ?";
     
     public static String UPDATE_ALUNO = "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
             + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";

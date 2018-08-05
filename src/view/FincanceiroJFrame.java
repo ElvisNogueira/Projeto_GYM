@@ -5,7 +5,9 @@
  */
 package view;
 
+import app.Util;
 import fachada.Fachada;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import model.Avaliacao;
@@ -230,13 +232,18 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
 
         atualizarjLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
         atualizarjLabel.setToolTipText("Atualizar tabela");
+        atualizarjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizarjLabelMouseClicked(evt);
+            }
+        });
 
         tipojLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         tipojLabel.setForeground(new java.awt.Color(45, 118, 232));
         tipojLabel.setText("Tipo");
 
         tipojComboBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        tipojComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Débito", "Crétido" }));
+        tipojComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Débito", "Crédito" }));
 
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
@@ -392,8 +399,31 @@ tela.show();
     }//GEN-LAST:event_jButtonNovoActionPerformed
 
     private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
+        ArrayList<ControleFinanceiro> controleFinanceiros = new ArrayList<>();
+        Date d1 = null;
+        Date d2 = null;
+        if(!jFormattedTextFieldPeriodo2.getText().equals("  /  /    "))
+            d1 = Util.getDate(jFormattedTextFieldPeriodo3.getText());
+        if(!jFormattedTextFieldPeriodo2.getText().equals("  /  /    "))
+            d2 = Util.getDate(jFormattedTextFieldPeriodo2.getText());
+        if(tipojComboBox.getSelectedItem().equals("Todos"))
+            controleFinanceiros = Fachada.getInstance().getByBuscaControleFinanceiro(d1, d2);
+        else{
+            for (ControleFinanceiro c : Fachada.getInstance().getByBuscaControleFinanceiro(d1, d2)) {
+                if(c.getConta().getTipo().equals(tipojComboBox.getSelectedItem()+"")){
+                    controleFinanceiros.add(c);
+                }
+            }
+        }
         
+        carregarTabelar(controleFinanceiros);
     }//GEN-LAST:event_jLabelIconPesquisarMouseClicked
+
+    private void atualizarjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizarjLabelMouseClicked
+        ArrayList<ControleFinanceiro> c = Fachada.getInstance().getAllControleFinanceiro();
+        carregarTabelar(c);
+        jFormattedTextFieldSaldo.setText(calcularSaldo(c)+"");
+    }//GEN-LAST:event_atualizarjLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

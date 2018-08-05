@@ -19,11 +19,13 @@ import model.ModeloTabela;
  * @author Insinuante
  */
 public class AlunosHomeJFrame extends javax.swing.JFrame {
+
     Fachada fachada;
+
     public AlunosHomeJFrame() {
         fachada = Fachada.getInstance();
         initComponents();
-        carregarTabela(fachada.getAllAluno());            
+        carregarTabela(fachada.getAllAluno());
     }
 
     /**
@@ -114,6 +116,11 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
                 jTextFieldProsucarActionPerformed(evt);
             }
         });
+        jTextFieldProsucar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldProsucarKeyReleased(evt);
+            }
+        });
 
         jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px_2.png"))); // NOI18N
         jLabelIconPesquisar.setToolTipText("Pesquisar");
@@ -192,11 +199,13 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        AlunosCadastroJFrame tela = new AlunosCadastroJFrame();
-        tela.setAluno(
-        fachada.getByIdAluno(Integer.parseInt(jTableAlunos.getValueAt
-            (jTableAlunos.getSelectedRow(), 0)+"")));
+        if (Fachada.getFuncionarioLogado().isCadAlunoEditar()) {
+            AlunosCadastroJFrame tela = new AlunosCadastroJFrame();
+            tela.setAluno(
+                    fachada.getByIdAluno(Integer.parseInt(jTableAlunos.getValueAt(jTableAlunos.getSelectedRow(), 0) + "")));
             tela.show();
+        }else
+            Mensagem.mensagemErro();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jTextFieldProsucarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProsucarActionPerformed
@@ -204,8 +213,11 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldProsucarActionPerformed
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        this.dispose();
-        new AlunosCadastroJFrame().show();
+        if (Fachada.getFuncionarioLogado().isCadAlunoCadastrar()) {
+            this.dispose();
+            new AlunosCadastroJFrame().show();
+        }else
+            Mensagem.mensagemErro();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
@@ -222,16 +234,30 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabelIconPesquisarMouseClicked
 
     private void jTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlunosMouseClicked
-        if(evt.getClickCount()==2){
-            
-            AlunosCadastroJFrame tela = new AlunosCadastroJFrame();
+        if (evt.getClickCount() == 2) {
+
+            if(Fachada.getFuncionarioLogado().isCadAlunoAcessar()){
+                AlunosCadastroJFrame tela = new AlunosCadastroJFrame();
             Util.bloquearCampos(tela.getjPanelCadastro());
             tela.setAluno(
-            fachada.getByIdAluno(Integer.parseInt(jTableAlunos.getValueAt
-            (jTableAlunos.getSelectedRow(), 0)+"")));
+                    fachada.getByIdAluno(Integer.parseInt(jTableAlunos.getValueAt(jTableAlunos.getSelectedRow(), 0) + "")));
             tela.show();
+            }else
+                Mensagem.mensagemErro();
         }
     }//GEN-LAST:event_jTableAlunosMouseClicked
+
+    private void jTextFieldProsucarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProsucarKeyReleased
+        String busca = this.jTextFieldProsucar.getText().toLowerCase();
+
+        if (busca.trim().length() == 0) {
+            Mensagem.exibirMensagem("Digite uma busca");
+            return;
+        }
+        ArrayList<Aluno> alunos = Fachada.getInstance().getAlunosPosBusca(busca);
+
+        carregarTabela(alunos);
+    }//GEN-LAST:event_jTextFieldProsucarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -248,21 +274,20 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void carregarTabela(ArrayList<Aluno> alunos) {
-        String[] colunas = new String[]{"ID","NOME"};
+        String[] colunas = new String[]{"ID", "NOME"};
         ArrayList<Object[]> dados = new ArrayList<>();
-        
-        for(Aluno a:alunos){
-            dados.add(new Object[]{a.getId(),a.getNome()});
+
+        for (Aluno a : alunos) {
+            dados.add(new Object[]{a.getId(), a.getNome()});
         }
-        
-        ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
-        jTableAlunos.setModel(modeloTabela);      
+
+        ModeloTabela modeloTabela = new ModeloTabela(dados, colunas);
+        jTableAlunos.setModel(modeloTabela);
         jTableAlunos.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTableAlunos.getColumnModel().getColumn(0).setResizable(false);
         jTableAlunos.getColumnModel().getColumn(1).setPreferredWidth(410);
         jTableAlunos.getColumnModel().getColumn(1).setResizable(false);
         jTableAlunos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
-    
-    
+
 }

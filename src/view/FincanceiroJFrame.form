@@ -434,6 +434,9 @@
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Atualizar tabela"/>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="atualizarjLabelMouseClicked"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="tipojLabel">
           <Properties>
@@ -455,7 +458,7 @@
               <StringArray count="3">
                 <StringItem index="0" value="Todos"/>
                 <StringItem index="1" value="D&#xe9;bito"/>
-                <StringItem index="2" value="Cr&#xe9;tido"/>
+                <StringItem index="2" value="Cr&#xe9;dito"/>
               </StringArray>
             </Property>
           </Properties>

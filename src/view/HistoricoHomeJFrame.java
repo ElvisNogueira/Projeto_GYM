@@ -130,6 +130,11 @@ public class HistoricoHomeJFrame extends javax.swing.JFrame {
                 jTextFieldProsucarActionPerformed(evt);
             }
         });
+        jTextFieldProsucar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldProsucarKeyReleased(evt);
+            }
+        });
 
         jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px_2.png"))); // NOI18N
         jLabelIconPesquisar.setToolTipText("Pesquisar");
@@ -267,20 +272,37 @@ public class HistoricoHomeJFrame extends javax.swing.JFrame {
 
     private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
         ArrayList<Conta> contas = new ArrayList<>();
-        String busca = jTextFieldProsucar.getText();
+        String busca = jTextFieldProsucar.getText().toLowerCase();
         if((jComboBoxTipo.getSelectedItem()+"").equals("Todos")){
             for(Conta c : Fachada.getInstance().getAllContas()){
-                if(c.getDescricao().trim().contains(busca))
+                if(c.getDescricao().trim().toLowerCase().contains(busca))
                     contas.add(c);
             }
         }else{
             for(Conta c : Fachada.getInstance().getAllContas()){
-                if(c.getDescricao().trim().contains(busca) && c.getTipo().equals(jComboBoxTipo.getSelectedItem()+""))
+                if(c.getDescricao().trim().toLowerCase().contains(busca) && c.getTipo().equals(jComboBoxTipo.getSelectedItem()+""))
                     contas.add(c);
             }            
         }
         preencherTabela(contas);
     }//GEN-LAST:event_jLabelIconPesquisarMouseClicked
+
+    private void jTextFieldProsucarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProsucarKeyReleased
+        ArrayList<Conta> contas = new ArrayList<>();
+        String busca = jTextFieldProsucar.getText().toLowerCase();
+        if((jComboBoxTipo.getSelectedItem()+"").equals("Todos")){
+            for(Conta c : Fachada.getInstance().getAllContas()){
+                if(c.getDescricao().trim().toLowerCase().contains(busca))
+                    contas.add(c);
+            }
+        }else{
+            for(Conta c : Fachada.getInstance().getAllContas()){
+                if(c.getDescricao().trim().toLowerCase().contains(busca) && c.getTipo().equals(jComboBoxTipo.getSelectedItem()+""))
+                    contas.add(c);
+            }            
+        }
+        preencherTabela(contas);
+    }//GEN-LAST:event_jTextFieldProsucarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
