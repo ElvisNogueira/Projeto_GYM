@@ -30,7 +30,7 @@ public class ContaBusiness {
     }
     
     public void excluir(Conta c){
-        dao.cadastrar(c);
+        dao.excluir(c);
     }
     
     public Conta getById(int id){

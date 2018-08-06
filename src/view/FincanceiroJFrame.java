@@ -5,9 +5,7 @@
  */
 package view;
 
-import app.Util;
 import fachada.Fachada;
-import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import model.Avaliacao;
@@ -42,7 +40,6 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
         jPanelBack = new javax.swing.JPanel();
         jPanelBlue = new javax.swing.JPanel();
         jLabeConFinanceiro = new javax.swing.JLabel();
-        jLabelIconPesquisar = new javax.swing.JLabel();
         jButtonNovo = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonEditar = new javax.swing.JButton();
@@ -58,10 +55,6 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
         jFormattedTextFieldSaldo = new javax.swing.JFormattedTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabelFiltrar1 = new javax.swing.JLabel();
-        atualizarjLabel = new javax.swing.JLabel();
-        tipojLabel = new javax.swing.JLabel();
-        tipojComboBox = new javax.swing.JComboBox<>();
-        jSeparator2 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Controle Fincanceiro");
@@ -92,14 +85,6 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
                 .addComponent(jLabeConFinanceiro)
                 .addGap(28, 28, 28))
         );
-
-        jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px_2.png"))); // NOI18N
-        jLabelIconPesquisar.setToolTipText("Pesquisar");
-        jLabelIconPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabelIconPesquisarMouseClicked(evt);
-            }
-        });
 
         jButtonNovo.setBackground(new java.awt.Color(45, 118, 232));
         jButtonNovo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -230,21 +215,6 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
                 .addGap(27, 27, 27))
         );
 
-        atualizarjLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
-        atualizarjLabel.setToolTipText("Atualizar tabela");
-        atualizarjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                atualizarjLabelMouseClicked(evt);
-            }
-        });
-
-        tipojLabel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        tipojLabel.setForeground(new java.awt.Color(45, 118, 232));
-        tipojLabel.setText("Tipo");
-
-        tipojComboBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        tipojComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Débito", "Crédito" }));
-
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
         jPanelBackLayout.setHorizontalGroup(
@@ -252,90 +222,67 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelBackLayout.createSequentialGroup()
                 .addContainerGap(83, Short.MAX_VALUE)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 848, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(atualizarjLabel)
-                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanelBackLayout.createSequentialGroup()
-                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanelBackLayout.createSequentialGroup()
-                                    .addComponent(jLabelSaldo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jFormattedTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(26, 26, 26))
-                                .addGroup(jPanelBackLayout.createSequentialGroup()
-                                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanelBackLayout.createSequentialGroup()
-                                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addGroup(jPanelBackLayout.createSequentialGroup()
-                                                    .addComponent(jLabelPeriodo)
-                                                    .addGap(36, 36, 36))
-                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackLayout.createSequentialGroup()
-                                                    .addComponent(tipojLabel)
-                                                    .addGap(56, 56, 56)))
-                                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addGroup(jPanelBackLayout.createSequentialGroup()
-                                                    .addComponent(jFormattedTextFieldPeriodo3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jLabelHa, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGap(18, 18, 18)
-                                                    .addComponent(jFormattedTextFieldPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addComponent(tipojComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addGap(39, 39, 39)
-                                            .addComponent(jLabelIconPesquisar))
-                                        .addComponent(jLabelFiltrar))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 335, Short.MAX_VALUE)))
-                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackLayout.createSequentialGroup()
-                                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addComponent(jScrollPane1)
-                        .addComponent(jSeparator1)))
+                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanelBackLayout.createSequentialGroup()
+                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBackLayout.createSequentialGroup()
+                                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabelFiltrar, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelBackLayout.createSequentialGroup()
+                                        .addComponent(jLabelPeriodo)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(jFormattedTextFieldPeriodo3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabelHa, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jFormattedTextFieldPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 394, Short.MAX_VALUE))
+                            .addGroup(jPanelBackLayout.createSequentialGroup()
+                                .addComponent(jLabelSaldo)
+                                .addGap(18, 18, 18)
+                                .addComponent(jFormattedTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(26, 26, 26)))
+                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackLayout.createSequentialGroup()
+                                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jSeparator1))
                 .addContainerGap(83, Short.MAX_VALUE))
         );
         jPanelBackLayout.setVerticalGroup(
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackLayout.createSequentialGroup()
                 .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(jLabelFiltrar)
-                .addGap(1, 1, 1)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(4, 4, 4)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBackLayout.createSequentialGroup()
-                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelBackLayout.createSequentialGroup()
-                                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabelPeriodo)
-                                    .addComponent(jFormattedTextFieldPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabelHa)
-                                    .addComponent(jFormattedTextFieldPeriodo3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(15, 15, 15)
-                                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(tipojLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(tipojComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(6, 6, 6)))
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabelFiltrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelPeriodo)
+                            .addComponent(jFormattedTextFieldPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelHa)
+                            .addComponent(jFormattedTextFieldPeriodo3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanelBackLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(atualizarjLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelSaldo)
                     .addComponent(jFormattedTextFieldSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -349,85 +296,70 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
             .addComponent(jPanelBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1063, 730));
+        setSize(new java.awt.Dimension(1063, 594));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
+        if(Fachada.getFuncionarioLogado().isControleCaixaCadastrar())
+            new FinanceiroLancarFaturaJFrame().show();
+        else
+            Mensagem.exibirErro();
+    }//GEN-LAST:event_jButtonNovoActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+        if(Fachada.getFuncionarioLogado().isControleCaixaExcluir()){
+            int i = Integer.parseInt(jTableCaixa.getValueAt(jTableCaixa.getSelectedRow(), 0)+"");
+            ControleFinanceiro c = Fachada.getInstance().getByIdControleFinanceiro(i);
+            Fachada.getInstance().excluirControleFinanceiro(c);   
+        }else
+            Mensagem.exibirErro();
+
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+        if(Fachada.getFuncionarioLogado().isControleCaixaEditar()){
+            FinanceiroLancarFaturaJFrame tela = new FinanceiroLancarFaturaJFrame();
+            tela.set(Fachada.getInstance().getByIdControleFinanceiro(Integer.parseInt(
+                jTableCaixa.getValueAt(jTableCaixa.getSelectedRow(), 0)+"")));
+            tela.show();           
+        }else
+            Mensagem.exibirErro();
+
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jFormattedTextFieldPeriodo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPeriodo2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldPeriodo2ActionPerformed
+
+    private void jFormattedTextFieldPeriodo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPeriodo3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jFormattedTextFieldPeriodo3ActionPerformed
+
+    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
+        HomeJFrame.setColor(jPanel1);
+    }//GEN-LAST:event_jPanel1MouseEntered
+
+    private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
+        HomeJFrame.resetColor(jPanel1);
+    }//GEN-LAST:event_jPanel1MouseExited
 
     private void jPanel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MousePressed
         this.dispose();
         new HistoricoHomeJFrame().show();
     }//GEN-LAST:event_jPanel1MousePressed
 
-    private void jPanel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseExited
-        HomeJFrame.resetColor(jPanel1);
-    }//GEN-LAST:event_jPanel1MouseExited
-
-    private void jPanel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseEntered
-        HomeJFrame.setColor(jPanel1);
-    }//GEN-LAST:event_jPanel1MouseEntered
-
     private void jTableCaixaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableCaixaMouseClicked
         if(evt.getClickCount()==2){
             FinanceiroLancarFaturaJFrame tela = new FinanceiroLancarFaturaJFrame();
             tela.set(Fachada.getInstance().getByIdControleFinanceiro(Integer.parseInt(
                 jTableCaixa.getValueAt(jTableCaixa.getSelectedRow(), 0)+"")));
-    tela.show();
-    }
-    }//GEN-LAST:event_jTableCaixaMouseClicked
-
-    private void jFormattedTextFieldPeriodo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPeriodo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldPeriodo3ActionPerformed
-
-    private void jFormattedTextFieldPeriodo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPeriodo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldPeriodo2ActionPerformed
-
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        FinanceiroLancarFaturaJFrame tela = new FinanceiroLancarFaturaJFrame();
-        tela.set(Fachada.getInstance().getByIdControleFinanceiro(Integer.parseInt(
-            jTableCaixa.getValueAt(jTableCaixa.getSelectedRow(), 0)+"")));
-tela.show();
-    }//GEN-LAST:event_jButtonEditarActionPerformed
-
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
-
-    private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        new FinanceiroLancarFaturaJFrame().show();
-    }//GEN-LAST:event_jButtonNovoActionPerformed
-
-    private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
-        ArrayList<ControleFinanceiro> controleFinanceiros = new ArrayList<>();
-        Date d1 = null;
-        Date d2 = null;
-        if(!jFormattedTextFieldPeriodo2.getText().equals("  /  /    "))
-            d1 = Util.getDate(jFormattedTextFieldPeriodo3.getText());
-        if(!jFormattedTextFieldPeriodo2.getText().equals("  /  /    "))
-            d2 = Util.getDate(jFormattedTextFieldPeriodo2.getText());
-        if(tipojComboBox.getSelectedItem().equals("Todos"))
-            controleFinanceiros = Fachada.getInstance().getByBuscaControleFinanceiro(d1, d2);
-        else{
-            for (ControleFinanceiro c : Fachada.getInstance().getByBuscaControleFinanceiro(d1, d2)) {
-                if(c.getConta().getTipo().equals(tipojComboBox.getSelectedItem()+"")){
-                    controleFinanceiros.add(c);
-                }
-            }
+            tela.show();
         }
-        
-        carregarTabelar(controleFinanceiros);
-    }//GEN-LAST:event_jLabelIconPesquisarMouseClicked
-
-    private void atualizarjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizarjLabelMouseClicked
-        ArrayList<ControleFinanceiro> c = Fachada.getInstance().getAllControleFinanceiro();
-        carregarTabelar(c);
-        jFormattedTextFieldSaldo.setText(calcularSaldo(c)+"");
-    }//GEN-LAST:event_atualizarjLabelMouseClicked
+    }//GEN-LAST:event_jTableCaixaMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel atualizarjLabel;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JButton jButtonNovo;
@@ -438,7 +370,6 @@ tela.show();
     private javax.swing.JLabel jLabelFiltrar;
     private javax.swing.JLabel jLabelFiltrar1;
     private javax.swing.JLabel jLabelHa;
-    private javax.swing.JLabel jLabelIconPesquisar;
     private javax.swing.JLabel jLabelPeriodo;
     private javax.swing.JLabel jLabelSaldo;
     private javax.swing.JPanel jPanel1;
@@ -446,10 +377,7 @@ tela.show();
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTableCaixa;
-    private javax.swing.JComboBox<String> tipojComboBox;
-    private javax.swing.JLabel tipojLabel;
     // End of variables declaration//GEN-END:variables
 
     private void carregarTabelar(ArrayList<ControleFinanceiro> financeiro){

@@ -122,11 +122,6 @@ public class FuncionariosJFrame extends javax.swing.JFrame {
                 jTextFieldProsucarActionPerformed(evt);
             }
         });
-        jTextFieldProsucar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldProsucarKeyReleased(evt);
-            }
-        });
 
         jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px_2.png"))); // NOI18N
         jLabelIconPesquisar.setToolTipText("Pesquisar");
@@ -227,7 +222,7 @@ public class FuncionariosJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
-        String busca = jTextFieldProsucar.getText().toLowerCase();
+        String busca = jTextFieldProsucar.getText();
         if(busca.trim().length() == 0){
             Mensagem.exibirMensagem("Digite alguma coisa!");
             return;
@@ -236,17 +231,6 @@ public class FuncionariosJFrame extends javax.swing.JFrame {
         ArrayList<Funcionario> f = Fachada.getInstance().getFuncionariosBusca(busca);
         carregarTabela(f);
     }//GEN-LAST:event_jLabelIconPesquisarMouseClicked
-
-    private void jTextFieldProsucarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProsucarKeyReleased
-        String busca = jTextFieldProsucar.getText().toLowerCase();
-        if(busca.trim().length() == 0){
-            Mensagem.exibirMensagem("Digite alguma coisa!");
-            return;
-        }
-        
-        ArrayList<Funcionario> f = Fachada.getInstance().getFuncionariosBusca(busca);
-        carregarTabela(f);
-    }//GEN-LAST:event_jTextFieldProsucarKeyReleased
 
     
 

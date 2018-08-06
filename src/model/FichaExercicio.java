@@ -10,10 +10,10 @@ package model;
  * @author Elvis
  */
 public class FichaExercicio {
-   private int id, repeticoes,ordem; 
+   private int id, repeticoes,ordem, serie; 
    private Exercicio exercicio;
    private FichaDeTreino fichaDeTreino;
-   private String dia;
+   private String dia,obs; // INSERIR AGORA  O OBS
 
     public int getOrdem() {
         return ordem;
@@ -64,6 +64,23 @@ public class FichaExercicio {
     public void setDia(String dia) {
         this.dia = dia;
     }
+
+    public int getSerie() {
+        return serie;
+    }
+
+    public void setSerie(int serie) {
+        this.serie = serie;
+    }
+
+    public String getObs() {
+        return obs;
+    }
+
+    public void setObs(String obs) {
+        this.obs = obs;
+    }
    
+    
    
 }

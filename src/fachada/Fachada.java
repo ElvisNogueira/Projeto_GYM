@@ -23,7 +23,6 @@ import business.Metas_ideaisBusiness;
 import business.PagamentoBusiness;
 import business.ParcelasBusiness;
 import business.PerimetriaBusiness;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -229,10 +228,6 @@ public class Fachada {
     
     public ArrayList<ControleFinanceiro> getAllControleFinanceiro(){
         return controleFinaceiroBusiness.getAll();
-    }
-    
-    public ArrayList<ControleFinanceiro> getByBuscaControleFinanceiro(Date d1, Date d2){
-        return controleFinaceiroBusiness.getByBusca(d1, d2);
     }
     
     public void cadastrarDobras_Cutaneas(Dobras_Cutaneas d){

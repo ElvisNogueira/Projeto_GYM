@@ -7,6 +7,7 @@ package view;
 
 import app.Projeto_GYM;
 import controller.LoginControlador;
+import fachada.Fachada;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -622,7 +623,10 @@ public class HomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelInfoMouseEntered
 
     private void jPanelRelatorioMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRelatorioMousePressed
-        new RelatorioJFrame().show();
+        if(Fachada.getFuncionarioLogado().isRelatorioAcessar()){
+            new RelatorioJFrame().show();
+        }else
+            Mensagem.exibirErro();
     }//GEN-LAST:event_jPanelRelatorioMousePressed
 
     private void jPanelRelatorioMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelRelatorioMouseExited
@@ -634,7 +638,10 @@ public class HomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelRelatorioMouseEntered
 
     private void jPanelFuncionariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFuncionariosMousePressed
-        new FuncionariosJFrame().show();
+        if(Fachada.getFuncionarioLogado().isCadFuncAcessar())
+            new FuncionariosJFrame().show();
+        else
+            Mensagem.exibirErro();
     }//GEN-LAST:event_jPanelFuncionariosMousePressed
 
     private void jPanelFuncionariosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFuncionariosMouseExited
@@ -646,7 +653,10 @@ public class HomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelFuncionariosMouseEntered
 
     private void jPanelAlunosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosMousePressed
-        new AlunosHomeJFrame().show();
+        if(Fachada.getFuncionarioLogado().isCadAlunoAcessar())
+            new AlunosHomeJFrame().show();
+        else
+            Mensagem.exibirErro();
     }//GEN-LAST:event_jPanelAlunosMousePressed
 
     private void jPanelAlunosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosMouseExited
@@ -670,7 +680,10 @@ public class HomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelFinanceiroMouseExited
 
     private void jPanelFinanceiroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFinanceiroMousePressed
-        new FincanceiroJFrame().show();
+        if(Fachada.getFuncionarioLogado().isControleCaixaAcessar()){
+            new FincanceiroJFrame().show();
+        }else
+            Mensagem.exibirErro();
     }//GEN-LAST:event_jPanelFinanceiroMousePressed
 
     private void jLabeSairMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabeSairMousePressed

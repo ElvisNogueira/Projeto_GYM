@@ -221,14 +221,14 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
+        this.dispose();
         Instrutor i = Projeto_GYM.fachada.getByFuncionario_IdInstrutor(
                     Projeto_GYM.fachada.getFuncionarioLogado().getId());
-        if(i.getId()!=0){
-            this.dispose();
+        Mensagem.exibirMensagem(i.getId()+"");
+        if(i.getId()!=0)
             new AlunosAvaliacaoJFrame(a,i, objetivo).show();
-        }else
+        else
             Mensagem.exibirMensagem("Acesso permitido apenas para instrutores!");
-        
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
@@ -243,12 +243,10 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
         Instrutor i = Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
                     jTableAvFísica.getSelectedRow(), 0)+"")).getInstrutor();
            
-        if(i!=null){
             AlunosAvaliacaoJFrame tela = new AlunosAvaliacaoJFrame(a,i, objetivo);
             tela.setAvaliacao( Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
                     jTableAvFísica.getSelectedRow(), 0)+"")));
             tela.show();
-        }    
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jTextFieldProsucarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProsucarActionPerformed
@@ -264,17 +262,15 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
             Instrutor i = Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
                     jTableAvFísica.getSelectedRow(), 0)+"")).getInstrutor();
            
-            if(i!=null || Fachada.getFuncionarioLogado().isAvFisicaAcessar()){
-                AlunosAvaliacaoJFrame tela = new AlunosAvaliacaoJFrame(a,i, objetivo);
-                Util.bloquearCampos(tela.getjPaneAnamnese());
-                Util.bloquearCampos(tela.getjPanel1());
-                Util.bloquearCampos(tela.getjPanelCCorporal());
-                Util.bloquearCampos(tela.getjPanelDCutaneas());
-                Util.bloquearCampos(tela.getjPanelPerimetria());
-                tela.setAvaliacao( Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
-                        jTableAvFísica.getSelectedRow(), 0)+"")));
-                tela.show();
-            }         
+            AlunosAvaliacaoJFrame tela = new AlunosAvaliacaoJFrame(a,i, objetivo);
+            Util.bloquearCampos(tela.getjPaneAnamnese());
+            Util.bloquearCampos(tela.getjPanel1());
+            Util.bloquearCampos(tela.getjPanelCCorporal());
+            Util.bloquearCampos(tela.getjPanelDCutaneas());
+            Util.bloquearCampos(tela.getjPanelPerimetria());
+            tela.setAvaliacao( Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
+                    jTableAvFísica.getSelectedRow(), 0)+"")));
+            tela.show();
         }
     }//GEN-LAST:event_jTableAvFísicaMouseClicked
 

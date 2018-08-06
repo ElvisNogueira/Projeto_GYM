@@ -5,16 +5,18 @@
  */
 package view;
 
+import model.Aluno;
+
 /**
  *
  * @author Insinuante
  */
 public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form AlunosJFrame
-     */
-    public AlunosFichaHomeJFrame() {
+    private Aluno aluno;
+    
+    
+    public AlunosFichaHomeJFrame(Aluno aluno) {
+        this.aluno = aluno;
         initComponents();
     }
 
@@ -196,8 +198,7 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCadastrarActionPerformed
-        this.dispose();
-        //new AlunosFichaExercicioJFrame().show();
+        new AlunosFichaExercicioJFrame(aluno).show();
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed

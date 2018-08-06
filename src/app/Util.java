@@ -21,7 +21,6 @@ import javax.swing.JTextField;
 import model.Aluno;
 import model.Conta;
 import model.Parcelas;
-import view.Mensagem;
 
 /**
  *
@@ -60,24 +59,11 @@ public class Util {
         String c = "";
         if(mes>9)
             c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/"
-                +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)));
-        else
-            c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/0"
-                +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)));
-        return getDate(c);
-    }
-    
-    public static Date converterCalendarToDate2(Calendar cal){
-        int dia = cal.get(GregorianCalendar.DAY_OF_MONTH);
-        int mes = cal.getInstance().get(GregorianCalendar.MONTH);
-        int ano = cal.getInstance().get(GregorianCalendar.YEAR);
-        String c = "";
-        if(mes>9)
-            c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/"
                 +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
         else
             c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/0"
                 +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
+      
         return getDate(c);
     }
     
@@ -114,7 +100,7 @@ public class Util {
             numPrcelas=12;
         
         for(int i=0;i<numPrcelas;i++){
-           p.setData_de_Vencimento(converterCalendarToDate2(cal));
+           p.setData_de_Vencimento(converterCalendarToDate(cal));
            p.setAlunos(a);
            p.setStatus("Em aberto");
            p.setValor(a.getValorPlano()/numPrcelas);      

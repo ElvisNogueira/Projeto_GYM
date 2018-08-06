@@ -6,7 +6,6 @@
 package business;
 
 import dao.ControleFinanceiroDao;
-import java.sql.Date;
 import java.util.ArrayList;
 import model.ControleFinanceiro;
 
@@ -22,11 +21,11 @@ public class ControleFinaceiroBusiness {
     }
     
     public void editar(ControleFinanceiro c){
-        dao.cadastrar(c);
+        dao.editar(c);
     }
         
      public void excluir(ControleFinanceiro c){
-        dao.cadastrar(c);
+        dao.excluir(c);
     }
      
     public ControleFinanceiro getById(int id){
@@ -36,11 +35,4 @@ public class ControleFinaceiroBusiness {
     public ArrayList<ControleFinanceiro> getAll(){
         return dao.getAll();
     }
-    
-     public ArrayList<ControleFinanceiro> getByBusca(Date d1, Date d2){
-         if(d1!=null && d1!=null){
-             return dao.getByBusca(d1, d2);
-         }
-         return dao.getAll();
-     }
 }

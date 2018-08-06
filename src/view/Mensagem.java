@@ -16,9 +16,8 @@ public class Mensagem {
         JOptionPane.showMessageDialog(null, texto);
     }
     
-    public static void mensagemErro(){
-        JOptionPane.showMessageDialog(null, "Você não tem permissão para efetuar essa ação", "ERRO",
-                JOptionPane.ERROR_MESSAGE);
+    public static void exibirErro(){
+        JOptionPane.showMessageDialog(null, "Você não tem permissão para efetuar essa ação!",
+                "Acesso negado", JOptionPane.ERROR_MESSAGE);
     }
-        
 }

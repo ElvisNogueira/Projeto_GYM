@@ -180,7 +180,7 @@
                                                       <Component id="jLabelNumero" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jTextFieldNumero" min="-2" pref="64" max="-2" attributes="0"/>
                                                   </Group>
-                                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                                  <EmptySpace pref="30" max="32767" attributes="0"/>
                                                   <Group type="103" groupAlignment="0" attributes="0">
                                                       <Component id="jLabelUF" min="-2" max="-2" attributes="0"/>
                                                       <Component id="jComboBoxUF" min="-2" pref="58" max="-2" attributes="0"/>
@@ -275,7 +275,7 @@
                                           </Group>
                                       </Group>
                                   </Group>
-                                  <EmptySpace pref="62" max="32767" attributes="0"/>
+                                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -1125,7 +1125,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace pref="67" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jButtonSalvar1" min="-2" pref="96" max="-2" attributes="0"/>
+                              <Component id="jButtonLancar" min="-2" pref="96" max="-2" attributes="0"/>
                               <Component id="jLabelPagamentos" min="-2" pref="194" max="-2" attributes="0"/>
                               <Component id="jScrollPane1" alignment="0" min="-2" pref="552" max="-2" attributes="0"/>
                           </Group>
@@ -1141,7 +1141,7 @@
                           <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                           <Component id="jScrollPane1" min="-2" pref="226" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="jButtonSalvar1" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="jButtonLancar" min="-2" pref="32" max="-2" attributes="0"/>
                           <EmptySpace pref="66" max="32767" attributes="0"/>
                       </Group>
                   </Group>
@@ -1184,7 +1184,7 @@
                     </Component>
                   </SubComponents>
                 </Container>
-                <Component class="javax.swing.JButton" name="jButtonSalvar1">
+                <Component class="javax.swing.JButton" name="jButtonLancar">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="e8" green="76" red="2d" type="rgb"/>
@@ -1199,7 +1199,7 @@
                     <Property name="toolTipText" type="java.lang.String" value="Lan&#xe7;ar pagamento"/>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSalvar1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonLancarActionPerformed"/>
                   </Events>
                 </Component>
               </SubComponents>

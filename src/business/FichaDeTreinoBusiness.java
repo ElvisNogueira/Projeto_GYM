@@ -6,7 +6,9 @@
 package business;
 
 import dao.FichaDeTreinoDao;
+import fachada.Fachada;
 import model.FichaDeTreino;
+
 
 /**
  *
@@ -21,6 +23,12 @@ public class FichaDeTreinoBusiness {
     
     public void Cadastrar(FichaDeTreino f){
         dao.cadastrar(f);
+       
+        for(int i =0; i < f.getExercicios().size() ; i++){
+            Fachada.getInstance().cadastrarFichaExercicio(f.getExercicios().get(i));
+        }
+        
+        
     }
     
     public void editar(FichaDeTreino f){

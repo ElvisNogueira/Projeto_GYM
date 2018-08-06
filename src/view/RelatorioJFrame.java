@@ -399,12 +399,12 @@ public class RelatorioJFrame extends javax.swing.JFrame {
                     .addComponent(jPanelAlunosDeb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelAlunosPlano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelAlunosCredito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelAlunosListagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelFinanceiro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(jPanelFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -431,7 +431,8 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosDebMouseExited
 
     private void jPanelAlunosDebMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosDebMousePressed
-        new RelatorioAlunoDebitoJFrame().show();
+        //new RelatorioAlunoDebitoJFrame().show();
+        //FAZER PDF
     }//GEN-LAST:event_jPanelAlunosDebMousePressed
 
     private void jPanelFuncionariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFuncionariosMouseEntered
@@ -444,7 +445,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
 
     private void jPanelFuncionariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFuncionariosMousePressed
         //new RelatorioFuncionarioListaJFrame().show();
-        new RelatoriListaFunJFrame().show();
+        //FAZER PDF
     }//GEN-LAST:event_jPanelFuncionariosMousePressed
 
     private void jPanelFinanceiroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFinanceiroMouseEntered
@@ -456,7 +457,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelFinanceiroMouseExited
 
     private void jPanelFinanceiroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFinanceiroMousePressed
-        new RelatorioFluxoCaixaJFrame().show();
+        new RelatorioFincanceiroJFrame().show();
     }//GEN-LAST:event_jPanelFinanceiroMousePressed
 
     private void jPanelAlunosListagemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosListagemMouseEntered
@@ -468,7 +469,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosListagemMouseExited
 
     private void jPanelAlunosListagemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosListagemMousePressed
-        new RelatorioListaAluJFrame().show();
+        //FAZER PDF
     }//GEN-LAST:event_jPanelAlunosListagemMousePressed
 
     private void jPanelAlunosCreditoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosCreditoMouseEntered
@@ -480,7 +481,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosCreditoMouseExited
 
     private void jPanelAlunosCreditoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosCreditoMousePressed
-        new RelatorioAlunoCreditoJFrame().show();
+        //FAZER PDF:
     }//GEN-LAST:event_jPanelAlunosCreditoMousePressed
 
     private void jPanelAlunosPlanoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosPlanoMouseEntered
@@ -492,8 +493,10 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosPlanoMouseExited
 
     private void jPanelAlunosPlanoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosPlanoMousePressed
-        new RelatorioAlunoPlanoVencerJFrame().show();
+        //FAZER PDF
     }//GEN-LAST:event_jPanelAlunosPlanoMousePressed
+
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabeFuncionario;

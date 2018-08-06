@@ -7,7 +7,6 @@ package view;
 
 import app.Projeto_GYM;
 import app.Util;
-import java.util.Calendar;
 import javax.swing.JPanel;
 import model.Aluno;
 import model.Anamnese;
@@ -1790,11 +1789,6 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         dateProxAvjFormattedTextField.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        dateProxAvjFormattedTextField.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                dateProxAvjFormattedTextFieldMouseClicked(evt);
-            }
-        });
 
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
@@ -2106,14 +2100,6 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jFormattedTextFieldIMC3.setText(Util.imc(Float.parseFloat(jFormattedTextFieldPeso.getText()),
                 Float.parseFloat(jFormattedTextFieldAltura.getText())) + "");
     }//GEN-LAST:event_jFormattedTextFieldIMC3MouseClicked
-
-    private void dateProxAvjFormattedTextFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_dateProxAvjFormattedTextFieldMouseClicked
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(Util.getDate(datejFormattedTextField.getText()));
-        cal.add(Calendar.MONTH, 2);
-        String d = Util.getDateString(Util.converterCalendarToDate(cal));
-        dateProxAvjFormattedTextField.setText(d);
-    }//GEN-LAST:event_dateProxAvjFormattedTextFieldMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -334,7 +334,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         });
 
         jComboBoxSexo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masulino" }));
+        jComboBoxSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Feminino", "Masculino" }));
         jComboBoxSexo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxSexoActionPerformed(evt);
@@ -384,7 +384,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jPanelCadastroLayout.setHorizontalGroup(
             jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCadastroLayout.createSequentialGroup()
-                .addContainerGap(55, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCadastroLayout.createSequentialGroup()
                         .addComponent(jLabelEmail)
@@ -433,7 +433,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                                             .addGroup(jPanelCadastroLayout.createSequentialGroup()
                                                 .addComponent(jLabelSexo)
                                                 .addGap(0, 0, Short.MAX_VALUE))
-                                            .addComponent(jComboBoxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                            .addComponent(jComboBoxSexo, 0, 82, Short.MAX_VALUE)))
                                     .addComponent(jTextFieldNome, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanelCadastroLayout.createSequentialGroup()
                                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -457,7 +457,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                                                 .addComponent(jLabelStatus)
                                                 .addComponent(jTextFieldCidade)
                                                 .addComponent(jComboBoxStatus, 0, 106, Short.MAX_VALUE)))))))
-                        .addContainerGap(60, Short.MAX_VALUE))))
+                        .addContainerGap(58, Short.MAX_VALUE))))
         );
         jPanelCadastroLayout.setVerticalGroup(
             jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -827,6 +827,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         });
 
         relatorioCadastrarjCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        relatorioCadastrarjCheckBox.setEnabled(false);
         relatorioCadastrarjCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioCadastrarjCheckBoxActionPerformed(evt);
@@ -834,6 +835,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         });
 
         relatorioEditarjCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        relatorioEditarjCheckBox.setEnabled(false);
         relatorioEditarjCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioEditarjCheckBoxActionPerformed(evt);
@@ -841,6 +843,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         });
 
         relatorioExcluirjCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        relatorioExcluirjCheckBox.setEnabled(false);
         relatorioExcluirjCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioExcluirjCheckBoxActionPerformed(evt);
@@ -848,6 +851,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         });
 
         relatorioRecebPagjCheckBox.setBackground(new java.awt.Color(255, 255, 255));
+        relatorioRecebPagjCheckBox.setEnabled(false);
         relatorioRecebPagjCheckBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioRecebPagjCheckBoxActionPerformed(evt);
@@ -1483,18 +1487,21 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        if(f.getId()==0){  
-            f = getFuncionario();
-            Projeto_GYM.fachada.cadastrarEndereco(f.getEndereco());
-            Projeto_GYM.fachada.cadastrarFuncionario(f);
-            if(jCheckBoxPROFAV.isSelected())              
-                Projeto_GYM.fachada.cadastrarInstrutor(i);
-            Mensagem.exibirMensagem("Funcionário cadastrado com sucesso!");
-        }else{
-            Fachada.getInstance().editarEndereco(f.getEndereco());
-            Fachada.getInstance().editarFuncionario(getFuncionario());
-            Mensagem.exibirMensagem("Funcionário editado com sucesso!");
-        }
+        if(Fachada.getFuncionarioLogado().isCadFuncCadastrar()){
+            if(f.getId()==0){  
+                f = getFuncionario();
+                Projeto_GYM.fachada.cadastrarEndereco(f.getEndereco());
+                Projeto_GYM.fachada.cadastrarFuncionario(f);
+                if(jCheckBoxPROFAV.isSelected())              
+                    Projeto_GYM.fachada.cadastrarInstrutor(i);
+                Mensagem.exibirMensagem("Funcionário cadastrado com sucesso!");
+            }else{
+                Fachada.getInstance().editarEndereco(f.getEndereco());
+                Fachada.getInstance().editarFuncionario(getFuncionario());
+                Mensagem.exibirMensagem("Funcionário editado com sucesso!");
+            }
+        }else
+            Mensagem.exibirErro();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jTextFieldSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSenhaActionPerformed
@@ -1809,7 +1816,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
 
     public Funcionario getFuncionario(){
         Date date = Util.getDate(getjFormattedTextFieldDN().getText());
-        Mensagem.exibirMensagem(getjFormattedTextFieldDTD().getText());
+        
         if(!(getjFormattedTextFieldDTD().getText().equals("  /  /    "))){
             Date dDemissao = Util.getDate(getjFormattedTextFieldDTD().getText());
             f.setData_demissao(dDemissao);

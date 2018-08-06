@@ -18,13 +18,15 @@ public class SQLUtil {
     static Connection conexao;
     
     
-    public static String INSERIR_ENDERECO ="insert into endereco (bairro,uf,cidade,cep,logradouro,num) values (?,?,?,?,?,?)";
-    public static String INSERIR_ALUNO = "insert into aluno (nome,cpf,data_nascimento,sexo,vencimento_mens,endereco_id,rg,"
-            + "email,celular,status,tipo_plano,valor_plano) values (?,?,?,?,?,?,?,?,?,'Ativo',?,?)";
-    public static String INSERIR_FUNCIONARIO = "insert into funcionario (nome,cpf,salario,telefone,login,senha,rg,data_nascimento,"
-            + "sexo,status,email,data_admissao,data_demissao,funcao,cadAlunoAcessar,cadAlunoCadastrar,cadAlunoEditar,cadAlunoExcluir,"
-            + "cadAlunoRecebPag,cadFuncAcessar,cadFuncCadastrar,cadFuncEditar,"
-            + "cadFuncExcluir,cadFuncRecebPag,avFisicaAcessar,fichaTreinoAcessar,relatorioAcessar,"
+    public static String INSERIR_ENDERECO ="insert into endereco (bairro,uf,cidade,cep,logradouro,num) "
+            + "values (?,?,?,?,?,?)";
+    public static String INSERIR_ALUNO = "insert into aluno (nome,cpf,data_nascimento,sexo,vencimento_mens,"
+            + "endereco_id,rg,email,celular,status,tipo_plano,valor_plano) values (?,?,?,?,?,?,?,?,?,"
+            + "'Ativo',?,?)";
+    public static String INSERIR_FUNCIONARIO = "insert into funcionario (nome,cpf,salario,telefone,login,senha,"
+            + "rg,data_nascimento,sexo,status,email,data_admissao,data_demissao,funcao,cadAlunoAcessar,"
+            + "cadAlunoCadastrar,cadAlunoEditar,cadAlunoExcluir,cadAlunoRecebPag,cadFuncAcessar,cadFuncCadastrar,"
+            + "cadFuncEditar,cadFuncExcluir,cadFuncRecebPag,avFisicaAcessar,fichaTreinoAcessar,relatorioAcessar,"
             + "relatorioCadastrar,relatorioEditar,relatorioExcluir,relatorioRecebPag,lancarPagAcessar,lancarPagCadastrar,"
             + "lancarPagEditar,lancarPagExcluir,lancarPagRecebPag,controleCaixaAcessar,controleCaixaCadastrar,controleCaixaEditar,"
             + "controleCaixaExcluir,controleCaixaRecebPag,endereco_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
@@ -84,8 +86,7 @@ public class SQLUtil {
     public static String SELECT_BY_ID_CONTROLE_FINANCEIRO = "select * from controle_financeiro where id=?";
     public static String SELECT_BY_ID_AVALIACAO = "select * from avaliacao where id=?";
     public static String SELECT_BY_ALUNO_AVALIACAO = "select * from avaliacao where aluno_id=?";
-    public static String SELECT_BY_DATA_CONTROLE_FINANCEIRO = "select * from controle_financeiro where data "
-            + "between ? and ?";
+    public static String SELECT_BY_TIPO_ALL_EXERCICIOS = "select * from exercicio where tipo=?";    
     
     public static String UPDATE_ALUNO = "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
             + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";

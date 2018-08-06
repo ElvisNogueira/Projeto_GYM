@@ -27,6 +27,7 @@ public class ExerciciosHomeJFrame extends javax.swing.JFrame {
         initComponents();
         carregarTabela(Fachada.getInstance().getExercicioAll());
     }
+        
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -129,11 +130,6 @@ public class ExerciciosHomeJFrame extends javax.swing.JFrame {
         jTextFieldProcurar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldProcurarActionPerformed(evt);
-            }
-        });
-        jTextFieldProcurar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTextFieldProcurarKeyReleased(evt);
             }
         });
 
@@ -243,7 +239,7 @@ public class ExerciciosHomeJFrame extends javax.swing.JFrame {
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
         ExerciciosCadastroJFrame tela = new ExerciciosCadastroJFrame();
         tela.setExercicio(Fachada.getInstance().getByIdExercicio(Integer.parseInt(
-                jTableExercicio.getValueAt(jTableExercicio.getSelectedRow(), 0) + "")));
+            jTableExercicio.getValueAt(jTableExercicio.getSelectedRow(), 0)+"")));
         tela.show();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
@@ -263,51 +259,29 @@ public class ExerciciosHomeJFrame extends javax.swing.JFrame {
     private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
         String busca = jTextFieldProcurar.getText();
         ArrayList<Exercicio> exercicios = new ArrayList<>();
-        if ("Todos".equals(jComboBoxExercicio.getSelectedItem() + "")) {
-            for (Exercicio e : Fachada.getInstance().getExercicioAll()) {
-                if (e.getNome().contains(busca)) {
-                    exercicios.add(e);
-                }
-            }
-        } else {
-            for (Exercicio e : Fachada.getInstance().getExercicioAll()) {
-                if (e.getNome().contains(busca) && e.getTipo().equals(jComboBoxExercicio.getSelectedItem() + "")) {
-                    exercicios.add(e);
-                }
-            }
+        if("Todos".equals(jComboBoxExercicio.getSelectedItem()+"")){
+           for(Exercicio e : Fachada.getInstance().getExercicioAll()){
+               if(e.getNome().contains(busca))
+                   exercicios.add(e);
+           } 
+        }else{
+            for(Exercicio e : Fachada.getInstance().getExercicioAll()){
+               if(e.getNome().contains(busca) && e.getTipo().equals(jComboBoxExercicio.getSelectedItem()+""))
+                   exercicios.add(e);
+           }
         }
-
+        
         carregarTabela(exercicios);
     }//GEN-LAST:event_jLabelIconPesquisarMouseClicked
 
     private void jTableExercicioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableExercicioMouseClicked
-        if (evt.getClickCount() == 2) {
+        if(evt.getClickCount()==2){
             ExerciciosCadastroJFrame tela = new ExerciciosCadastroJFrame();
             tela.setExercicio(Fachada.getInstance().getByIdExercicio(Integer.parseInt(
-                    jTableExercicio.getValueAt(jTableExercicio.getSelectedRow(), 0) + "")));
+                jTableExercicio.getValueAt(jTableExercicio.getSelectedRow(), 0)+"")));
             tela.show();
         }
     }//GEN-LAST:event_jTableExercicioMouseClicked
-
-    private void jTextFieldProcurarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProcurarKeyReleased
-        String busca = jTextFieldProcurar.getText();
-        ArrayList<Exercicio> exercicios = new ArrayList<>();
-        if ("Todos".equals(jComboBoxExercicio.getSelectedItem() + "")) {
-            for (Exercicio e : Fachada.getInstance().getExercicioAll()) {
-                if (e.getNome().contains(busca)) {
-                    exercicios.add(e);
-                }
-            }
-        } else {
-            for (Exercicio e : Fachada.getInstance().getExercicioAll()) {
-                if (e.getNome().contains(busca) && e.getTipo().equals(jComboBoxExercicio.getSelectedItem() + "")) {
-                    exercicios.add(e);
-                }
-            }
-        }
-
-        carregarTabela(exercicios);
-    }//GEN-LAST:event_jTextFieldProcurarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -326,16 +300,16 @@ public class ExerciciosHomeJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldProcurar;
     // End of variables declaration//GEN-END:variables
 
-    private void carregarTabela(ArrayList<Exercicio> exercicios) {
-        String[] colunas = new String[]{"ID", "NOME", "TIPO DE EXERCICIO"};
+    private void carregarTabela(ArrayList<Exercicio> exercicios){
+        String[] colunas = new String[]{"ID","NOME","TIPO DE EXERCICIO"};
         ArrayList<Object[]> dados = new ArrayList<>();
-
-        for (Exercicio e : exercicios) {
-            dados.add(new Object[]{e.getId(), e.getNome(), e.getTipo()});
+        
+        for(Exercicio e : exercicios){
+            dados.add(new Object[]{e.getId(),e.getNome(),e.getTipo()});
         }
-
-        ModeloTabela modeloTabela = new ModeloTabela(dados, colunas);
-        jTableExercicio.setModel(modeloTabela);
+        
+        ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
+        jTableExercicio.setModel(modeloTabela);      
         jTableExercicio.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTableExercicio.getColumnModel().getColumn(0).setResizable(false);
         jTableExercicio.getColumnModel().getColumn(1).setPreferredWidth(300);

@@ -110,7 +110,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         jLabelPagamentos = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButtonSalvar1 = new javax.swing.JButton();
+        jButtonLancar = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -394,7 +394,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelNumero)
                                             .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(30, 30, 30)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelUF)
                                             .addComponent(jComboBoxUF, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -461,7 +461,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                                         .addComponent(jLabelId3)
                                         .addGap(0, 0, Short.MAX_VALUE))
                                     .addComponent(jComboBoxPlano, 0, 1, Short.MAX_VALUE))))
-                        .addContainerGap(62, Short.MAX_VALUE))))
+                        .addGap(62, 62, 62))))
         );
         jPanelCadastroLayout.setVerticalGroup(
             jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -733,14 +733,14 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButtonSalvar1.setBackground(new java.awt.Color(45, 118, 232));
-        jButtonSalvar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButtonSalvar1.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonSalvar1.setText("Lançar");
-        jButtonSalvar1.setToolTipText("Lançar pagamento");
-        jButtonSalvar1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonLancar.setBackground(new java.awt.Color(45, 118, 232));
+        jButtonLancar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonLancar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonLancar.setText("Lançar");
+        jButtonLancar.setToolTipText("Lançar pagamento");
+        jButtonLancar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonSalvar1ActionPerformed(evt);
+                jButtonLancarActionPerformed(evt);
             }
         });
 
@@ -751,7 +751,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
             .addGroup(jPanelPagamentosLayout.createSequentialGroup()
                 .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(jPanelPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonLancar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(76, Short.MAX_VALUE))
@@ -764,7 +764,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
-                .addComponent(jButtonSalvar1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonLancar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(66, Short.MAX_VALUE))
         );
 
@@ -895,14 +895,16 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCancelarActionPerformed
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        if(a.getId()==0){
-            a=Projeto_GYM.fachada.cadastrarAluno(getAluno());
-            Mensagem.exibirMensagem("Aluno cadastrado com sucesso!");
-        }else{
-            a=Projeto_GYM.fachada.editarAluno(getAluno());
-            Mensagem.exibirMensagem("Aluno cadastrado com sucesso!");
-        }
-        preencherTabela(Fachada.getInstance().getAllByIdParcelas(a.getId()));
+        if(Fachada.getFuncionarioLogado().isCadAlunoCadastrar()){
+            if(a.getId()==0){
+                a=Projeto_GYM.fachada.cadastrarAluno(getAluno());
+                Mensagem.exibirMensagem("Aluno cadastrado com sucesso!");
+            }else{
+                a=Projeto_GYM.fachada.editarAluno(getAluno());
+                Mensagem.exibirMensagem("Aluno cadastrado com sucesso!");
+            }
+        }else
+            Mensagem.exibirErro();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jPanelAvalicaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAvalicaoMouseEntered
@@ -921,46 +923,53 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         HomeJFrame.setColor(jPanelFicha);
     }//GEN-LAST:event_jPanelFichaMouseEntered
 
-    private void jButtonSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvar1ActionPerformed
-        Pagamento p = new Pagamento();
-        AlunosLancarFaturaJFrame tela;
-        if(jTable1.getSelectedRow()==-1){
-            tela = new AlunosLancarFaturaJFrame(p, a);
-            tela.show();
-        }else if(!(jTable1.getValueAt(jTable1.getSelectedRow(), 4)+"").equals("Pago")){
-            Parcelas parc = Fachada.getInstance().getByIdParcelas(Integer.parseInt(jTable1.getValueAt(
-                    jTable1.getSelectedRow(), 0)+""));
-            p.setAluno(this.a);
-            p.setDataVenc(parc.getData_de_Vencimento());          
-            p.setFuncionario(Fachada.getFuncionarioLogado());
-            p.setServico(parc.getConta().getDescricao());
-            p.setValor(parc.getValor());
-            parc.setStatus("Pago");
-            Fachada.getInstance().editarParcelas(parc);
-            tela = new AlunosLancarFaturaJFrame(p, a);
-            tela.set();
-            tela.show();
-            preencherTabela(Fachada.getInstance().getAllByIdParcelas(p.getAluno().getId()));
-        }else{
-            Mensagem.exibirMensagem("Parcela já paga!");
-        }
+    private void jButtonLancarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLancarActionPerformed
+        if(Fachada.getFuncionarioLogado().isCadAlunoRecebPag()){
+            Pagamento p = new Pagamento();
+            AlunosLancarFaturaJFrame tela;
+            if(jTable1.getSelectedRow()==-1){
+                tela = new AlunosLancarFaturaJFrame(p, a);
+                tela.show();
+            }else if(!(jTable1.getValueAt(jTable1.getSelectedRow(), 4)+"").equals("Pago")){
+                Parcelas parc = Fachada.getInstance().getByIdParcelas(Integer.parseInt(jTable1.getValueAt(
+                        jTable1.getSelectedRow(), 0)+""));
+                p.setAluno(this.a);
+                p.setDataVenc(parc.getData_de_Vencimento());          
+                p.setFuncionario(Fachada.getFuncionarioLogado());
+                p.setServico(parc.getConta().getDescricao());
+                p.setValor(parc.getValor());
+                parc.setStatus("Pago");
+                Fachada.getInstance().editarParcelas(parc);
+                tela = new AlunosLancarFaturaJFrame(p, a);
+                tela.set();
+                tela.show();
+                preencherTabela(Fachada.getInstance().getAllByIdParcelas(p.getAluno().getId()));
+            }else{
+                Mensagem.exibirMensagem("Parcela já paga!");
+            }
+        }else
+            Mensagem.exibirErro();
         
 //        new AlunosLancarFaturaJFrame(a).show();
-    }//GEN-LAST:event_jButtonSalvar1ActionPerformed
+    }//GEN-LAST:event_jButtonLancarActionPerformed
 
     private void jPanelAvalicaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAvalicaoMousePressed
 //        this.setVisible(false);
         if((a.getId()==0||a==null))//Fazer a restrição de acesso
             Mensagem.exibirMensagem("Cadastre o aluno antes de fazer a avaliação física");
         else if(!Fachada.getFuncionarioLogado().isAvFisicaAcessar())
-            Mensagem.exibirMensagem("Você não tem acesso a esta funcionalidade!");
+            Mensagem.exibirErro();
         else
             new AlunosAvaliacaoHomeJFrame(a,jTextAreaObj.getText()).show();
     }//GEN-LAST:event_jPanelAvalicaoMousePressed
 
     private void jPanelFichaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFichaMousePressed
-//        this.setVisible(false);
-        new AlunosFichaHomeJFrame().show();
+        if(!Fachada.getFuncionarioLogado().isFichaTreinoAcessar())
+            Mensagem.exibirErro();
+        else if((a.getId()==0||a==null))
+           Mensagem.exibirMensagem("Cadastre o aluno antes de fazer a ficha de treino!"); 
+        else
+           new AlunosFichaHomeJFrame(a).show();
     }//GEN-LAST:event_jPanelFichaMousePressed
 
     private void jTextFieldNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNumeroActionPerformed
@@ -978,8 +987,8 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCancelar;
+    private javax.swing.JButton jButtonLancar;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JButton jButtonSalvar1;
     private javax.swing.JComboBox<String> jComboBoxPlano;
     private javax.swing.JComboBox<String> jComboBoxSexo1;
     private javax.swing.JComboBox<String> jComboBoxStatus;

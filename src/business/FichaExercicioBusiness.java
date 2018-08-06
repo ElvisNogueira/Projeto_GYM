@@ -32,8 +32,8 @@ public class FichaExercicioBusiness {
         dao.excluir(f);
     }
     
-    public FichaExercicio excluir(int id){
-        return dao.getById(id);
+    public FichaExercicio getByIdFichaTreiino(int id){
+        return dao.getByIdFichaTreiino(id);
     }
     
     

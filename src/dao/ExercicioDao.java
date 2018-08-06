@@ -73,7 +73,24 @@ public class ExercicioDao {
         }
         return null;
     }
-    public ArrayList<Exercicio> getAllTipo(String tipo){return null;}
+    public ArrayList<Exercicio> getAllTipo(String tipo){
+        ResultSet result;
+        ArrayList<Exercicio> exercicios = new ArrayList<>();
+        try {
+            statment = SQLUtil.prepareStatement(SQLUtil.SELECT_BY_TIPO_ALL_EXERCICIOS);
+            statment.setString(1, tipo);
+            result = statment.executeQuery();
+            
+            while (result.next()) {                
+                exercicios.add(get(result));
+            }
+            return exercicios;
+        } catch (Exception ex) {
+            Logger.getLogger(ExercicioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
     public ArrayList<Exercicio> getAll(){
         ResultSet result;
         ArrayList<Exercicio> exercicios = new ArrayList<>();
