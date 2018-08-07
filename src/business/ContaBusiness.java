@@ -6,6 +6,7 @@
 package business;
 
 import dao.ContaDao;
+import fachada.Fachada;
 import java.util.ArrayList;
 import java.util.Calendar;
 import model.Conta;
@@ -51,5 +52,22 @@ public class ContaBusiness {
     
     public ArrayList<Conta> getAllContas(){      
         return dao.getAllContas();
+    }
+    
+    public ArrayList<Conta> getBusca(String busca, String combobox){
+        ArrayList<Conta> contas = new ArrayList<>();
+        
+        if((combobox).equals("Todos")){
+            for(Conta c : Fachada.getInstance().getAllContas()){
+                if(c.getDescricao().toLowerCase().toLowerCase().trim().contains(busca))
+                    contas.add(c);
+            }
+        }else{
+            for(Conta c : Fachada.getInstance().getAllContas()){
+                if(c.getDescricao().toLowerCase().trim().contains(busca) && c.getTipo().equals(combobox))
+                    contas.add(c);
+            }            
+        }
+        return contas;
     }
 }

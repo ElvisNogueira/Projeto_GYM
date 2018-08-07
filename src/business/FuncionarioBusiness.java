@@ -51,7 +51,7 @@ public class FuncionarioBusiness {
     public ArrayList<Funcionario> getBusca(String busca){
         ArrayList<Funcionario> funcionarios = new ArrayList<>();
         for(Funcionario f : getAll()){
-            if(f.getCpf().contains(busca) || f.getNome().contains(busca) || f.getRg().contains(busca) || 
+            if(f.getCpf().contains(busca) || f.getNome().toLowerCase().contains(busca) || f.getRg().contains(busca) || 
                 f.getEmail().contains(busca)){
                 funcionarios.add(f);
             }

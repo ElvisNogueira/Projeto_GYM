@@ -114,6 +114,11 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
                 jTextFieldProsucarActionPerformed(evt);
             }
         });
+        jTextFieldProsucar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldProsucarKeyReleased(evt);
+            }
+        });
 
         jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px_2.png"))); // NOI18N
         jLabelIconPesquisar.setToolTipText("Pesquisar");
@@ -209,7 +214,7 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
     private void jLabelIconPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelIconPesquisarMouseClicked
-        String busca = this.jTextFieldProsucar.getText();
+        String busca = this.jTextFieldProsucar.getText().toLowerCase();
 
         if (busca.trim().length() == 0) {
             Mensagem.exibirMensagem("Digite uma busca");
@@ -232,6 +237,13 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
             tela.show();
         }
     }//GEN-LAST:event_jTableAlunosMouseClicked
+
+    private void jTextFieldProsucarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldProsucarKeyReleased
+        String busca = this.jTextFieldProsucar.getText().toLowerCase();
+        ArrayList<Aluno> alunos = Fachada.getInstance().getAlunosPosBusca(busca);
+
+        carregarTabela(alunos);
+    }//GEN-LAST:event_jTextFieldProsucarKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

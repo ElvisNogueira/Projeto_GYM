@@ -5,6 +5,7 @@
  */
 package dao;
 
+import fachada.Fachada;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -109,6 +110,21 @@ public class ExercicioDao {
         return null;
     }
     
+    public ArrayList<Exercicio> getBusca(String busca, String comboBox){
+        ArrayList<Exercicio> exercicios = new ArrayList<>();
+        if("Todos".equals(comboBox)){
+           for(Exercicio e : Fachada.getInstance().getExercicioAll()){
+               if(e.getNome().toLowerCase().contains(busca))
+                   exercicios.add(e);
+           } 
+        }else{
+            for(Exercicio e : Fachada.getInstance().getExercicioAll()){
+               if(e.getNome().toLowerCase().contains(busca) && e.getTipo().equals(comboBox))
+                   exercicios.add(e);
+           }
+        }
+        return exercicios;
+    }    
     private Exercicio get(ResultSet result){
         Exercicio e = new Exercicio();
         try {

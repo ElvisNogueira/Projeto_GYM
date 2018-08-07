@@ -463,4 +463,12 @@ public class Fachada {
     public void excluirParcelas(Parcelas p){
         parcelasBusiness.cadastrar(p);
     }
+    
+    public ArrayList<Exercicio> getBuscaExercicio(String busca, String comboBox){
+        return exercicioBusiness.getBusca(busca, comboBox);
+    }
+    
+    public ArrayList<Conta> getBuscaConta(String busca, String combobox){
+        return contaBusiness.getBusca(busca, combobox);
+    }
 }

@@ -45,4 +45,8 @@ public class ExercicioBusiness {
     public ArrayList<Exercicio> getByAll(){
         return dao.getAll();
     }
+    
+    public ArrayList<Exercicio> getBusca(String busca, String comboBox){
+        return dao.getBusca(busca, comboBox);
+    }
 }
