@@ -32,7 +32,8 @@ public class FichaExercicioDao {
             statement.setInt(5, SQLUtil.getLastIdTabela("ficha_de_treino"));
             
             statement.execute();
-        } catch (Exception ex) {
+        } catch (Exception ex) {Logger.getLogger(AvaliacaoDao.class.getName()).log(Level.SEVERE, null, ex);
+            
             Mensagem.exibirMensagem("Erro ao cadastrar em Ficha_Exercicio!\n"+ex.getMessage());
         }
     }

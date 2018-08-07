@@ -136,4 +136,20 @@ public class ExercicioDao {
         }
         return e;
     }
+    
+    public Exercicio getExercicioNome(String nome){
+        ResultSet result;
+        try {
+            statment = SQLUtil.prepareStatement(SQLUtil.SELECT_BY_NOME_EXERCICIOS);
+            statment.setString(1, nome);
+            result = statment.executeQuery();
+            result.next();
+            
+            return get(result);
+        } catch (Exception ex) {
+            Logger.getLogger(ExercicioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return null;
+    }
 }

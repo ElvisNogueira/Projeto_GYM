@@ -49,4 +49,7 @@ public class ExercicioBusiness {
     public ArrayList<Exercicio> getBusca(String busca, String comboBox){
         return dao.getBusca(busca, comboBox);
     }
+     public Exercicio getExercicioNome(String nome){
+         return dao.getExercicioNome(nome);
+     }
 }

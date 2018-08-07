@@ -471,4 +471,8 @@ public class Fachada {
     public ArrayList<Conta> getBuscaConta(String busca, String combobox){
         return contaBusiness.getBusca(busca, combobox);
     }
+    
+     public Exercicio getExercicioNomeExercicio(String nome){
+         return exercicioBusiness.getExercicioNome(nome);
+     }
 }
