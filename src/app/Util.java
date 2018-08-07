@@ -21,6 +21,7 @@ import javax.swing.JTextField;
 import model.Aluno;
 import model.Conta;
 import model.Parcelas;
+import view.Mensagem;
 
 /**
  *
@@ -63,7 +64,9 @@ public class Util {
         else
             c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/0"
                 +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
-      
+        if(dia<10)
+            c = "0"+c;
+        Mensagem.exibirMensagem(c+"");
         return getDate(c);
     }
     
@@ -123,7 +126,7 @@ public class Util {
         }     
     }
     
-     public static void bloquearCampos(JPanel p){
+    public static void bloquearCampos(JPanel p){
          
          for (int i=0; i < p.getComponentCount(); i++) { //For para todos os componentes do Panel 
                  Component c = p.getComponent(i);   

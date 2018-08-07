@@ -7,6 +7,9 @@ package view;
 
 import app.Projeto_GYM;
 import app.Util;
+import java.sql.Date;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.swing.JPanel;
 import model.Aluno;
 import model.Anamnese;
@@ -15,6 +18,7 @@ import model.Composicao_corporal;
 import model.Dobras_Cutaneas;
 import model.Instrutor;
 import model.Metas_ideais;
+import model.Parcelas;
 import model.Perimetria;
 
 /**
@@ -53,6 +57,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         c = new Composicao_corporal();
         m = new Metas_ideais();
         initComponents();
+        datasAvaliacao();
     }
 
     /**
@@ -2478,6 +2483,22 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         dateProxAvjFormattedTextField.setText(Util.getDateString(avaliacao.getProxima_avaliacao()));
         datejFormattedTextField.setText(Util.getDateString(avaliacao.getData()));
 
+    }
+    
+    private void datasAvaliacao(){
+        int dia = Calendar.getInstance().get(GregorianCalendar.DAY_OF_MONTH);
+        int mes = Calendar.getInstance().get(GregorianCalendar.MONTH);
+        int ano = Calendar.getInstance().get(GregorianCalendar.YEAR);
+        Date d = new Date(ano,mes,dia);
+        Parcelas p = new Parcelas();
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(d);
+        cal.add(Calendar.MONTH, 1);
+        d = Util.converterCalendarToDate(cal);
+        datejFormattedTextField.setText(Util.getDateString(d));
+        cal.add(Calendar.MONTH, 1);
+        Date d2 = Util.converterCalendarToDate(cal);
+        dateProxAvjFormattedTextField.setText(Util.getDateString(d2));
     }
 
     public JPanel getjPaneAnamnese() {
