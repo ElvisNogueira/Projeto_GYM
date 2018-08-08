@@ -5,9 +5,12 @@
  */
 package business;
 
+import app.Projeto_GYM;
 import dao.FichaDeTreinoDao;
 import fachada.Fachada;
 import model.FichaDeTreino;
+import model.FichaExercicio;
+import view.Mensagem;
 
 
 /**
@@ -23,9 +26,10 @@ public class FichaDeTreinoBusiness {
     
     public void Cadastrar(FichaDeTreino f){
         dao.cadastrar(f);
-       
-        for(int i =0; i < f.getExercicios().size() ; i++){
-            Fachada.getInstance().cadastrarFichaExercicio(f.getExercicios().get(i));
+        
+        for(FichaExercicio e : f.getExercicios()){
+            Mensagem.exibirMensagem(e.getDia()+" "+f.getExercicios().size());
+            Projeto_GYM.fachada.cadastrarFichaExercicio(e);
         }
         
         

@@ -91,6 +91,7 @@ public class Fachada {
         enderecoBusiness = new EnderecoBusiness();
         exercicioBusiness = new ExercicioBusiness();
         fichaDeTreinoBusiness = new FichaDeTreinoBusiness();
+        fichaExercicioBusiness = new FichaExercicioBusiness();
         funcionarioBusiness = new FuncionarioBusiness();
         instrutorBusiness = new InstrutorBusiness();
         metas_ideaisBusiness = new Metas_ideaisBusiness();

@@ -686,33 +686,40 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
 
         ficha.setData(date);
         ficha.setDataReavaliacao(dateRea);    
-       
+        ficha.setInstrutor(Fachada.getInstance().getByFuncionario_IdInstrutor(
+                Fachada.getFuncionarioLogado().getId()));
+        ficha.setAluno(aluno);
         ficha.setObg(jTextField3.getText());
         ficha.setObs(jTextArea1.getText());
         
-        Mensagem.exibirMensagem(ficha.getExercicios()+"");
         for(FichaExercicio e : seg){
+            e.setDia("segunda");
             ficha.getExercicios().add(e);
         }
         for(FichaExercicio e : ter){
+            e.setDia("terça");
             ficha.getExercicios().add(e);
         }for(FichaExercicio e : qua){
+            e.setDia("quarta");
             ficha.getExercicios().add(e);
         }
         for(FichaExercicio e : qui){
+            e.setDia("quinta");
             ficha.getExercicios().add(e);
         }
         for(FichaExercicio e : sex){
+            e.setDia("sexta");
             ficha.getExercicios().add(e);
         }
         for(FichaExercicio e : sab){
+            e.setDia("sabado");
             ficha.getExercicios().add(e);
         }
         for(FichaExercicio e : dom){
+            e.setDia("domingo");
             ficha.getExercicios().add(e);
         }
 
-        
         seg.clear();
         ter.clear();
         qua.clear();
@@ -732,7 +739,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         fichaExer.setObs(jTextField16.getText());
 
         if(segjCheckBox10.isSelected()){
-            Mensagem.exibirMensagem(fichaExer.getObs());
             seg.add(fichaExer);
         }
 

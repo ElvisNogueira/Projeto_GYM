@@ -6,7 +6,6 @@
 package business;
 
 import dao.FichaExercicioDao;
-import model.FichaDeTreino;
 import model.FichaExercicio;
 
 /**
