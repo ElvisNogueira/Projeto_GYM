@@ -70,6 +70,20 @@ public class Util {
         return getDate(c);
     }
     
+        public static Date converterCalendarToDate2(Calendar cal){
+        int dia = cal.get(GregorianCalendar.DAY_OF_MONTH);
+        int mes = cal.getInstance().get(GregorianCalendar.MONTH)+1;
+        int ano = cal.getInstance().get(GregorianCalendar.YEAR);
+        String c = "";
+        if(mes>9)
+            c =(dia+"/"+mes+"/"+ano);
+        else
+            c =(dia+"/0"+mes+"/"+ano);
+        if(dia<10)
+            c = "0"+c;
+        return getDate(c);
+    }
+    
     public static Float imc(float peso, float altura){
         float a = altura/100;
         return peso/(a*a);
