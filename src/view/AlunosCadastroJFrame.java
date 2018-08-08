@@ -899,9 +899,10 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
             if(a.getId()==0){
                 a=Projeto_GYM.fachada.cadastrarAluno(getAluno());
                 Mensagem.exibirMensagem("Aluno cadastrado com sucesso!");
+                preencherTabela(Fachada.getInstance().getAllByIdParcelas(a.getId()));
             }else{
                 a=Projeto_GYM.fachada.editarAluno(getAluno());
-                Mensagem.exibirMensagem("Aluno cadastrado com sucesso!");
+                Mensagem.exibirMensagem("Aluno editado com sucesso!");
             }
         }else
             Mensagem.exibirErro();

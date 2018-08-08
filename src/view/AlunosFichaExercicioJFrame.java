@@ -7,6 +7,7 @@ package view;
 
 import app.Projeto_GYM;
 import app.Util;
+import fachada.Fachada;
 import java.sql.Date;
 import java.util.ArrayList;
 import model.Aluno;
@@ -34,10 +35,15 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     private ArrayList<FichaExercicio> dom = new ArrayList<>();
     private String obj, obs;
     
+    
     public AlunosFichaExercicioJFrame(Aluno aluno) {
         this.aluno = aluno;
+        ficha = new FichaDeTreino();
+        fichaExer = new FichaExercicio();
+        ficha.setExercicios(new ArrayList<>());
         
         initComponents();
+         jTextFieldNomeProf.setText(Fachada.getInstance().getByFuncionario_IdInstrutor(Fachada.getFuncionarioLogado().getId()).getFuncionario().getNome());
         preencherComboBox();
     }
 
@@ -582,8 +588,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        getFicha();
-        Projeto_GYM.fachada.cadastrarFichaDeTreino(ficha);
+        Projeto_GYM.fachada.cadastrarFichaDeTreino(getFicha());
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -681,17 +686,32 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
 
         ficha.setData(date);
         ficha.setDataReavaliacao(dateRea);    
-        jTextFieldNomeProf.setText(instrutor.getFuncionario().getNome());
+       
         ficha.setObg(jTextField3.getText());
         ficha.setObs(jTextArea1.getText());
         
-        ficha.getExercicios().addAll(seg);
-        ficha.getExercicios().addAll(ter);
-        ficha.getExercicios().addAll(qua);
-        ficha.getExercicios().addAll(qui);
-        ficha.getExercicios().addAll(sex);
-        ficha.getExercicios().addAll(sab);
-        ficha.getExercicios().addAll(dom);
+        Mensagem.exibirMensagem(ficha.getExercicios()+"");
+        for(FichaExercicio e : seg){
+            ficha.getExercicios().add(e);
+        }
+        for(FichaExercicio e : ter){
+            ficha.getExercicios().add(e);
+        }for(FichaExercicio e : qua){
+            ficha.getExercicios().add(e);
+        }
+        for(FichaExercicio e : qui){
+            ficha.getExercicios().add(e);
+        }
+        for(FichaExercicio e : sex){
+            ficha.getExercicios().add(e);
+        }
+        for(FichaExercicio e : sab){
+            ficha.getExercicios().add(e);
+        }
+        for(FichaExercicio e : dom){
+            ficha.getExercicios().add(e);
+        }
+
         
         seg.clear();
         ter.clear();
@@ -708,11 +728,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         fichaExer.setRepeticoes(Integer.parseInt(jTextFieldRepeticoe12.getText()));
         fichaExer.setOrdem(Integer.parseInt(jSpinnerOrdem12.getValue().toString()));
         fichaExer.setSerie(Integer.parseInt(jSpinnerSerie12.getValue().toString()));
-        fichaExer.getExercicio().setNome(jComboExercicio.getSelectedItem().toString());
-        fichaExer.getExercicio().setTipo(jComboBoxTipoExerc.getSelectedItem().toString());
+        fichaExer.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(jComboExercicio.getSelectedItem() + ""));
         fichaExer.setObs(jTextField16.getText());
 
         if(segjCheckBox10.isSelected()){
+            Mensagem.exibirMensagem(fichaExer.getObs());
             seg.add(fichaExer);
         }
 

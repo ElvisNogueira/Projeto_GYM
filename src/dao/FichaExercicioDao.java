@@ -33,6 +33,8 @@ public class FichaExercicioDao {
             
             statement.execute();
         } catch (Exception ex) {
+            Logger.getLogger(AvaliacaoDao.class.getName()).log(Level.SEVERE, null, ex);
+            
             Mensagem.exibirMensagem("Erro ao cadastrar em Ficha_Exercicio!\n"+ex.getMessage());
         }
     }

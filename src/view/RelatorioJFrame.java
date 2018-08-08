@@ -376,35 +376,35 @@ public class RelatorioJFrame extends javax.swing.JFrame {
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelBackLayout.createSequentialGroup()
-                .addContainerGap(208, Short.MAX_VALUE)
+                .addContainerGap(193, Short.MAX_VALUE)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanelAlunosListagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelAlunosDeb, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
+                .addGap(50, 50, 50)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelAlunosCredito, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelFuncionarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGap(50, 50, 50)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanelAlunosPlano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(208, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
         jPanelBackLayout.setVerticalGroup(
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackLayout.createSequentialGroup()
                 .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelAlunosDeb, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelAlunosPlano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelAlunosCredito, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(50, 50, 50)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelAlunosListagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelFinanceiro, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                     .addComponent(jPanelFuncionarios, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(97, Short.MAX_VALUE))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -431,8 +431,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosDebMouseExited
 
     private void jPanelAlunosDebMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosDebMousePressed
-        //new RelatorioAlunoDebitoJFrame().show();
-        //FAZER PDF
+        new RelatorioListaDebitoJFrame().show();
     }//GEN-LAST:event_jPanelAlunosDebMousePressed
 
     private void jPanelFuncionariosMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFuncionariosMouseEntered
@@ -444,8 +443,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelFuncionariosMouseExited
 
     private void jPanelFuncionariosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFuncionariosMousePressed
-        //new RelatorioFuncionarioListaJFrame().show();
-        //FAZER PDF
+        new RelatoriListaFunJFrame().show();        
     }//GEN-LAST:event_jPanelFuncionariosMousePressed
 
     private void jPanelFinanceiroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFinanceiroMouseEntered
@@ -457,7 +455,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelFinanceiroMouseExited
 
     private void jPanelFinanceiroMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFinanceiroMousePressed
-        new RelatorioFincanceiroJFrame().show();
+        new RelatorioFluxoCaixaJFrame().show();
     }//GEN-LAST:event_jPanelFinanceiroMousePressed
 
     private void jPanelAlunosListagemMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosListagemMouseEntered
@@ -469,7 +467,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosListagemMouseExited
 
     private void jPanelAlunosListagemMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosListagemMousePressed
-        //FAZER PDF
+        new RelatorioListaAluJFrame().show();
     }//GEN-LAST:event_jPanelAlunosListagemMousePressed
 
     private void jPanelAlunosCreditoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosCreditoMouseEntered
@@ -481,7 +479,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosCreditoMouseExited
 
     private void jPanelAlunosCreditoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosCreditoMousePressed
-        //FAZER PDF:
+        new RelatorioListaCredJFrame().show();
     }//GEN-LAST:event_jPanelAlunosCreditoMousePressed
 
     private void jPanelAlunosPlanoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosPlanoMouseEntered
@@ -493,7 +491,7 @@ public class RelatorioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanelAlunosPlanoMouseExited
 
     private void jPanelAlunosPlanoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAlunosPlanoMousePressed
-        //FAZER PDF
+        new RelatorioAlunoPlanoVencerJFrame().show();
     }//GEN-LAST:event_jPanelAlunosPlanoMousePressed
 
     

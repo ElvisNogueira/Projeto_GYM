@@ -9,12 +9,12 @@ package view;
  *
  * @author Insinuante
  */
-public class RelatorioAlunoPlanoVencerJFrame extends javax.swing.JFrame {
+public class RelatorioListaCredJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form NewJFrameLogin
      */
-    public RelatorioAlunoPlanoVencerJFrame() {
+    public RelatorioListaCredJFrame() {
         initComponents();
     }
 
@@ -35,7 +35,7 @@ public class RelatorioAlunoPlanoVencerJFrame extends javax.swing.JFrame {
         gerarPDFjButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Alunos com plano a vencer");
+        setTitle("Lista de Alunos");
         setExtendedState(6);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -45,7 +45,7 @@ public class RelatorioAlunoPlanoVencerJFrame extends javax.swing.JFrame {
         cabjLabe.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 36)); // NOI18N
         cabjLabe.setForeground(new java.awt.Color(255, 255, 255));
         cabjLabe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/list_white.png"))); // NOI18N
-        cabjLabe.setText(" Alunos com plano a vencer");
+        cabjLabe.setText(" Alunos");
 
         javax.swing.GroupLayout jPanelBlueLayout = new javax.swing.GroupLayout(jPanelBlue);
         jPanelBlue.setLayout(jPanelBlueLayout);
@@ -54,7 +54,7 @@ public class RelatorioAlunoPlanoVencerJFrame extends javax.swing.JFrame {
             .addGroup(jPanelBlueLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(cabjLabe)
-                .addContainerGap(675, Short.MAX_VALUE))
+                .addContainerGap(1020, Short.MAX_VALUE))
         );
         jPanelBlueLayout.setVerticalGroup(
             jPanelBlueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -72,7 +72,7 @@ public class RelatorioAlunoPlanoVencerJFrame extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Id", "Nome", "Dia do vencimento"
+                "Id", "Nome", "CPF"
             }
         ));
         jScrollPane1.setViewportView(alunoCredjTable);
@@ -94,11 +94,11 @@ public class RelatorioAlunoPlanoVencerJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(101, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(gerarPDFjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

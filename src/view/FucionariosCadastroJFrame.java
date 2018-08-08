@@ -7,6 +7,7 @@ package view;
 
 import app.Projeto_GYM;
 import app.Util;
+import com.toedter.calendar.JDateChooser;
 import fachada.Fachada;
 import java.sql.Date;
 import javax.swing.JButton;
@@ -53,7 +54,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jLabelStatus = new javax.swing.JLabel();
         jTextFieldId = new javax.swing.JTextField();
         jTextFieldNome = new javax.swing.JTextField();
-        jFormattedTextFieldDN = new javax.swing.JFormattedTextField();
         jFormattedTextFieldCEP = new javax.swing.JFormattedTextField();
         jTextFieldRG = new javax.swing.JTextField();
         jComboBoxUf = new javax.swing.JComboBox<>();
@@ -73,6 +73,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jTextFieldEmail = new javax.swing.JTextField();
         jTextFieldNumero = new javax.swing.JTextField();
         jLabelNumero = new javax.swing.JLabel();
+        dateNasjDateChooser = new com.toedter.calendar.JDateChooser();
         jPanelACesso = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
@@ -150,9 +151,9 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jLabelDataAd = new javax.swing.JLabel();
         jLabelDataDe = new javax.swing.JLabel();
         jLabelSal = new javax.swing.JLabel();
-        jFormattedTextFieldDTD = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldDtAd = new javax.swing.JFormattedTextField();
         jTextFieldSalario = new javax.swing.JTextField();
+        dataAdjDateChooser = new com.toedter.calendar.JDateChooser();
+        dateDemjDateChooser = new com.toedter.calendar.JDateChooser();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -234,18 +235,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jTextFieldNome.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldNomeActionPerformed(evt);
-            }
-        });
-
-        try {
-            jFormattedTextFieldDN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldDN.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldDN.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDNActionPerformed(evt);
             }
         });
 
@@ -379,6 +368,8 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jLabelNumero.setForeground(new java.awt.Color(45, 118, 232));
         jLabelNumero.setText("Número");
 
+        dateNasjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout jPanelCadastroLayout = new javax.swing.GroupLayout(jPanelCadastro);
         jPanelCadastro.setLayout(jPanelCadastroLayout);
         jPanelCadastroLayout.setHorizontalGroup(
@@ -444,19 +435,19 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                                 .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(jPanelCadastroLayout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabelDN)
-                                            .addComponent(jFormattedTextFieldDN)
-                                            .addComponent(jLabelCelular)
-                                            .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)))
-                                    .addGroup(jPanelCadastroLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
                                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelCidade)
                                             .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addComponent(jLabelStatus)
                                                 .addComponent(jTextFieldCidade)
-                                                .addComponent(jComboBoxStatus, 0, 106, Short.MAX_VALUE)))))))
+                                                .addComponent(jComboBoxStatus, 0, 106, Short.MAX_VALUE))))
+                                    .addGroup(jPanelCadastroLayout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jLabelDN)
+                                            .addComponent(jLabelCelular)
+                                            .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+                                            .addComponent(dateNasjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                         .addContainerGap(58, Short.MAX_VALUE))))
         );
         jPanelCadastroLayout.setVerticalGroup(
@@ -470,53 +461,54 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                 .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelNome)
                     .addComponent(jLabelDN))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldDN, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelCpf)
-                    .addComponent(jLabelRg)
-                    .addComponent(jLabelSexo)
-                    .addComponent(jLabelCelular))
-                .addGap(11, 11, 11)
-                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextFieldRG, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelLogradouro)
-                    .addComponent(jLabelCidade))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelCadastroLayout.createSequentialGroup()
+                        .addComponent(jTextFieldNome, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(15, 15, 15)
                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelCpf)
+                            .addComponent(jLabelRg)
+                            .addComponent(jLabelSexo)
+                            .addComponent(jLabelCelular))
+                        .addGap(11, 11, 11)
+                        .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextFieldRG, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFormattedTextFieldCPF1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelBairro)
-                            .addComponent(jLabelUF)
-                            .addComponent(jLabelCEP)
-                            .addComponent(jLabelStatus))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxUf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanelCadastroLayout.createSequentialGroup()
-                        .addComponent(jLabelNumero)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabelEmail)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                            .addComponent(jLabelLogradouro)
+                            .addComponent(jLabelCidade))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelCadastroLayout.createSequentialGroup()
+                                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldLogradouro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTextFieldCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabelBairro)
+                                    .addComponent(jLabelUF)
+                                    .addComponent(jLabelCEP)
+                                    .addComponent(jLabelStatus))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jTextFieldBairro, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxUf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jFormattedTextFieldCEP, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jComboBoxStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanelCadastroLayout.createSequentialGroup()
+                                .addComponent(jLabelNumero)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabelEmail)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextFieldEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dateNasjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19))
         );
 
         jTabbedPane1.addTab("Cadastrar", jPanelCadastro);
@@ -1268,30 +1260,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jLabelSal.setForeground(new java.awt.Color(45, 118, 232));
         jLabelSal.setText("Salário");
 
-        try {
-            jFormattedTextFieldDTD.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldDTD.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldDTD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDTDActionPerformed(evt);
-            }
-        });
-
-        try {
-            jFormattedTextFieldDtAd.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldDtAd.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldDtAd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDtAdActionPerformed(evt);
-            }
-        });
-
         jTextFieldSalario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPaneAdicionaisLayout = new javax.swing.GroupLayout(jPaneAdicionais);
@@ -1315,19 +1283,19 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                                 .addComponent(jComboBoxFuncaoFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextFieldCRf))))
                     .addComponent(jLabelDataAd)
-                    .addComponent(jFormattedTextFieldDtAd, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                    .addComponent(dataAdjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBoxPROFAV)
                     .addGroup(jPaneAdicionaisLayout.createSequentialGroup()
                         .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelDataDe)
-                            .addComponent(jFormattedTextFieldDTD, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(dateDemjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(67, 67, 67)
                         .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelSal)
                             .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         jPaneAdicionaisLayout.setVerticalGroup(
             jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1350,11 +1318,11 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                     .addComponent(jLabelSal))
                 .addGap(18, 18, 18)
                 .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldSalario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jFormattedTextFieldDTD, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jFormattedTextFieldDtAd, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(182, 182, 182))
+                    .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(dateDemjDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addComponent(dataAdjDateChooser, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(185, 185, 185))
         );
 
         jTabbedPane1.addTab("Adicionais", jPaneAdicionais);
@@ -1432,10 +1400,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     private void jTextFieldNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldNomeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldNomeActionPerformed
-
-    private void jFormattedTextFieldDNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDNActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDNActionPerformed
 
     private void jFormattedTextFieldCEPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldCEPActionPerformed
         // TODO add your handling code here:
@@ -1656,14 +1620,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldLoginActionPerformed
 
-    private void jFormattedTextFieldDTDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDTDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDTDActionPerformed
-
-    private void jFormattedTextFieldDtAdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDtAdActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDtAdActionPerformed
-
     private void jTextFieldCRfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldCRfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldCRfActionPerformed
@@ -1714,6 +1670,9 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox controleCaixaEditarjCheckBox;
     private javax.swing.JCheckBox controleCaixaExcluirjCheckBox;
     private javax.swing.JCheckBox controleCaixaRecebPagjCheckBox;
+    private com.toedter.calendar.JDateChooser dataAdjDateChooser;
+    private com.toedter.calendar.JDateChooser dateDemjDateChooser;
+    private com.toedter.calendar.JDateChooser dateNasjDateChooser;
     private javax.swing.JCheckBox fichaTreinoAcessojCheckBox;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
@@ -1733,9 +1692,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextFieldCEP;
     private javax.swing.JFormattedTextField jFormattedTextFieldCPF1;
     private javax.swing.JFormattedTextField jFormattedTextFieldCelular;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDN;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDTD;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDtAd;
     private javax.swing.JLabel jLabeFuncionario;
     private javax.swing.JLabel jLabelBairro;
     private javax.swing.JLabel jLabelCEP;
@@ -1815,14 +1771,14 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
 
 
     public Funcionario getFuncionario(){
-        Date date = Util.getDate(getjFormattedTextFieldDN().getText());
+       // Date date = Util.getDate(dateNasjDateChooser.getDate().toString());   // eu fiz   
         
-        if(!(getjFormattedTextFieldDTD().getText().equals("  /  /    "))){
-            Date dDemissao = Util.getDate(getjFormattedTextFieldDTD().getText());
+        /*if(!(dateDemjDateChooser.getDateFormatString().equals("  /  /    "))){
+            Date dDemissao = Util.getDate(dateDemjDateChooser.toString());            
             f.setData_demissao(dDemissao);
         }
            
-        Date dAdimissao = Util.getDate(getjFormattedTextFieldDtAd().getText());
+       Date dAdimissao = Util.getDate(dataAdjDateChooser.toString()); // fiz isso */
         int num = Integer.parseInt(getjTextFieldNumero().getText());
         
         //CADASTRO:
@@ -1832,7 +1788,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         f.setTelefone(this.getjFormattedTextFieldCelular().getText());
         f.setRg(getjTextFieldRG().getText());
         f.setEmail(getjTextFieldLogradouro1().getText());
-        f.setData_nascimento(date);
+        f.setData_nascimento((Date) getDateNasjDateChooser().getDate());
         f.setSexo(getjComboBoxSexo().getSelectedItem().toString()+"");
         f.setStatus(getjComboBoxStatus().getSelectedItem().toString()+"");
             //ENDEREÇO:
@@ -1877,7 +1833,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
             //DADOS ADICIONAIS:
         f.setFuncao(getjComboBoxFuncaoFuncionario().getSelectedItem().toString()+"");
         f.setSalario(Float.parseFloat(jTextFieldSalario.getText())); 
-        f.setData_admissao(dAdimissao);
+//        f.setData_admissao(dAdimissao);
         
        
             // falta : CRF e PRof ava, se for instrutor?  
@@ -1891,8 +1847,10 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     }
     
     public void setFuncionario(Funcionario f){
-        getjFormattedTextFieldDN().setText(Util.getDateString(f.getData_nascimento()));
-        jFormattedTextFieldDTD.setText(Util.getDateString(f.getData_demissao()));       
+        
+        getDateNasjDateChooser().setDate(f.getData_nascimento());// eu fiz
+        getDateDemjDateChooser().setDate(f.getData_demissao());// eu fiz
+        
         
         //CADASTRO:
         getjTextFieldNome().setText(f.getNome());
@@ -1944,8 +1902,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
             //DADOS ADICIONAIS:
         getjComboBoxFuncaoFuncionario().setSelectedItem(f.getFuncao());
         jTextFieldSalario.setText( f.getSalario()+""); 
-        getjFormattedTextFieldDtAd().setText(Util.getDateString(f.getData_admissao()));
-        
+        getDataAdjDateChooser().setDate(f.getData_admissao());//eu fiz
         i = Fachada.getInstance().getByFuncionario_IdInstrutor(f.getId());
        
             // falta : CRF e PRof ava, se for instrutor?  
@@ -1980,19 +1937,6 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         return jFormattedTextFieldCelular;
     }
 
-    public JFormattedTextField getjFormattedTextFieldDN() {
-        return jFormattedTextFieldDN;
-    }
-
-    public JFormattedTextField getjFormattedTextFieldDTD() {
-        return jFormattedTextFieldDTD;
-    }
-
-    public JFormattedTextField getjFormattedTextFieldDtAd() {
-        return jFormattedTextFieldDtAd;
-    }
-
-    
     public JTextField getjTextFieldBairro() {
         return jTextFieldBairro;
     }
@@ -2168,5 +2112,30 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     public JCheckBox getRelatorioRecebPagjCheckBox() {
         return relatorioRecebPagjCheckBox;
     }
+
+    public JDateChooser getDataAdjDateChooser() {
+        return dataAdjDateChooser;
+    }
+
+    public void setDataAdjDateChooser(JDateChooser dataAdjDateChooser) {
+        this.dataAdjDateChooser = dataAdjDateChooser;
+    }
+
+    public JDateChooser getDateNasjDateChooser() {
+        return dateNasjDateChooser;
+    }
+
+    public void setDateNasjDateChooser(JDateChooser dateNasjDateChooser) {
+        this.dateNasjDateChooser = dateNasjDateChooser;
+    }
+
+    public JDateChooser getDateDemjDateChooser() {
+        return dateDemjDateChooser;
+    }
+
+    public void setDateDemjDateChooser(JDateChooser dateDemjDateChooser) {
+        this.dateDemjDateChooser = dateDemjDateChooser;
+    }
        
+    
 }

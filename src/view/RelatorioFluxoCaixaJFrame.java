@@ -35,12 +35,12 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         gerarPDFjButton = new javax.swing.JButton();
         jComboBoxServico1 = new javax.swing.JComboBox<>();
         jLabelSexo = new javax.swing.JLabel();
-        jFormattedTextFieldPeriodo2 = new javax.swing.JFormattedTextField();
-        jFormattedTextFieldPeriodo3 = new javax.swing.JFormattedTextField();
         jLabelHa = new javax.swing.JLabel();
         jLabelPeriodo = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabelConfig = new javax.swing.JLabel();
+        pDoisjDateChooser = new com.toedter.calendar.JDateChooser();
+        pUmjDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fluxo do caixa");
@@ -97,7 +97,7 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         });
 
         jComboBoxServico1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jComboBoxServico1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Entradas e Saídas", "Entradas", "Saídas" }));
+        jComboBoxServico1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Entradas", "Saídas" }));
         jComboBoxServico1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxServico1ActionPerformed(evt);
@@ -107,30 +107,6 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         jLabelSexo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelSexo.setForeground(new java.awt.Color(45, 118, 232));
         jLabelSexo.setText("Mostrar");
-
-        try {
-            jFormattedTextFieldPeriodo2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldPeriodo2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldPeriodo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldPeriodo2ActionPerformed(evt);
-            }
-        });
-
-        try {
-            jFormattedTextFieldPeriodo3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldPeriodo3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldPeriodo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldPeriodo3ActionPerformed(evt);
-            }
-        });
 
         jLabelHa.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelHa.setForeground(new java.awt.Color(45, 118, 232));
@@ -143,6 +119,10 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         jLabelConfig.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelConfig.setForeground(new java.awt.Color(45, 118, 232));
         jLabelConfig.setText("Filtros");
+
+        pDoisjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
+        pUmjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -160,38 +140,45 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 1025, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabelSexo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jComboBoxServico1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabelPeriodo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jFormattedTextFieldPeriodo3, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jLabelHa, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(27, 27, 27)
-                                    .addComponent(jFormattedTextFieldPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabelPeriodo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(pUmjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabelHa, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(pDoisjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabelSexo)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jComboBoxServico1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(7, 7, 7)))))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelPeriodo)
-                    .addComponent(jFormattedTextFieldPeriodo3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jFormattedTextFieldPeriodo2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelHa))
-                .addGap(11, 11, 11)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelConfig, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelPeriodo)
+                            .addComponent(jLabelHa))
+                        .addGap(25, 25, 25))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(pDoisjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pUmjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBoxServico1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -218,20 +205,12 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gerarPDFjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPDFjButtonActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_gerarPDFjButtonActionPerformed
 
     private void jComboBoxServico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServico1ActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_jComboBoxServico1ActionPerformed
-
-    private void jFormattedTextFieldPeriodo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPeriodo2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldPeriodo2ActionPerformed
-
-    private void jFormattedTextFieldPeriodo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldPeriodo3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldPeriodo3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -239,8 +218,6 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel cabjLabe;
     private javax.swing.JButton gerarPDFjButton;
     private javax.swing.JComboBox<String> jComboBoxServico1;
-    private javax.swing.JFormattedTextField jFormattedTextFieldPeriodo2;
-    private javax.swing.JFormattedTextField jFormattedTextFieldPeriodo3;
     private javax.swing.JLabel jLabelConfig;
     private javax.swing.JLabel jLabelHa;
     private javax.swing.JLabel jLabelPeriodo;
@@ -249,5 +226,7 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
+    private com.toedter.calendar.JDateChooser pDoisjDateChooser;
+    private com.toedter.calendar.JDateChooser pUmjDateChooser;
     // End of variables declaration//GEN-END:variables
 }
