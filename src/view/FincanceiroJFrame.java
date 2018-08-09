@@ -5,7 +5,9 @@
  */
 package view;
 
+import app.Util;
 import fachada.Fachada;
+import java.sql.Date;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import model.Avaliacao;
@@ -17,13 +19,13 @@ import model.ModeloTabela;
  * @author Insinuante
  */
 public class FincanceiroJFrame extends javax.swing.JFrame {
-
+    ArrayList<ControleFinanceiro> financeiro;
     /**
      * Creates new form AlunosJFrame
      */
     public FincanceiroJFrame() {
         initComponents();
-        ArrayList<ControleFinanceiro> financeiro = Fachada.getInstance().getAllControleFinanceiro();
+        financeiro = Fachada.getInstance().getAllControleFinanceiro();
         carregarTabelar(financeiro);
         jFormattedTextFieldSaldo.setText(calcularSaldo(financeiro)+"");
     }
@@ -194,8 +196,18 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
         );
 
         refreshjLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
+        refreshjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshjLabelMouseClicked(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
@@ -249,11 +261,12 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackLayout.createSequentialGroup()
                         .addComponent(jLabelFiltrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelPeriodo)
-                            .addComponent(jLabelHa)
+                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(pUmjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pDoisjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pDoisjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabelPeriodo)
+                                .addComponent(jLabelHa))))
                     .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
@@ -336,6 +349,30 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
             tela.show();
         }
     }//GEN-LAST:event_jTableCaixaMouseClicked
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+
+        
+        
+        if(pUmjDateChooser.getDate()==null && pDoisjDateChooser.getDate()==null)
+            carregarTabelar(financeiro);
+        else if(pUmjDateChooser.getDate()!=null && pDoisjDateChooser.getDate()!=null){
+            Date d1 = new Date(pUmjDateChooser.getDate().getYear(), pUmjDateChooser.getDate().getMonth(),
+            pUmjDateChooser.getDate().getDay());
+            Date d2 = new Date(pDoisjDateChooser.getDate().getYear(), pDoisjDateChooser.getDate().getMonth(),
+            pDoisjDateChooser.getDate().getDay());           
+            carregarTabelar(Fachada.getInstance().getBuscaControleFinanceiro(d1,d2));
+        }else
+            Mensagem.exibirMensagem("É preciso preencher os dois campos de datas!");
+        
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void refreshjLabelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshjLabelMouseClicked
+        carregarTabelar(financeiro);
+        jFormattedTextFieldSaldo.setText(calcularSaldo(financeiro)+"");
+        pUmjDateChooser.setDate(null);
+        pDoisjDateChooser.setDate(null);
+    }//GEN-LAST:event_refreshjLabelMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

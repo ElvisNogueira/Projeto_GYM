@@ -6,6 +6,7 @@
 package business;
 
 import dao.ControleFinanceiroDao;
+import java.sql.Date;
 import java.util.ArrayList;
 import model.ControleFinanceiro;
 
@@ -34,5 +35,9 @@ public class ControleFinaceiroBusiness {
     
     public ArrayList<ControleFinanceiro> getAll(){
         return dao.getAll();
+    }
+    
+    public ArrayList<ControleFinanceiro> getByBusca(Date d1, Date d2){
+        return dao.getByPeriodo(d1, d2);
     }
 }

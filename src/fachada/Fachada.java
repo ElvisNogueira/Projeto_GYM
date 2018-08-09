@@ -23,6 +23,7 @@ import business.Metas_ideaisBusiness;
 import business.PagamentoBusiness;
 import business.ParcelasBusiness;
 import business.PerimetriaBusiness;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -473,7 +474,12 @@ public class Fachada {
         return contaBusiness.getBusca(busca, combobox);
     }
     
-     public Exercicio getExercicioNomeExercicio(String nome){
-         return exercicioBusiness.getExercicioNome(nome);
-     }
+    public Exercicio getExercicioNomeExercicio(String nome){
+        return exercicioBusiness.getExercicioNome(nome);
+    }
+    
+    public ArrayList<ControleFinanceiro> getBuscaControleFinanceiro(Date d1,Date d2){
+        return controleFinaceiroBusiness.getByBusca(d1, d2);
+    }
+     
 }

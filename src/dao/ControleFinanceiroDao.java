@@ -6,6 +6,7 @@
 package dao;
 
 import fachada.Fachada;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -88,6 +89,25 @@ public class ControleFinanceiroDao {
         
         try {
             statement = SQLUtil.prepareStatement(SQLUtil.SELECT_ALL_CONTROLE_FINANCEIRO);
+            result = statement.executeQuery();
+            
+            while (result.next()) {                
+                financeiros.add(get(result));
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(ControleFinanceiroDao.class.getName()).log(Level.SEVERE, null, ex);
+        }        
+        return financeiros;
+    }
+    
+    public ArrayList<ControleFinanceiro> getByPeriodo(Date d1, Date d2){
+        ResultSet result;
+        ArrayList<ControleFinanceiro> financeiros = new ArrayList<>();
+        
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.SELECT_BY_PERIODO_CONTROLE_FINANCEIRO);
+            statement.setDate(1, d1);
+            statement.setDate(2, d2);
             result = statement.executeQuery();
             
             while (result.next()) {                

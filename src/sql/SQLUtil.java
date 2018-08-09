@@ -88,6 +88,7 @@ public class SQLUtil {
     public static String SELECT_BY_ALUNO_AVALIACAO = "select * from avaliacao where aluno_id=?";
     public static String SELECT_BY_TIPO_ALL_EXERCICIOS = "select * from exercicio where tipo=?";
     public static String SELECT_BY_NOME_EXERCICIOS = "select * from exercicio where nome=?";
+    public static String SELECT_BY_PERIODO_CONTROLE_FINANCEIRO = "select * from controle_financeiro where data between ? and ?";
     
     public static String UPDATE_ALUNO = "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
             + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";

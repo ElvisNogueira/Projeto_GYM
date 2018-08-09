@@ -66,7 +66,6 @@ public class Util {
                 +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
         if(dia<10)
             c = "0"+c;
-        Mensagem.exibirMensagem(c+"");
         return getDate(c);
     }
     
