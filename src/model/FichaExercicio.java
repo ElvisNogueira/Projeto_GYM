@@ -15,6 +15,19 @@ public class FichaExercicio {
    private FichaDeTreino fichaDeTreino;
    private String dia,obs; // INSERIR AGORA  O OBS
 
+   
+   public FichaExercicio(){}
+
+    public FichaExercicio( String dia, FichaExercicio f) {
+        this.repeticoes = f.repeticoes;
+        this.ordem = f.ordem;
+        this.serie = f.serie;
+        this.exercicio = f.exercicio;
+        this.fichaDeTreino = f.fichaDeTreino;
+        this.dia = dia;
+        this.obs = f.obs;
+    }
+   
     public int getOrdem() {
         return ordem;
     }

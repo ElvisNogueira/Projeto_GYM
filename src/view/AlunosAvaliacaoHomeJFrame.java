@@ -188,7 +188,7 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
             .addGroup(jPanelBackLayout.createSequentialGroup()
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelBackLayout.createSequentialGroup()
-                        .addGap(163, 163, 163)
+                        .addContainerGap(163, Short.MAX_VALUE)
                         .addComponent(jLabelProcurar))
                     .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

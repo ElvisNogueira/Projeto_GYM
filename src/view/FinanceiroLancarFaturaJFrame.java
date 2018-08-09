@@ -47,11 +47,11 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
         jLabelData = new javax.swing.JLabel();
         jLabelData1 = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
-        jFormattedTextFieldData = new javax.swing.JFormattedTextField();
         jLabelDados = new javax.swing.JLabel();
         jComboBoxFormaPag = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         jTextFieldValor = new javax.swing.JTextField();
+        dataPgjDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lançamento");
@@ -147,18 +147,6 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
             }
         });
 
-        try {
-            jFormattedTextFieldData.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldData.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataActionPerformed(evt);
-            }
-        });
-
         jLabelDados.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
         jLabelDados.setForeground(new java.awt.Color(45, 118, 232));
         jLabelDados.setText("Lançamento de conta");
@@ -169,6 +157,8 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(45, 118, 232));
         jLabel1.setText("Forma de Pagamento");
+
+        dataPgjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
@@ -201,8 +191,8 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelLoginLayout.createSequentialGroup()
                                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jLabelData, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButtonLancar, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
+                                    .addComponent(jButtonLancar, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(dataPgjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabelData1)
@@ -234,7 +224,9 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
                             .addComponent(jLabelTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelData1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(13, 13, 13)
-                        .addComponent(jComboBoxHistorico, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(dataPgjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jComboBoxHistorico, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE))
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelLoginLayout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -249,10 +241,8 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
                         .addGap(28, 28, 28))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addComponent(jLabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextFieldData, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(13, 13, 13)
+                        .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -301,17 +291,13 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    private void jFormattedTextFieldDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dataPgjDateChooser;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonLancar;
     private javax.swing.JComboBox<String> jComboBoxFormaPag;
     private javax.swing.JComboBox<String> jComboBoxHistorico;
-    private javax.swing.JFormattedTextField jFormattedTextFieldData;
     private javax.swing.JLabel jLabeSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelDados;
@@ -329,7 +315,7 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
     
     private ControleFinanceiro get(){
         c.setConta(Projeto_GYM.fachada.getByNomeConta(jComboBoxHistorico.getSelectedItem()+""));
-        c.setData(Util.getDate(jFormattedTextFieldData.getText()));
+        c.setData(Util.converterCalendarToDate2(dataPgjDateChooser.getCalendar()));
         c.setDescricao(jTextFieldDescricao.getText());
         c.setValor(Float.parseFloat(jTextFieldValor.getText()));
         if(!jTextFieldId.getText().isEmpty()){
@@ -340,7 +326,7 @@ public class FinanceiroLancarFaturaJFrame extends javax.swing.JFrame {
     
     public void set(ControleFinanceiro c){
         jComboBoxHistorico.setSelectedItem(c.getConta().getTipo());
-        jFormattedTextFieldData.setText(Util.getDateString(c.getData()));
+        dataPgjDateChooser.setDate(c.getData());
         jTextFieldDescricao.setText(c.getDescricao());
         jTextFieldValor.setText(c.getValor()+"");
         jTextFieldId.setText(c.getId()+"");

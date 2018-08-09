@@ -57,13 +57,13 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
         jLabelData = new javax.swing.JLabel();
         jLabelData1 = new javax.swing.JLabel();
         jButtonFechar = new javax.swing.JButton();
-        jFormattedTextFieldDataPag = new javax.swing.JFormattedTextField();
         jLabelDados = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jComboBoxFormaPag = new javax.swing.JComboBox<>();
-        jFormattedTextFieldDataVenc = new javax.swing.JFormattedTextField();
         jLabelData2 = new javax.swing.JLabel();
         jTextFieldValor = new javax.swing.JTextField();
+        dataPgjDateChooser = new com.toedter.calendar.JDateChooser();
+        dataVenjDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Lançamento");
@@ -163,18 +163,6 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
             }
         });
 
-        try {
-            jFormattedTextFieldDataPag.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldDataPag.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldDataPag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataPagActionPerformed(evt);
-            }
-        });
-
         jLabelDados.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 24)); // NOI18N
         jLabelDados.setForeground(new java.awt.Color(45, 118, 232));
         jLabelDados.setText("Lançamento de conta");
@@ -186,21 +174,13 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
         jComboBoxFormaPag.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jComboBoxFormaPag.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Dinheiro", "Cartão Crétido", "Cartão Débito", "Cheque" }));
 
-        try {
-            jFormattedTextFieldDataVenc.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        jFormattedTextFieldDataVenc.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jFormattedTextFieldDataVenc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextFieldDataVencActionPerformed(evt);
-            }
-        });
-
         jLabelData2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelData2.setForeground(new java.awt.Color(45, 118, 232));
         jLabelData2.setText("Data Vencimento");
+
+        dataPgjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
+        dataVenjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanelLoginLayout = new javax.swing.GroupLayout(jPanelLogin);
         jPanelLogin.setLayout(jPanelLoginLayout);
@@ -215,27 +195,27 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
                         .addComponent(jPanelSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelLogin3)
-                            .addComponent(jLabelServico)
-                            .addComponent(jLabel1)
                             .addComponent(jTextFieldId)
-                            .addComponent(jComboBoxFormaPag, 0, 135, Short.MAX_VALUE))
+                            .addComponent(jComboBoxFormaPag, 0, 135, Short.MAX_VALUE)
+                            .addComponent(jLabelServico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelLogin3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(41, 41, 41)
                         .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanelLoginLayout.createSequentialGroup()
-                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelData2)
-                                    .addComponent(jFormattedTextFieldDataVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dataVenjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelData2, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabelData)
-                                    .addComponent(jFormattedTextFieldDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButtonLancar, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jButtonLancar, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(dataPgjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabelData, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabelData1)
                                     .addComponent(jButtonFechar, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-                                    .addComponent(jTextFieldValor)))
+                                    .addComponent(jTextFieldValor)
+                                    .addComponent(jLabelData1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addComponent(jTextFieldUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelLogin2))
                         .addGap(41, 41, 41))
@@ -272,13 +252,13 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
                             .addGroup(jPanelLoginLayout.createSequentialGroup()
                                 .addComponent(jLabelData2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
-                                .addComponent(jFormattedTextFieldDataVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(dataPgjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                                    .addComponent(dataVenjDateChooser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addComponent(jLabelData, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
-                        .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jFormattedTextFieldDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(13, 13, 13)
+                        .addComponent(jTextFieldValor, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
@@ -289,7 +269,7 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
                     .addGroup(jPanelLoginLayout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(12, 12, 12)
-                        .addComponent(jComboBoxFormaPag, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)))
+                        .addComponent(jComboBoxFormaPag, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)))
                 .addGap(28, 28, 28))
         );
 
@@ -338,22 +318,14 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButtonFecharActionPerformed
 
-    private void jFormattedTextFieldDataPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataPagActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataPagActionPerformed
-
-    private void jFormattedTextFieldDataVencActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextFieldDataVencActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextFieldDataVencActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser dataPgjDateChooser;
+    private com.toedter.calendar.JDateChooser dataVenjDateChooser;
     private javax.swing.JButton jButtonFechar;
     private javax.swing.JButton jButtonLancar;
     private javax.swing.JComboBox<String> jComboBoxFormaPag;
     private javax.swing.JComboBox<String> jComboBoxServico;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDataPag;
-    private javax.swing.JFormattedTextField jFormattedTextFieldDataVenc;
     private javax.swing.JLabel jLabeSair;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelDados;
@@ -371,16 +343,13 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private Pagamento get(){
-        Date dataPag = Util.getDate(jFormattedTextFieldDataPag.getText());
-        Date dataVenc = Util.getDate(jFormattedTextFieldDataVenc.getText());
-        
-        p.setData(dataPag);
+        p.setData(Util.converterCalendarToDate2(dataPgjDateChooser.getCalendar()));
         p.setDescricao(jComboBoxServico.getSelectedItem()+"");
         p.setFormaPag(jComboBoxFormaPag.getSelectedItem()+"");
         p.setFuncionario(Projeto_GYM.fachada.getFuncionarioLogado());
         p.setValor(Float.parseFloat(jTextFieldValor.getText()));
         
-        c.setData(dataPag);
+        c.setData(Util.converterCalendarToDate2(dataPgjDateChooser.getCalendar()));
         c.setDescricao(this.aluno.getNome());
         c.setValor(Float.parseFloat(jTextFieldValor.getText()));
         c.setConta(Projeto_GYM.fachada.getByNomeConta(jComboBoxServico.getSelectedItem()+""));
@@ -389,10 +358,8 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
     }
     
         public Pagamento set(){
-        String dataVenc = Util.getDateString(p.getDataVenc());
-        
         jTextFieldUsuario.setText(p.getAluno().getNome());
-        jFormattedTextFieldDataVenc.setText(dataVenc);
+        dataVenjDateChooser.setDate(p.getDataVenc());
         jComboBoxServico.setSelectedItem(p.getServico());
         jComboBoxServico.setEditable(false);
         jTextFieldValor.setText(p.getValor()+"");

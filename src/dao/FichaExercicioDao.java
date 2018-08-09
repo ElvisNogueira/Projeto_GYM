@@ -20,12 +20,10 @@ public class FichaExercicioDao {
     private PreparedStatement statement;
     
     public void cadastrar(FichaExercicio f){
-        Mensagem.exibirMensagem(f.getDia()+" Cad");
         try {
             //Cadastrar primeiro a ficha de treino
             //        (repeticoes,ordem,dia,exercicio_id,ficha_treino_id)
             statement=SQLUtil.prepareStatement(SQLUtil.INSERIR_FICHA_EXERCICIO);
-            Mensagem.exibirMensagem(f.getDia()+" Cad");
             statement.setInt(1, f.getRepeticoes());
             statement.setInt(2, f.getOrdem());
             statement.setString(3, f.getDia());

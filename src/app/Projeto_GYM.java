@@ -7,6 +7,7 @@ package app;
 
 import controller.LoginControlador;
 import fachada.Fachada;
+import java.util.ArrayList;
 import sql.SQLConnection;
 import sql.SQLUtil;
 import view.LoginJFrame;
@@ -23,6 +24,7 @@ public class Projeto_GYM {
     public static Fachada fachada = Fachada.getInstance();
     
     public static void main(String[] args) {
+
         Util.atualizarMensalidades();
         LoginJFrame login = new LoginJFrame();
         login.setVisible(true);

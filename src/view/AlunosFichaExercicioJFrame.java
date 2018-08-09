@@ -589,6 +589,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         Projeto_GYM.fachada.cadastrarFichaDeTreino(getFicha());
+        ficha.getExercicios().clear();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -692,33 +693,26 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         ficha.setObg(jTextField3.getText());
         ficha.setObs(jTextArea1.getText());
         
-        for(FichaExercicio e : seg){
-            e.setDia("segunda");
+        for(FichaExercicio e : seg)
             ficha.getExercicios().add(e);
-        }
-        for(FichaExercicio e : ter){
-            e.setDia("terça");
+        
+        for(FichaExercicio e : ter)
             ficha.getExercicios().add(e);
-        }for(FichaExercicio e : qua){
-            e.setDia("quarta");
+        for(FichaExercicio e : qua)
             ficha.getExercicios().add(e);
-        }
-        for(FichaExercicio e : qui){
-            e.setDia("quinta");
+        
+        for(FichaExercicio e : qui)
             ficha.getExercicios().add(e);
-        }
-        for(FichaExercicio e : sex){
-            e.setDia("sexta");
+        
+        for(FichaExercicio e : sex)
             ficha.getExercicios().add(e);
-        }
-        for(FichaExercicio e : sab){
-            e.setDia("sabado");
+        
+        for(FichaExercicio e : sab)
             ficha.getExercicios().add(e);
-        }
-        for(FichaExercicio e : dom){
-            e.setDia("domingo");
+        
+        for(FichaExercicio e : dom)
             ficha.getExercicios().add(e);
-        }
+        
 
         seg.clear();
         ter.clear();
@@ -731,7 +725,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         return ficha;
     }
     
-    public FichaExercicio miniGet(){
+    public void miniGet(){
         fichaExer.setRepeticoes(Integer.parseInt(jTextFieldRepeticoe12.getText()));
         fichaExer.setOrdem(Integer.parseInt(jSpinnerOrdem12.getValue().toString()));
         fichaExer.setSerie(Integer.parseInt(jSpinnerSerie12.getValue().toString()));
@@ -739,34 +733,33 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         fichaExer.setObs(jTextField16.getText());
 
         if(segjCheckBox10.isSelected()){
-            seg.add(fichaExer);
+            seg.add(new FichaExercicio("segunda", fichaExer));
         }
 
         if(terjCheckBox10.isSelected()){
-            ter.add(fichaExer);
+            ter.add(new FichaExercicio("terça", fichaExer));
         }
 
         if(quajCheckBox10.isSelected()){
-            qua.add(fichaExer);
+            qua.add(new FichaExercicio("quarta", fichaExer));
         }
 
         if(quijCheckBox10.isSelected()){
-            qui.add(fichaExer);
+            qui.add(new FichaExercicio("quinta", fichaExer));
         }
 
         if(sexjCheckBox10.isSelected()){
-            sex.add(fichaExer);
+            sex.add(new FichaExercicio("sexta", fichaExer));
         }
 
         if(sabjCheckBox10.isSelected()){
-            sab.add(fichaExer);
+            sab.add(new FichaExercicio("sabado", fichaExer));
         }
 
         if(domjCheckBox10.isSelected()){
-            dom.add(fichaExer);
+            dom.add(new FichaExercicio("domingo", fichaExer));
         }
-
-        return fichaExer;
+                
     }
     
         private void preencherComboBox(){

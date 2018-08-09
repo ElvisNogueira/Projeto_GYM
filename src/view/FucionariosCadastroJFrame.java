@@ -152,6 +152,8 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jLabelDataDe = new javax.swing.JLabel();
         jLabelSal = new javax.swing.JLabel();
         jTextFieldSalario = new javax.swing.JTextField();
+        dataAdmjDateChooser = new com.toedter.calendar.JDateChooser();
+        dataDemjDateChooser = new com.toedter.calendar.JDateChooser();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -365,6 +367,8 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         jLabelNumero.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelNumero.setForeground(new java.awt.Color(45, 118, 232));
         jLabelNumero.setText("Número");
+
+        jDateChooserNasc.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanelCadastroLayout = new javax.swing.GroupLayout(jPanelCadastro);
         jPanelCadastro.setLayout(jPanelCadastroLayout);
@@ -1257,6 +1261,10 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
 
         jTextFieldSalario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
+        dataAdmjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
+        dataDemjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
         javax.swing.GroupLayout jPaneAdicionaisLayout = new javax.swing.GroupLayout(jPaneAdicionais);
         jPaneAdicionais.setLayout(jPaneAdicionaisLayout);
         jPaneAdicionaisLayout.setHorizontalGroup(
@@ -1277,13 +1285,16 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                             .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jComboBoxFuncaoFuncionario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jTextFieldCRf))))
-                    .addComponent(jLabelDataAd))
+                    .addComponent(jLabelDataAd)
+                    .addComponent(dataAdmjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(29, 29, 29)
                 .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBoxPROFAV)
                     .addGroup(jPaneAdicionaisLayout.createSequentialGroup()
-                        .addComponent(jLabelDataDe)
-                        .addGap(102, 102, 102)
+                        .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelDataDe)
+                            .addComponent(dataDemjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(67, 67, 67)
                         .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabelSal)
                             .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -1308,9 +1319,16 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
                     .addComponent(jLabelDataAd)
                     .addComponent(jLabelDataDe)
                     .addComponent(jLabelSal))
-                .addGap(18, 18, 18)
-                .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPaneAdicionaisLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jTextFieldSalario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(207, 207, 207))
+                    .addGroup(jPaneAdicionaisLayout.createSequentialGroup()
+                        .addGroup(jPaneAdicionaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(dataDemjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(dataAdmjDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
 
         jTabbedPane1.addTab("Adicionais", jPaneAdicionais);
@@ -1658,6 +1676,8 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     private javax.swing.JCheckBox controleCaixaEditarjCheckBox;
     private javax.swing.JCheckBox controleCaixaExcluirjCheckBox;
     private javax.swing.JCheckBox controleCaixaRecebPagjCheckBox;
+    private com.toedter.calendar.JDateChooser dataAdmjDateChooser;
+    private com.toedter.calendar.JDateChooser dataDemjDateChooser;
     private javax.swing.JCheckBox fichaTreinoAcessojCheckBox;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
@@ -1757,15 +1777,16 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
 
 
     public Funcionario getFuncionario(){
-       // Date date = Util.getDate(dateNasjDateChooser.getDate().toString());   // eu fiz   
         
-        /*if(!(dateDemjDateChooser.getDateFormatString().equals("  /  /    "))){
-            Date dDemissao = Util.getDate(dateDemjDateChooser.toString());            
-            f.setData_demissao(dDemissao);
+        Date dataNasc = Util.converterCalendarToDate2(jDateChooserNasc.getCalendar());
+        Date dataAdm =  Util.converterCalendarToDate2(dataAdmjDateChooser.getCalendar());
+        
+        //isso ta certo?
+        if(dataDemjDateChooser.getDateFormatString().equals("  /  /    ")){
+            Date dataDem = Util.converterCalendarToDate2(dataDemjDateChooser.getCalendar());
+            f.setData_demissao(dataDem);
         }
         
-       Date dAdimissao = Util.getDate(dataAdjDateChooser.toString()); // fiz isso */
-        Date dataNasc = Util.converterCalendarToDate2(jDateChooserNasc.getCalendar());//Aqui
         int num = Integer.parseInt(getjTextFieldNumero().getText());
         
         //CADASTRO:
@@ -1775,7 +1796,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
         f.setTelefone(this.getjFormattedTextFieldCelular().getText());
         f.setRg(getjTextFieldRG().getText());
         f.setEmail(getjTextFieldLogradouro1().getText());
-        f.setData_nascimento(dataNasc);// aqui
+        f.setData_nascimento(dataNasc);
         f.setSexo(getjComboBoxSexo().getSelectedItem().toString()+"");
         f.setStatus(getjComboBoxStatus().getSelectedItem().toString()+"");
             //ENDEREÇO:
@@ -1820,10 +1841,8 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
             //DADOS ADICIONAIS:
         f.setFuncao(getjComboBoxFuncaoFuncionario().getSelectedItem().toString()+"");
         f.setSalario(Float.parseFloat(jTextFieldSalario.getText())); 
-//        f.setData_admissao(dAdimissao);
+        f.setData_admissao(dataAdm);
         
-       
-            // falta : CRF e PRof ava, se for instrutor?  
         if(jCheckBoxPROFAV.isSelected()){
             i.setCref(Integer.parseInt(jTextFieldCRf.getText()));
             i.setFuncionario(f);
@@ -1834,11 +1853,7 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
     }
     
     public void setFuncionario(Funcionario f){
-        
-        getDateNasjDateChooser().setDate(f.getData_nascimento());// eu fiz
-        getDateDemjDateChooser().setDate(f.getData_demissao());// eu fiz
-        
-        
+       
         //CADASTRO:
         getjTextFieldNome().setText(f.getNome());
         getjFormattedTextFieldCPF1().setText(f.getCpf());
@@ -1889,10 +1904,11 @@ public class FucionariosCadastroJFrame extends javax.swing.JFrame {
             //DADOS ADICIONAIS:
         getjComboBoxFuncaoFuncionario().setSelectedItem(f.getFuncao());
         jTextFieldSalario.setText( f.getSalario()+""); 
-        getDataAdjDateChooser().setDate(f.getData_admissao());//eu fiz
+        dataAdmjDateChooser.setDate(f.getData_admissao());
+        jDateChooserNasc.setDate(f.getData_nascimento());
+        dataDemjDateChooser.setDate(f.getData_demissao());
         i = Fachada.getInstance().getByFuncionario_IdInstrutor(f.getId());
        
-            // falta : CRF e PRof ava, se for instrutor?  
         if(i!=null){
             jTextFieldCRf.setText(i.getCref()+"");
             jComboBoxFuncaoFuncionario.setSelectedItem("Instrutor");
