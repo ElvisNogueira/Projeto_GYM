@@ -5,7 +5,13 @@
  */
 package view;
 
+import fachada.Fachada;
+import java.util.ArrayList;
+import javax.swing.JTable;
 import model.Aluno;
+import model.Exercicio;
+import model.FichaDeTreino;
+import model.ModeloTabela;
 
 /**
  *
@@ -18,6 +24,7 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
     public AlunosFichaHomeJFrame(Aluno aluno) {
         this.aluno = aluno;
         initComponents();
+        preencherTabela(Fachada.getInstance().getByAlunoFichaTreino(aluno.getId()));
     }
 
     /**
@@ -227,4 +234,23 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
     private javax.swing.JTable jTableAlunos;
     private javax.swing.JTextField jTextFieldProsucar;
     // End of variables declaration//GEN-END:variables
+
+    public void preencherTabela(ArrayList<FichaDeTreino> fichaDeTreinos){
+        String[] colunas = new String[]{"ID","Instrutor","Data"};
+        ArrayList<Object[]> dados = new ArrayList<>();
+        
+        for(FichaDeTreino f : fichaDeTreinos){
+            dados.add(new Object[]{f.getId(),f.getInstrutor().getFuncionario().getNome(), f.getData()});
+        }
+        
+        ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
+        jTableAlunos.setModel(modeloTabela);      
+        jTableAlunos.getColumnModel().getColumn(0).setPreferredWidth(40);
+        jTableAlunos.getColumnModel().getColumn(0).setResizable(false);
+        jTableAlunos.getColumnModel().getColumn(1).setPreferredWidth(590);
+        jTableAlunos.getColumnModel().getColumn(1).setResizable(false);
+        jTableAlunos.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTableAlunos.getColumnModel().getColumn(2).setResizable(false);
+        jTableAlunos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    }
 }

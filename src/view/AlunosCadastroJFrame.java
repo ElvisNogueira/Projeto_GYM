@@ -111,6 +111,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonLancar = new javax.swing.JButton();
+        atualizar = new javax.swing.JLabel();
         jButtonSalvar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
 
@@ -744,6 +745,13 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
             }
         });
 
+        atualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
+        atualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                atualizarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelPagamentosLayout = new javax.swing.GroupLayout(jPanelPagamentos);
         jPanelPagamentos.setLayout(jPanelPagamentosLayout);
         jPanelPagamentosLayout.setHorizontalGroup(
@@ -752,15 +760,21 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                 .addContainerGap(67, Short.MAX_VALUE)
                 .addGroup(jPanelPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButtonLancar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanelPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(jPanelPagamentosLayout.createSequentialGroup()
+                            .addComponent(jLabelPagamentos, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(atualizar))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 552, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(76, Short.MAX_VALUE))
         );
         jPanelPagamentosLayout.setVerticalGroup(
             jPanelPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPagamentosLayout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addComponent(jLabelPagamentos)
+                .addGroup(jPanelPagamentosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelPagamentos)
+                    .addComponent(atualizar))
                 .addGap(36, 36, 36)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(41, 41, 41)
@@ -939,12 +953,12 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                 p.setFuncionario(Fachada.getFuncionarioLogado());
                 p.setServico(parc.getConta().getDescricao());
                 p.setValor(parc.getValor());
-                parc.setStatus("Pago");
+                
                 Fachada.getInstance().editarParcelas(parc);
                 tela = new AlunosLancarFaturaJFrame(p, a);
                 tela.set();
                 tela.show();
-                preencherTabela(Fachada.getInstance().getAllByIdParcelas(p.getAluno().getId()));
+                
             }else{
                 Mensagem.exibirMensagem("Parcela já paga!");
             }
@@ -985,8 +999,13 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBoxPlanoActionPerformed
 
+    private void atualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_atualizarMouseClicked
+        preencherTabela(Fachada.getInstance().getAllByIdParcelas(a.getId()));        
+    }//GEN-LAST:event_atualizarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel atualizar;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonLancar;
     private javax.swing.JButton jButtonSalvar;
@@ -1113,7 +1132,8 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         ArrayList<Object[]> dados = new ArrayList<>();
         
         for(Parcelas p : parcelas)
-            dados.add(new Object[]{p.getId(),p.getData_de_Vencimento(),p.getValor(),p.getConta().getDescricao(),p.getStatus()});
+            dados.add(new Object[]{p.getId(),p.getData_de_Vencimento(),p.getValor(),p.getConta().getDescricao(),
+                p.getStatus()});
                 
         ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
         jTable1.setModel(modeloTabela);      
@@ -1125,7 +1145,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         jTable1.getColumnModel().getColumn(2).setResizable(false);
         jTable1.getColumnModel().getColumn(3).setPreferredWidth(163);
         jTable1.getColumnModel().getColumn(3).setResizable(false);
-        jTable1.getColumnModel().getColumn(3).setPreferredWidth(176);
+        jTable1.getColumnModel().getColumn(3).setPreferredWidth(177);
         jTable1.getColumnModel().getColumn(3).setResizable(false);
         jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }

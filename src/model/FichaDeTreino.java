@@ -18,7 +18,7 @@ public class FichaDeTreino {
     private Instrutor instrutor;
     private ArrayList<FichaExercicio> exercicios;
     private String obg, obs;   // INSERIR AGORA
-     private Date data,dataReavaliacao; // INSERIR AGORA
+    private Date data,dataReavaliacao; // INSERIR AGORA
      
     public int getId() {
         return id;

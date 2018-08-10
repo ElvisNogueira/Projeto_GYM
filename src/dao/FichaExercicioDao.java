@@ -5,7 +5,11 @@
  */
 package dao;
 
+import fachada.Fachada;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.FichaExercicio;
@@ -21,8 +25,6 @@ public class FichaExercicioDao {
     
     public void cadastrar(FichaExercicio f){
         try {
-            //Cadastrar primeiro a ficha de treino
-            //        (repeticoes,ordem,dia,exercicio_id,ficha_treino_id)
             statement=SQLUtil.prepareStatement(SQLUtil.INSERIR_FICHA_EXERCICIO);
             statement.setInt(1, f.getRepeticoes());
             statement.setInt(2, f.getOrdem());
@@ -46,10 +48,56 @@ public class FichaExercicioDao {
             Logger.getLogger(AvaliacaoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void editar(FichaExercicio f){}
-    public FichaExercicio getByIdFichaTreiino(int id){
+    public void editar(FichaExercicio f){
+        try {
+            statement=SQLUtil.prepareStatement(SQLUtil.UPDATE_FICHA_EXERCICIO);
+            statement.setInt(1, f.getRepeticoes());
+            statement.setInt(2, f.getOrdem());
+            statement.setString(3, f.getDia());
+            statement.setInt(4, f.getExercicio().getId());
+            statement.setInt(5, SQLUtil.getLastIdTabela("ficha_de_treino"));
+            statement.setInt(6, f.getId());
+            
+            statement.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(AvaliacaoDao.class.getName()).log(Level.SEVERE, null, ex);
+            
+            Mensagem.exibirMensagem("Erro ao editar em Ficha_Exercicio!\n"+ex.getMessage());
+        }
+    }
+    public ArrayList<FichaExercicio> getByIdFichaTreino(int id){
+        ResultSet result;
+        ArrayList<FichaExercicio> fichaExercicios = new ArrayList<>();
+        
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.SELECT_BY_ID_FICHA_TREINO_FICHAEXERCICIO);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            
+            while (result.next())               
+                fichaExercicios.add(get(result));
+            return fichaExercicios;
+        } catch (Exception ex) {
+            Logger.getLogger(FichaExercicioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         return null;
+    }
+    
+    private FichaExercicio get(ResultSet result){
+        FichaExercicio f = new FichaExercicio();
+        
+        try {
+            f.setId(result.getInt(1));
+            f.setRepeticoes(result.getInt(2));
+            f.setOrdem(result.getInt(3));
+            f.setDia(result.getString(4));
+            f.setExercicio(Fachada.getInstance().getByIdExercicio(result.getInt(5)));
+            f.setId(result.getInt(6));
+        } catch (SQLException ex) {
+            Logger.getLogger(FichaExercicioDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return f;
     }
     
     

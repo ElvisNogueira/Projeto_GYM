@@ -271,7 +271,7 @@ public class AlunosHomeJFrame extends javax.swing.JFrame {
         jTableAlunos.setModel(modeloTabela);      
         jTableAlunos.getColumnModel().getColumn(0).setPreferredWidth(40);
         jTableAlunos.getColumnModel().getColumn(0).setResizable(false);
-        jTableAlunos.getColumnModel().getColumn(1).setPreferredWidth(410);
+        jTableAlunos.getColumnModel().getColumn(1).setPreferredWidth(400);
         jTableAlunos.getColumnModel().getColumn(1).setResizable(false);
         jTableAlunos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }

@@ -12,7 +12,7 @@ package model;
 public class FichaExercicio {
    private int id, repeticoes,ordem, serie; 
    private Exercicio exercicio;
-   private FichaDeTreino fichaDeTreino;
+   private int fichaDeTreino;
    private String dia,obs; // INSERIR AGORA  O OBS
 
    
@@ -62,11 +62,11 @@ public class FichaExercicio {
         this.exercicio = exercicio;
     }
 
-    public FichaDeTreino getFichaDeTreino() {
+    public int getFichaDeTreino() {
         return fichaDeTreino;
     }
 
-    public void setFichaDeTreino(FichaDeTreino fichaDeTreino) {
+    public void setFichaDeTreino(int fichaDeTreino) {
         this.fichaDeTreino = fichaDeTreino;
     }
 

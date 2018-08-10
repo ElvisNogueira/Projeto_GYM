@@ -302,7 +302,8 @@ public class AlunosLancarFaturaJFrame extends javax.swing.JFrame {
        p = get();
        Projeto_GYM.fachada.cadastrarPagamento(p);
        Projeto_GYM.fachada.cadastrarControleFinanceiro(c);
-       
+       if(jComboBoxServico.getSelectedItem().equals("Mensalidade"))
+           Projeto_GYM.fachada.pagarParcela(aluno, p.getDataVenc());
        this.dispose();
     }//GEN-LAST:event_jButtonLancarActionPerformed
 

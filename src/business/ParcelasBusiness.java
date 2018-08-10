@@ -6,8 +6,10 @@
 package business;
 
 import dao.ParcelasDao;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import model.Aluno;
 import model.Parcelas;
 
 /**
@@ -43,6 +45,10 @@ public class ParcelasBusiness {
     
     public ArrayList<Parcelas> getAllById(int id){
         return dao.getAllById(id);
+    }
+    
+    public void pagarParcela(Aluno a, Date d){
+        dao.pagarParcela(a, d);
     }
     
 }

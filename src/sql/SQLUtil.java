@@ -43,7 +43,8 @@ public class SQLUtil {
             + "subscapular,tricipital) values (?,?,?,?,?,?,?,?)";
     public static String INSERIR_EXERCICIO = "insert into exercicio (tipo,nome) values (?,?)";
     public static String INSERIR_INSTRUTOR = "insert into instrutor (cref,funcionario_id) values (?,?)";
-    public static String INSERIR_FICHA_DE_TREINO = "insert into ficha_de_treino (instrutor_id,aluno_id) values (?,?)";
+    public static String INSERIR_FICHA_DE_TREINO = "insert into ficha_de_treino (instrutor_id,aluno_id,objetivo,observacao,data,dataReavaliacao) "
+            + "values (?,?,?,?,?,?)";
     public static String INSERIR_FICHA_EXERCICIO = "insert into ficha_exercicio (repeticoes,ordem,dia,exercicio_id,ficha_treino_id) values (?,?,?,?,?)";
     public static String INSERIR_ANAMNESE = "insert into anamnese (tabagismo,restricaoArticular,cardiopatias,medicamentos,"
             + "hipertensao,outros,diabetes,probPulmonares,ativFisica,nivel,tabagismoObs,restricaoArticularObs,cardiopatiasObs,"
@@ -69,7 +70,7 @@ public class SQLUtil {
     public static String SELECT_BY_ID_ALUNO = "select * from aluno where id=?";
     public static String SELECT_BY_ID_ENDERECO = "select * from endereco where id=?";
     public static String SELECT_ALL_FUNCIONARIO = "select * from funcionario";
-    public static String SELECT_ALL_EXERCICIOS = "select * from exercicio";
+    public static String SELECT_ALL_EXERCICIOS = "select * from exercicio order by nome";
     public static String SELECT_FUNCIONARIO = "select * from funcionario where id=?";
     public static String SELECT_BY_ID_ANMNESE = "select * from anamnese where id=?";
     public static String SELECT_BY_ID_COMPOSICAO_CORPORAL = "select * from composicao_corporal where id=?";
@@ -80,15 +81,21 @@ public class SQLUtil {
     public static String SELECT_BY_ID_INSTRUTOR = "select * from instrutor where id=?";
     public static String SELECT_ALL_CONTROLE_FINANCEIRO = "select * from controle_financeiro";
     public static String SELECT_BY_ID_PARCELAS = "select * from parcelas where id=?";
-    public static String SELECT_ALL_PARCELAS = "select * from parcelas";
-    public static String SELECT_ALL_PARCELAS_BY_ID = "select * from parcelas where aluno_id=?";
-    public static String SELECT_BY_EXERCICIO_ID = "select * from exercicio where id=?";
-    public static String SELECT_BY_ID_CONTROLE_FINANCEIRO = "select * from controle_financeiro where id=?";
+    public static String SELECT_ALL_PARCELAS = "select * from parcelas order by id";
+    public static String SELECT_ALL_PARCELAS_BY_ID = "select * from parcelas where aluno_id=? order by id";
+    public static String SELECT_BY_EXERCICIO_ID = "select * from exercicio where id=? ";
+    public static String SELECT_BY_ID_CONTROLE_FINANCEIRO = "select * from controle_financeiro where id=? order data";
     public static String SELECT_BY_ID_AVALIACAO = "select * from avaliacao where id=?";
     public static String SELECT_BY_ALUNO_AVALIACAO = "select * from avaliacao where aluno_id=?";
     public static String SELECT_BY_TIPO_ALL_EXERCICIOS = "select * from exercicio where tipo=?";
     public static String SELECT_BY_NOME_EXERCICIOS = "select * from exercicio where nome=?";
     public static String SELECT_BY_PERIODO_CONTROLE_FINANCEIRO = "select * from controle_financeiro where data between ? and ?";
+    public static String SELECT_BY_ID_FICHA_TREINO_FICHAEXERCICIO = "select * from ficha_exercicio where ficha_treino_id=?";
+    public static String SELECT_BY_ID_FICHA_TREINO = "select * from ficha_de_treino where id=?";
+    public static String SELECT_BY_ALUNO_FICHA_TREINO = "select * from ficha_de_treino where aluno_id=?";
+    public static String SELECT_ULTIMA_PARCELA_ALUUNO = "select * from parcelas where id=(select max(id) from "
+            + "(select * from parcelas where aluno_id = ?) as parcelas_alias) ";
+    
     
     public static String UPDATE_ALUNO = "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
             + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";
@@ -121,6 +128,12 @@ public class SQLUtil {
     public static String UPDATE_PERIMETRIA = "update perimetria set altura=?,cintura=?,peso=?,coxa_esquerda=?,ombro=?,"
             + "braco_esquerdo=?,coxa_direita=?,abdomem=?,torax=?,quadril=?,panturrilha_direita=?,braco_direito=?, "
             + "ante_braco_direito=?,ante_braco_esquerdo=? where id=?";
+    public static String UPDATE_FICHA_EXERCICIO = "update ficha_exercicio set repeticoes=?,ordem=?,dia=?,exercicio_id=?,"
+            + "ficha_treino_id=? where id=?";
+    public static String UPDATE_FICHA_DE_TREINO = "update ficha_de_treino set instrutor_id=?,aluno_id=?,objetivo=?,"
+            + "observacao=?,data=?,dataReavaliacao=? where id=?";
+    public static String UPDATE_PAGAR_PARCELA = "update parcelas set status='Pago' "
+            + "where aluno_id=? and data_de_vencimento=?";
     
     public static String VERIFICAR_PARCELA = "select id from parcelas where aluno_id=? and data_de_vencimento=?";
     

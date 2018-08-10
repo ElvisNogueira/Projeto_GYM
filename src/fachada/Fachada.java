@@ -481,5 +481,17 @@ public class Fachada {
     public ArrayList<ControleFinanceiro> getBuscaControleFinanceiro(Date d1,Date d2){
         return controleFinaceiroBusiness.getByBusca(d1, d2);
     }
+    
+    public ArrayList<FichaExercicio> getFichaExercByIdFichaTreino(int id){
+        return fichaExercicioBusiness.getByIdFichaTreino(id);
+    }
+    
+    public ArrayList<FichaDeTreino> getByAlunoFichaTreino(int id){
+        return fichaDeTreinoBusiness.getByAlunoId(id);
+    }
+    
+    public void pagarParcela(Aluno a, Date d){
+        parcelasBusiness.pagarParcela(a, d);
+    }
      
 }

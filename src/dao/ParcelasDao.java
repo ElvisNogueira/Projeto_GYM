@@ -6,12 +6,14 @@
 package dao;
 
 import fachada.Fachada;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Aluno;
 import model.Parcelas;
 import sql.SQLUtil;
 import view.Mensagem;
@@ -126,6 +128,17 @@ public class ParcelasDao {
         try {
             statement = SQLUtil.prepareStatement(SQLUtil.DELETE_PARCELAS);
             statement.setInt(1, p.getId());
+            statement.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(ParcelasDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void pagarParcela(Aluno a, Date d){
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.UPDATE_PAGAR_PARCELA);
+            statement.setInt(1, a.getId());
+            statement.setDate(2, d);
             statement.execute();
         } catch (Exception ex) {
             Logger.getLogger(ParcelasDao.class.getName()).log(Level.SEVERE, null, ex);

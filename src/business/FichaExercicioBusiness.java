@@ -6,6 +6,7 @@
 package business;
 
 import dao.FichaExercicioDao;
+import java.util.ArrayList;
 import model.FichaExercicio;
 
 /**
@@ -31,8 +32,8 @@ public class FichaExercicioBusiness {
         dao.excluir(f);
     }
     
-    public FichaExercicio getByIdFichaTreiino(int id){
-        return dao.getByIdFichaTreiino(id);
+    public ArrayList<FichaExercicio> getByIdFichaTreino(int id){
+        return dao.getByIdFichaTreino(id);
     }
     
     

@@ -8,6 +8,7 @@ package business;
 import app.Projeto_GYM;
 import dao.FichaDeTreinoDao;
 import fachada.Fachada;
+import java.util.ArrayList;
 import model.FichaDeTreino;
 import model.FichaExercicio;
 import view.Mensagem;
@@ -46,4 +47,8 @@ public class FichaDeTreinoBusiness {
     public FichaDeTreino getById(int i){
         return dao.getById(0);
     }
+    
+     public ArrayList<FichaDeTreino> getByAlunoId(int id){
+         return dao.getByAlunoId(id);
+     }
 }

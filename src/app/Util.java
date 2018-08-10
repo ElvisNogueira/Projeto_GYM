@@ -54,22 +54,25 @@ public class Util {
     }
     
     public static Date converterCalendarToDate(Calendar cal){
+        
+        Date d = new Date(cal.getInstance().get(GregorianCalendar.YEAR)-1900, cal.getInstance().get(GregorianCalendar.
+                MONTH),cal.get(GregorianCalendar.DAY_OF_MONTH));
         int dia = cal.get(GregorianCalendar.DAY_OF_MONTH);
         int mes = cal.getInstance().get(GregorianCalendar.MONTH);
         int ano = cal.getInstance().get(GregorianCalendar.YEAR);
         String c = "";
-        if(mes>9)
+        if(cal.get(GregorianCalendar.MONTH)>9)
             c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/"
-                +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
+                +(cal.get(GregorianCalendar.MONTH))+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
         else
             c =(cal.get(GregorianCalendar.DAY_OF_MONTH)+"/0"
-                +cal.get(GregorianCalendar.MONTH)+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
+                +(cal.get(GregorianCalendar.MONTH))+"/"+(cal.get(GregorianCalendar.YEAR)-1900));
         if(dia<10)
-            c = "0"+c;
-        return getDate(c);
+            c = "0"+c;       
+        return getDate(c);  
     }
     
-        public static Date converterCalendarToDate2(Calendar cal){
+    public static Date converterCalendarToDate2(Calendar cal){
         int dia = cal.get(GregorianCalendar.DAY_OF_MONTH);
         int mes = cal.getInstance().get(GregorianCalendar.MONTH)+1;
         int ano = cal.getInstance().get(GregorianCalendar.YEAR);
@@ -80,6 +83,7 @@ public class Util {
             c =(dia+"/0"+mes+"/"+ano);
         if(dia<10)
             c = "0"+c;
+        
         return getDate(c);
     }
     
@@ -101,11 +105,8 @@ public class Util {
         Parcelas p = new Parcelas();
         Calendar cal = Calendar.getInstance();
         cal.setTime(d);
-        cal.add(Calendar.MONTH, 1);
-//        Mensal
-//        Trimestral
-//        Semestral
-//        Anual
+        cal.add(Calendar.MONTH, 2);
+
         if(a.getPlano().equals("Mensal"))
             numPrcelas=1;
         else if(a.getPlano().equals("Trimestral"))
