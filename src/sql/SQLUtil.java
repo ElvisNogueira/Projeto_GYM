@@ -66,10 +66,10 @@ public class SQLUtil {
     public static String SELECT_CONTA_BY_NOME = "select * from historico where nome=?";
     public static String SELECT_CONTA_BY_ID = "select * from historico where id=?";
     public static String SELECT_CONTA_ALL_NOMES = "select nome from historico";
-    public static String SELECT_ALL_ALUNO = "select * from aluno";
+    public static String SELECT_ALL_ALUNO = "select * from aluno order by nome";
     public static String SELECT_BY_ID_ALUNO = "select * from aluno where id=?";
     public static String SELECT_BY_ID_ENDERECO = "select * from endereco where id=?";
-    public static String SELECT_ALL_FUNCIONARIO = "select * from funcionario";
+    public static String SELECT_ALL_FUNCIONARIO = "select * from funcionario order by nome";
     public static String SELECT_ALL_EXERCICIOS = "select * from exercicio order by nome";
     public static String SELECT_FUNCIONARIO = "select * from funcionario where id=?";
     public static String SELECT_BY_ID_ANMNESE = "select * from anamnese where id=?";

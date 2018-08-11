@@ -56,8 +56,8 @@ public class AlunoDao {
         try {
             statement=SQLUtil.prepareStatement(SQLUtil.UPDATE_ALUNO);
 
-//              nome=?,cpf=?,data_nascimento=?,sexo=?,"
-//            + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=? where id=?            
+//            "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
+//            + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";          
 
             statement.setString(1, aluno.getNome());
             statement.setString(2, aluno.getCpf());
@@ -69,15 +69,15 @@ public class AlunoDao {
             statement.setString(8, aluno.getEmail());
             statement.setString(9, aluno.getCelular());
             statement.setString(10, aluno.getStatus());
-            statement.setInt(11, aluno.getId());
-            statement.setString(12, aluno.getPlano());
-            statement.setFloat(13, aluno.getValorPlano());
+            statement.setString(11, aluno.getPlano());
+            statement.setFloat(12, aluno.getValorPlano());
+            statement.setInt(13, aluno.getId());
             
             
             statement.execute();
             return aluno;
         } catch (Exception ex) {
-            Mensagem.exibirMensagem("Erro ao editar aluno!\n"+ex.getMessage());
+            Logger.getLogger(AlunoDao.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
