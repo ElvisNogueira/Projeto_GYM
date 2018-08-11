@@ -493,5 +493,9 @@ public class Fachada {
     public void pagarParcela(Aluno a, Date d){
         parcelasBusiness.pagarParcela(a, d);
     }
+    
+    public ArrayList<Parcelas> AlunosPlanosVencer(){
+       return parcelasBusiness.AlunosPlanosVencer();
+    }
      
 }

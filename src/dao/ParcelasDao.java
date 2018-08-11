@@ -145,8 +145,23 @@ public class ParcelasDao {
         }
     }
     
+    public Parcelas getVencerPlano(int id){
+        ResultSet result;
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.SELECT_PARCELA_ALUUNO_VENCER);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            if(result.next())
+                return get(result);
+        } catch (Exception ex) {
+            Logger.getLogger(ParcelasDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    } 
+    
     private Parcelas get(ResultSet result){
         Parcelas p = new Parcelas();
+       
         try {
             p.setId(result.getInt(1));
             p.setData_de_Vencimento(result.getDate(2));
@@ -159,6 +174,9 @@ public class ParcelasDao {
         } catch (SQLException ex) {
             Logger.getLogger(ParcelasDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         return null;
     }
+    
+    
 }

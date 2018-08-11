@@ -96,7 +96,10 @@ public class SQLUtil {
     public static String SELECT_ULTIMA_PARCELA_ALUUNO = "select * from parcelas where id=(select max(id) from "
             + "(select * from parcelas where aluno_id = ?) as parcelas_alias) ";
     
-    
+    public static String SELECT_PARCELA_ALUUNO_VENCER = "select * from (select * from parcelas where id=(select max(id) "
+            + "from (select * from parcelas where aluno_id = ?) as parcelas_alias)) as "
+    + "parc where DATE_PART('day', data_de_vencimento - now())<8 and DATE_PART("
+    + "'day', data_de_vencimento - now())>0";
     public static String UPDATE_ALUNO = "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
             + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";
     public static String UPDATE_FUNCIONARIO = "update funcionario set nome=?,cpf=?,salario=?,telefone=?,"

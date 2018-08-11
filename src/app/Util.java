@@ -166,5 +166,28 @@ public class Util {
                  
          } 
     }
+    
+    public static ArrayList<Parcelas> planosAVencer(ArrayList<Parcelas> p){
+        Calendar cal = Calendar.getInstance();
+        int dia = Calendar.getInstance().get(GregorianCalendar.DAY_OF_MONTH);
+        int mes = Calendar.getInstance().get(GregorianCalendar.MONTH);
+        int ano = Calendar.getInstance().get(GregorianCalendar.YEAR)-1900;
+        Date d = new Date(ano,mes,dia);
+        System.out.println(d+" hoje");
+        for(int i=0;i<p.size();i++){
+            cal.setTime(p.get(i).getData_de_Vencimento());
+            cal.add(Calendar.DAY_OF_MONTH, -7);
+            int dia2 = cal.get(GregorianCalendar.DAY_OF_MONTH);
+            int mes2 = cal.get(GregorianCalendar.MONTH);
+            int ano2 = cal.get(GregorianCalendar.YEAR)-1900;
+            Date d2 = new Date(ano2,mes2,dia2);
+            System.out.println(d2+"");
+            
+            if(d.before(d2))
+                p.remove(i);
+        }
+        
+        return p;
+    }
          
 }

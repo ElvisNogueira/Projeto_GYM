@@ -5,7 +5,9 @@
  */
 package business;
 
+import app.Util;
 import dao.ParcelasDao;
+import fachada.Fachada;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -51,4 +53,20 @@ public class ParcelasBusiness {
         dao.pagarParcela(a, d);
     }
     
+    public ArrayList<Parcelas> AlunosPlanosVencer(){
+        ArrayList<Parcelas> parcelas = new ArrayList<>();
+        Parcelas p;
+        for(Aluno a : Fachada.getInstance().getAllAluno()){
+            if(a.getStatus().equals("Ativo")){
+                p = dao.getVencerPlano(a.getId());
+                
+                if(p!=null){
+                    parcelas.add(p);
+                }
+            }
+        }
+        
+        
+        return  parcelas;
+    }
 }
