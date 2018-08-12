@@ -69,4 +69,13 @@ public class ParcelasBusiness {
         
         return  parcelas;
     }
+    
+    public ArrayList<Parcelas> getParcelasVencidas(){
+        return dao.getParcelasVencidas();
+    }
+    
+    public void atualizarParcelasAtrasadas(){
+        dao.atualizarParcelasAtrasadas();
+    }
+    
 }

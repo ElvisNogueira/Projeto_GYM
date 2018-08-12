@@ -159,6 +159,31 @@ public class ParcelasDao {
         return null;
     } 
     
+    public void atualizarParcelasAtrasadas(){
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.UPDATE_PARCELAS_ATRASADAS);
+            statement.execute();
+        } catch (Exception ex) {
+            Logger.getLogger(ParcelasDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    
+    public ArrayList<Parcelas> getParcelasVencidas(){
+        ArrayList<Parcelas> parcelas = new ArrayList<>();
+        ResultSet result;
+        
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.SELECT_PARCELAS_ATRASADAS);
+            result = statement.executeQuery();
+            while(result.next())
+                parcelas.add(get(result));
+        } catch (Exception ex) {
+            Logger.getLogger(ParcelasDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return parcelas;
+    }
+    
     private Parcelas get(ResultSet result){
         Parcelas p = new Parcelas();
        

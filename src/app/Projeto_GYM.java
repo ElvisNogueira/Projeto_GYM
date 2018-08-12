@@ -24,7 +24,8 @@ public class Projeto_GYM {
     public static Fachada fachada = Fachada.getInstance();
     
     public static void main(String[] args) {
-
+        
+        Fachada.getInstance().atualizarParcelasAtrasadas();
         Util.atualizarMensalidades();
         LoginJFrame login = new LoginJFrame();
         login.setVisible(true);

@@ -5,6 +5,13 @@
  */
 package view;
 
+import fachada.Fachada;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import model.Aluno;
+import model.ModeloTabela;
+import model.Parcelas;
+
 /**
  *
  * @author Insinuante
@@ -16,6 +23,7 @@ public class RelatorioListaDebitoJFrame extends javax.swing.JFrame {
      */
     public RelatorioListaDebitoJFrame() {
         initComponents();
+        preencherTabela(Fachada.getInstance().getParcelasVencidas());
     }
 
     /**
@@ -139,4 +147,31 @@ public class RelatorioListaDebitoJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    public void preencherTabela(ArrayList<Parcelas> parcelas){
+        String[] colunas = new String[]{"ID","NOME", "PARCELAS","VALOR", "DATA","CELULAR"};
+        ArrayList<Object[]> dados = new ArrayList<>();
+ 
+        for(Parcelas a : parcelas){
+            dados.add(new Object[]{a.getId(),a.getAlunos().getNome(), a.getConta().getDescricao(), a.getValor(), 
+                a.getData_de_Vencimento(),a.getAlunos().getCelular()});
+        }
+        
+        ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
+        alunoCredjTable.setModel(modeloTabela);      
+        alunoCredjTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        alunoCredjTable.getColumnModel().getColumn(0).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(1).setPreferredWidth(400);
+        alunoCredjTable.getColumnModel().getColumn(1).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(2).setPreferredWidth(210);
+        alunoCredjTable.getColumnModel().getColumn(2).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(3).setPreferredWidth(100);
+        alunoCredjTable.getColumnModel().getColumn(3).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(4).setPreferredWidth(110);
+        alunoCredjTable.getColumnModel().getColumn(4).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(5).setPreferredWidth(210);
+        alunoCredjTable.getColumnModel().getColumn(5).setResizable(false);
+        
+        alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    }
 }

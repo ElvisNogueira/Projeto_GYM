@@ -497,5 +497,12 @@ public class Fachada {
     public ArrayList<Parcelas> AlunosPlanosVencer(){
        return parcelasBusiness.AlunosPlanosVencer();
     }
+    
+    public ArrayList<Parcelas> getParcelasVencidas(){
+        return parcelasBusiness.getParcelasVencidas();
+    }
      
+    public void atualizarParcelasAtrasadas(){
+        parcelasBusiness.atualizarParcelasAtrasadas();
+    }
 }

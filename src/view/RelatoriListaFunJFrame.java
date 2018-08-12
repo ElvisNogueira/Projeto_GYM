@@ -5,6 +5,13 @@
  */
 package view;
 
+import fachada.Fachada;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import model.Aluno;
+import model.Funcionario;
+import model.ModeloTabela;
+
 /**
  *
  * @author Insinuante
@@ -16,6 +23,7 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
      */
     public RelatoriListaFunJFrame() {
         initComponents();
+        preencherTabela(Fachada.getInstance().getAllFuncionario());
     }
 
     /**
@@ -54,7 +62,7 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
             .addGroup(jPanelBlueLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(cabjLabe)
-                .addContainerGap(916, Short.MAX_VALUE))
+                .addContainerGap(934, Short.MAX_VALUE))
         );
         jPanelBlueLayout.setVerticalGroup(
             jPanelBlueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,11 +102,11 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(100, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(gerarPDFjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(100, Short.MAX_VALUE))
+                    .addComponent(gerarPDFjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 652, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,4 +147,33 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    public void preencherTabela(ArrayList<Funcionario> funcionarios){
+        String[] colunas = new String[]{"ID","NOME", "CPF"};
+        ArrayList<Object[]> dados = new ArrayList<>();
+        
+        ArrayList<Funcionario> funcionarioLista = new ArrayList<>();
+        for(Funcionario f : funcionarios){
+            if(f.getStatus().equals("ativo")){
+                funcionarioLista.add(f);
+            }
+        }
+        
+        for(Funcionario a:funcionarioLista){
+            dados.add(new Object[]{a.getId(),a.getNome(), a.getCpf()});
+        }
+        
+        ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
+        alunoCredjTable.setModel(modeloTabela);      
+        alunoCredjTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        alunoCredjTable.getColumnModel().getColumn(0).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(1).setPreferredWidth(400);
+        alunoCredjTable.getColumnModel().getColumn(1).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(2).setPreferredWidth(210);
+        alunoCredjTable.getColumnModel().getColumn(2).setResizable(false);
+
+        alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    }
+
+
 }

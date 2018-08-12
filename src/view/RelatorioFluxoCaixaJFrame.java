@@ -238,7 +238,6 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         else if(pUmjDateChooser.getDate()!=null && pDoisjDateChooser.getDate()!=null){
             Date d1 = Util.converterCalendarToDate2(pUmjDateChooser.getCalendar());
             Date d2 =  Util.converterCalendarToDate2(pDoisjDateChooser.getCalendar());   
-            Mensagem.exibirMensagem("d1="+d1+" e d2="+d2);
             carregarTabelar(Fachada.getInstance().getBuscaControleFinanceiro(d1,d2));
         }else
             Mensagem.exibirMensagem("É preciso preencher os dois campos de datas!");
@@ -266,11 +265,22 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         private void carregarTabelar(ArrayList<ControleFinanceiro> financeiro){
         String [] colunas = {"ID","Data","Historico","Descrição","Valor"};
         ArrayList<Object[]> dados = new ArrayList<>();
-        for(ControleFinanceiro c : financeiro)
-            
-            dados.add(new Object[]{c.getId(),c.getData(),c.getConta().getDescricao(),
+        for(ControleFinanceiro c : financeiro){
+            if("Todos".equals(jComboBoxServico1.getSelectedItem()+"")){
+                 dados.add(new Object[]{c.getId(),c.getData(),c.getConta().getDescricao(),
                       c.getDescricao(),c.getValor()});
-        
+            }else if("Entradas".equals(jComboBoxServico1.getSelectedItem()+"")){
+                if(c.getConta().getTipo().equals("Crédito"))
+                    dados.add(new Object[]{c.getId(),c.getData(),c.getConta().getDescricao(),
+                      c.getDescricao(),c.getValor()});
+            }else{
+                if(c.getConta().getTipo().equals("Débito")){
+                        dados.add(new Object[]{c.getId(),c.getData(),c.getConta().getDescricao(),
+                        c.getDescricao(),c.getValor()});  
+               } 
+                  
+            }
+        }
         ModeloTabela modelo = new ModeloTabela(dados, colunas);
         alunoCredjTable.setModel(modelo);
         

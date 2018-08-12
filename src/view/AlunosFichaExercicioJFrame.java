@@ -5,16 +5,21 @@
  */
 package view;
 
+import app.ComparadorFichaExercicio;
 import app.Projeto_GYM;
 import app.Util;
 import fachada.Fachada;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import javax.swing.JTable;
 import model.Aluno;
 import model.Exercicio;
 import model.FichaDeTreino;
 import model.FichaExercicio;
 import model.Instrutor;
+import model.ModeloTabela;
 
 /**
  *
@@ -533,9 +538,9 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, testejPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(testejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabel1)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(testejPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
@@ -767,7 +772,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
         Projeto_GYM.fachada.cadastrarFichaDeTreino(getFicha());
-        ficha.getExercicios().clear();
+        dispose();
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -783,7 +788,8 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void jButtonIncluir12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluir12ActionPerformed
-        miniGet();            
+        miniGet();
+        preencherTabelas();
     }//GEN-LAST:event_jButtonIncluir12ActionPerformed
 
     private void jTextFieldRepeticoe12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRepeticoe12ActionPerformed
@@ -908,15 +914,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         
         for(FichaExercicio e : dom)
             ficha.getExercicios().add(e);
-        
-
-        seg.clear();
-        ter.clear();
-        qua.clear();
-        qui.clear();
-        sex.clear();
-        sab.clear();
-        dom.clear();  
+          
         
         return ficha;
     }
@@ -955,10 +953,17 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         if(domjCheckBox10.isSelected()){
             dom.add(new FichaExercicio("domingo", fichaExer));
         }
-                
+        
+        Collections.sort(seg,new ComparadorFichaExercicio());
+        Collections.sort(ter,new ComparadorFichaExercicio());
+        Collections.sort(qua,new ComparadorFichaExercicio());
+        Collections.sort(qui,new ComparadorFichaExercicio());
+        Collections.sort(sex,new ComparadorFichaExercicio());
+        Collections.sort(sab,new ComparadorFichaExercicio());
+        Collections.sort(dom,new ComparadorFichaExercicio());
     }
     
-        private void preencherComboBox(){
+    private void preencherComboBox(){
         ArrayList<Exercicio> e = Projeto_GYM.fachada.getAllTipoExercicio(jComboBoxTipoExerc.getSelectedItem()+"");
         if(e!=null){
             jComboExercicio.removeAllItems();
@@ -966,6 +971,126 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 jComboExercicio.addItem(ex.getNome());
             }
         }
+    }
+    
+    private void preencherTabelas(){
+        String[] colunas = new String[]{"Exercício","Série","Rep.","Obs"};
+        ArrayList<Object[]> dadosSeg = new ArrayList<>();
+        ArrayList<Object[]> dadoster = new ArrayList<>();
+        ArrayList<Object[]> dadosqua = new ArrayList<>();
+        ArrayList<Object[]> dadosqui = new ArrayList<>();
+        ArrayList<Object[]> dadosSex = new ArrayList<>();
+        ArrayList<Object[]> dadosSab = new ArrayList<>();
+        ArrayList<Object[]> dadosDom = new ArrayList<>();
+        for(FichaExercicio f: seg){
+            dadosSeg.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        
+        for(FichaExercicio f: ter){
+            dadoster.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        
+        for(FichaExercicio f: qua){
+            dadosqua.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        for(FichaExercicio f: qui){
+            dadosqui.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        
+        for(FichaExercicio f: sex){
+            dadosSex.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        for(FichaExercicio f: sab){
+            dadosSab.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        for(FichaExercicio f: dom){
+            dadosDom.add(new Object[]{f.getExercicio().getNome(),f.getSerie(),f.getRepeticoes(),f.getObs()});
+        }
+        
+        
+        ModeloTabela modeloTabela =  new ModeloTabela(dadosSeg, colunas);   
+        segundajTable.setModel(modeloTabela);      
+        segundajTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        segundajTable.getColumnModel().getColumn(0).setResizable(false);
+        segundajTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        segundajTable.getColumnModel().getColumn(1).setResizable(false);
+        segundajTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        segundajTable.getColumnModel().getColumn(2).setResizable(false);
+        segundajTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        segundajTable.getColumnModel().getColumn(3).setResizable(false);
+        segundajTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+          
+        tercajTable.setModel(new ModeloTabela(dadoster, colunas));      
+        tercajTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        tercajTable.getColumnModel().getColumn(0).setResizable(false);
+        tercajTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        tercajTable.getColumnModel().getColumn(1).setResizable(false);
+        tercajTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        tercajTable.getColumnModel().getColumn(2).setResizable(false);
+        tercajTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        tercajTable.getColumnModel().getColumn(3).setResizable(false);
+        tercajTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+           
+        quajTable.setModel(new ModeloTabela(dadosqua, colunas));      
+        quajTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        quajTable.getColumnModel().getColumn(0).setResizable(false);
+        quajTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        quajTable.getColumnModel().getColumn(1).setResizable(false);
+        quajTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        quajTable.getColumnModel().getColumn(2).setResizable(false);
+        quajTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        quajTable.getColumnModel().getColumn(3).setResizable(false);
+        quajTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+           
+        quijTable.setModel(new ModeloTabela(dadosqui, colunas));      
+        quijTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        quijTable.getColumnModel().getColumn(0).setResizable(false);
+        quijTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        quijTable.getColumnModel().getColumn(1).setResizable(false);
+        quijTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        quijTable.getColumnModel().getColumn(2).setResizable(false);
+        quijTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        quijTable.getColumnModel().getColumn(3).setResizable(false);
+        quijTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+          
+        sexjTable.setModel(new ModeloTabela(dadosSex, colunas));      
+        sexjTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        sexjTable.getColumnModel().getColumn(0).setResizable(false);
+        sexjTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        sexjTable.getColumnModel().getColumn(1).setResizable(false);
+        sexjTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        sexjTable.getColumnModel().getColumn(2).setResizable(false);
+        sexjTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        sexjTable.getColumnModel().getColumn(3).setResizable(false);
+        sexjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        
+        sabjTable.setModel(new ModeloTabela(dadosSab, colunas));      
+        sabjTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        sabjTable.getColumnModel().getColumn(0).setResizable(false);
+        sabjTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        sabjTable.getColumnModel().getColumn(1).setResizable(false);
+        sabjTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        sabjTable.getColumnModel().getColumn(2).setResizable(false);
+        sabjTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        sabjTable.getColumnModel().getColumn(3).setResizable(false);
+        sabjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+           
+        domjTable.setModel(new ModeloTabela(dadosDom, colunas));      
+        domjTable.getColumnModel().getColumn(0).setPreferredWidth(55);
+        domjTable.getColumnModel().getColumn(0).setResizable(false);
+        domjTable.getColumnModel().getColumn(1).setPreferredWidth(54);
+        domjTable.getColumnModel().getColumn(1).setResizable(false);
+        domjTable.getColumnModel().getColumn(2).setPreferredWidth(55);
+        domjTable.getColumnModel().getColumn(2).setResizable(false);
+        domjTable.getColumnModel().getColumn(3).setPreferredWidth(55);
+        domjTable.getColumnModel().getColumn(3).setResizable(false);
+        domjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
 }

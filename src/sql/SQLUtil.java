@@ -95,11 +95,17 @@ public class SQLUtil {
     public static String SELECT_BY_ALUNO_FICHA_TREINO = "select * from ficha_de_treino where aluno_id=?";
     public static String SELECT_ULTIMA_PARCELA_ALUUNO = "select * from parcelas where id=(select max(id) from "
             + "(select * from parcelas where aluno_id = ?) as parcelas_alias) ";
+   
+    public static String SELECT_PARCELAS_ATRASADAS = "select * from parcelas where status='Atrasado' order by aluno_id";
+    
     
     public static String SELECT_PARCELA_ALUUNO_VENCER = "select * from (select * from parcelas where id=(select max(id) "
             + "from (select * from parcelas where aluno_id = ?) as parcelas_alias)) as "
     + "parc where DATE_PART('day', data_de_vencimento - now())<8 and DATE_PART("
     + "'day', data_de_vencimento - now())>0";
+    
+    public static String UPDATE_PARCELAS_ATRASADAS = "update parcelas set status = 'Atrasado' where data_de_vencimento "
+            + "< now() and status = 'Em aberto'";
     public static String UPDATE_ALUNO = "update aluno set nome=?,cpf=?,data_nascimento=?,sexo=?,"
             + "vencimento_mens=?,endereco_id=?,rg=?,email=?,celular=?,status=?,tipo_plano=?,valor_plano=? where id=?";
     public static String UPDATE_FUNCIONARIO = "update funcionario set nome=?,cpf=?,salario=?,telefone=?,"
