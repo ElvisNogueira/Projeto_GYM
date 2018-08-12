@@ -5,17 +5,27 @@
  */
 package view;
 
+import app.Util;
+import fachada.Fachada;
+import java.sql.Date;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import model.ControleFinanceiro;
+import model.ModeloTabela;
+
 /**
  *
  * @author Insinuante
  */
 public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
-
+    ArrayList<ControleFinanceiro> financeiro;
     /**
      * Creates new form NewJFrameLogin
      */
     public RelatorioFluxoCaixaJFrame() {
         initComponents();
+        financeiro = Fachada.getInstance().getAllControleFinanceiro();
+        carregarTabelar(financeiro);
     }
 
     /**
@@ -41,6 +51,7 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         jLabelConfig = new javax.swing.JLabel();
         pDoisjDateChooser = new com.toedter.calendar.JDateChooser();
         pUmjDateChooser = new com.toedter.calendar.JDateChooser();
+        refresh = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Fluxo do caixa");
@@ -124,6 +135,13 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
 
         pUmjDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
+        refresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
+        refresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                refreshMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -134,7 +152,8 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 1070, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(gerarPDFjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(gerarPDFjButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(refresh, javax.swing.GroupLayout.Alignment.TRAILING))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabelConfig)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -181,7 +200,8 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
                         .addGap(18, 18, 18)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelSexo, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBoxServico1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBoxServico1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(refresh))
                 .addGap(25, 25, 25)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
@@ -212,6 +232,18 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jComboBoxServico1ActionPerformed
 
+    private void refreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_refreshMouseClicked
+        if(pUmjDateChooser.getDate()==null && pDoisjDateChooser.getDate()==null)
+            carregarTabelar(financeiro);
+        else if(pUmjDateChooser.getDate()!=null && pDoisjDateChooser.getDate()!=null){
+            Date d1 = Util.converterCalendarToDate2(pUmjDateChooser.getCalendar());
+            Date d2 =  Util.converterCalendarToDate2(pDoisjDateChooser.getCalendar());   
+            Mensagem.exibirMensagem("d1="+d1+" e d2="+d2);
+            carregarTabelar(Fachada.getInstance().getBuscaControleFinanceiro(d1,d2));
+        }else
+            Mensagem.exibirMensagem("É preciso preencher os dois campos de datas!");
+    }//GEN-LAST:event_refreshMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable alunoCredjTable;
@@ -228,5 +260,32 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private com.toedter.calendar.JDateChooser pDoisjDateChooser;
     private com.toedter.calendar.JDateChooser pUmjDateChooser;
+    private javax.swing.JLabel refresh;
     // End of variables declaration//GEN-END:variables
+    
+        private void carregarTabelar(ArrayList<ControleFinanceiro> financeiro){
+        String [] colunas = {"ID","Data","Historico","Descrição","Valor"};
+        ArrayList<Object[]> dados = new ArrayList<>();
+        for(ControleFinanceiro c : financeiro)
+            
+            dados.add(new Object[]{c.getId(),c.getData(),c.getConta().getDescricao(),
+                      c.getDescricao(),c.getValor()});
+        
+        ModeloTabela modelo = new ModeloTabela(dados, colunas);
+        alunoCredjTable.setModel(modelo);
+        
+        alunoCredjTable.getColumnModel().getColumn(0).setPreferredWidth(80);
+        alunoCredjTable.getColumnModel().getColumn(0).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(1).setPreferredWidth(130);
+        alunoCredjTable.getColumnModel().getColumn(1).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(2).setPreferredWidth(290);
+        alunoCredjTable.getColumnModel().getColumn(2).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(3).setPreferredWidth(390);
+        alunoCredjTable.getColumnModel().getColumn(3).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(4).setPreferredWidth(176);
+        alunoCredjTable.getColumnModel().getColumn(4).setResizable(false);
+        
+        alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);    
+    }
+
 }

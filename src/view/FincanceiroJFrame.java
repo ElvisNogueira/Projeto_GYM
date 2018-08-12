@@ -352,15 +352,11 @@ public class FincanceiroJFrame extends javax.swing.JFrame {
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
 
-        
-        
         if(pUmjDateChooser.getDate()==null && pDoisjDateChooser.getDate()==null)
             carregarTabelar(financeiro);
         else if(pUmjDateChooser.getDate()!=null && pDoisjDateChooser.getDate()!=null){
-            Date d1 = new Date(pUmjDateChooser.getDate().getYear(), pUmjDateChooser.getDate().getMonth(),
-            pUmjDateChooser.getDate().getDay());
-            Date d2 = new Date(pDoisjDateChooser.getDate().getYear(), pDoisjDateChooser.getDate().getMonth(),
-            pDoisjDateChooser.getDate().getDay());           
+            Date d1 = Util.converterCalendarToDate2(pUmjDateChooser.getCalendar());
+            Date d2 =  Util.converterCalendarToDate2(pDoisjDateChooser.getCalendar());           
             carregarTabelar(Fachada.getInstance().getBuscaControleFinanceiro(d1,d2));
         }else
             Mensagem.exibirMensagem("É preciso preencher os dois campos de datas!");

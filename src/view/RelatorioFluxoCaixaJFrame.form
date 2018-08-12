@@ -54,6 +54,7 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jScrollPane1" alignment="1" min="-2" pref="1070" max="-2" attributes="0"/>
                           <Component id="gerarPDFjButton" alignment="1" min="-2" pref="163" max="-2" attributes="0"/>
+                          <Component id="refresh" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabelConfig" min="-2" max="-2" attributes="0"/>
@@ -118,6 +119,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabelSexo" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
                       <Component id="jComboBoxServico1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                      <Component id="refresh" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" pref="323" max="-2" attributes="0"/>
@@ -294,6 +296,16 @@
               <Font name="Arial" size="12" style="1"/>
             </Property>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="refresh">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/imagens/icons8_Refresh_25px.png"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="refreshMouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
