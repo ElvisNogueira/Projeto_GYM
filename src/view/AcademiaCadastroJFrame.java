@@ -417,12 +417,11 @@ public class AcademiaCadastroJFrame extends javax.swing.JFrame {
                                     .addComponent(jFormattedTextFieldCelular, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE))
                                 .addComponent(jLabelCelular))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jLabelUF2)
-                                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBoxSexo3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabelUF1)
-                                    .addComponent(jFormattedTextFieldNum))))))
+                                .addComponent(jComboBoxSexo3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabelUF1)
+                                .addComponent(jFormattedTextFieldNum)))))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
         jPanelBackLayout.setVerticalGroup(

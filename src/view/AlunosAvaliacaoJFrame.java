@@ -249,9 +249,9 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jFormattedTextFieldPeso3 = new javax.swing.JFormattedTextField();
         jLabePeso8 = new javax.swing.JLabel();
         datajLabe = new javax.swing.JLabel();
-        datejFormattedTextField = new javax.swing.JFormattedTextField();
         datajLabe1 = new javax.swing.JLabel();
-        dateProxAvjFormattedTextField = new javax.swing.JFormattedTextField();
+        datajDateChooser = new com.toedter.calendar.JDateChooser();
+        proxDatajDateChooser = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar avaliação física");
@@ -772,7 +772,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jPaneAnamneseLayout.setVerticalGroup(
             jPaneAnamneseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPaneAnamneseLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(20, Short.MAX_VALUE)
                 .addGroup(jPaneAnamneseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPaneAnamneseLayout.createSequentialGroup()
@@ -869,7 +869,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
                             .addComponent(jLabelobs9)
                             .addComponent(jRadioButtonSimProbPulm)
                             .addComponent(jRadioButtonNaoProbPulm))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         jTabbedPaneAvaliacao.addTab("Anamnese", jPaneAnamnese);
@@ -1188,7 +1188,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jPanelPerimetriaLayout.setVerticalGroup(
             jPanelPerimetriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelPerimetriaLayout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addContainerGap(28, Short.MAX_VALUE)
                 .addGroup(jPanelPerimetriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabePeso)
                     .addComponent(jLabeQuadril)
@@ -1253,7 +1253,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
                     .addComponent(jLabelcm3)
                     .addComponent(jLabelcm8)
                     .addComponent(jLabelcm13))
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPaneAvaliacao.addTab("Perimetria", jPanelPerimetria);
@@ -1430,7 +1430,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jPanelDCutaneasLayout.setVerticalGroup(
             jPanelDCutaneasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelDCutaneasLayout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(39, Short.MAX_VALUE)
                 .addGroup(jPanelDCutaneasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabeAltura1)
                     .addComponent(jLabeAxilarMedia)
@@ -1466,7 +1466,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
                     .addComponent(jFormattedTextFieldAbdominal, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelcm16)
                     .addComponent(jLabelcm19))
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
 
         jTabbedPaneAvaliacao.addTab("Dobras Cutaneas", jPanelDCutaneas);
@@ -1624,7 +1624,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jPanelCCorporalLayout.setVerticalGroup(
             jPanelCCorporalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelCCorporalLayout.createSequentialGroup()
-                .addContainerGap(50, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(jPanelCCorporalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanelCCorporalLayout.createSequentialGroup()
                         .addComponent(jLabeIMC)
@@ -1660,7 +1660,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
                         .addGroup(jPanelCCorporalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jFormattedTextFieldRCQ, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabelcm27))))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         jTabbedPaneAvaliacao.addTab("Composição Corporal", jPanelCCorporal);
@@ -1749,7 +1749,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabelcm33)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -1768,7 +1768,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
                         .addComponent(jLabePorGordura3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jFormattedTextFieldPorGordura3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addContainerGap(278, Short.MAX_VALUE))
         );
 
         jTabbedPaneAvaliacao.addTab("Metas Ideais", jPanel1);
@@ -1777,23 +1777,13 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         datajLabe.setForeground(new java.awt.Color(45, 118, 232));
         datajLabe.setText("Data");
 
-        try {
-            datejFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        datejFormattedTextField.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-
         datajLabe1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         datajLabe1.setForeground(new java.awt.Color(45, 118, 232));
         datajLabe1.setText("Data da próxima avaliação");
 
-        try {
-            dateProxAvjFormattedTextField.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        dateProxAvjFormattedTextField.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        datajDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+
+        proxDatajDateChooser.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
@@ -1805,11 +1795,11 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(datajLabe)
                 .addGap(18, 18, 18)
-                .addComponent(datejFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(datajDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
                 .addComponent(datajLabe1)
                 .addGap(18, 18, 18)
-                .addComponent(dateProxAvjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(proxDatajDateChooser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
@@ -1820,17 +1810,18 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackLayout.createSequentialGroup()
                 .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 24, Short.MAX_VALUE)
                 .addComponent(jTabbedPaneAvaliacao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datajLabe)
-                    .addComponent(datejFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datajLabe1)
-                    .addComponent(dateProxAvjFormattedTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(datajLabe, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(datajLabe1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(proxDatajDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datajDateChooser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         jTabbedPaneAvaliacao.getAccessibleContext().setAccessibleName("Anamnese");
@@ -1846,7 +1837,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
             .addComponent(jPanelBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(834, 666));
+        setSize(new java.awt.Dimension(834, 691));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -2118,10 +2109,9 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroupProbPulmonares;
     private javax.swing.ButtonGroup buttonGroupRestricaoArticular;
     private javax.swing.ButtonGroup buttonGroupTababismo;
+    private com.toedter.calendar.JDateChooser datajDateChooser;
     private javax.swing.JLabel datajLabe;
     private javax.swing.JLabel datajLabe1;
-    private javax.swing.JFormattedTextField dateProxAvjFormattedTextField;
-    private javax.swing.JFormattedTextField datejFormattedTextField;
     private javax.swing.JButton jButtonCancelar;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JFormattedTextField jFormattedTextFieldAbdomem;
@@ -2290,6 +2280,7 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextAreaProbPulmonares;
     private javax.swing.JTextArea jTextAreaRestricaoArticular;
     private javax.swing.JTextArea jTextAreaTab;
+    private com.toedter.calendar.JDateChooser proxDatajDateChooser;
     private javax.swing.JLabel tabgismojLabe;
     // End of variables declaration//GEN-END:variables
 
@@ -2361,11 +2352,11 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         avaliacao.setInstrutor(instrutor);
         avaliacao.setAnamnese(a);
         avaliacao.setComposicao_corporal(c);
-        avaliacao.setData(Util.getDate(datejFormattedTextField.getText()));
+        avaliacao.setData(Util.converterCalendarToDate2(datajDateChooser.getCalendar()));
         avaliacao.setDobras_Cutaneas(d);
         avaliacao.setMetas_ideais(m);
         avaliacao.setPerimetria(p);
-        avaliacao.setProxima_avaliacao(Util.getDate(dateProxAvjFormattedTextField.getText()));
+        avaliacao.setProxima_avaliacao(Util.converterCalendarToDate2(proxDatajDateChooser.getCalendar()));
         avaliacao.setObjetivo(objetivo);
 
         return avaliacao;
@@ -2480,9 +2471,9 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         jFormattedTextFieldPeso3.setText(m.getPeso() + "");
         jFormattedTextFieldPorGordura3.setText(m.getPorcentual_gordura() + "");
 
-        dateProxAvjFormattedTextField.setText(Util.getDateString(avaliacao.getProxima_avaliacao()));
-        datejFormattedTextField.setText(Util.getDateString(avaliacao.getData()));
-
+        datajDateChooser.setDate(avaliacao.getData());
+        proxDatajDateChooser.setDate(avaliacao.getProxima_avaliacao());
+        
     }
     
     private void datasAvaliacao(){
@@ -2495,10 +2486,11 @@ public class AlunosAvaliacaoJFrame extends javax.swing.JFrame {
         cal.setTime(d);
         cal.add(Calendar.MONTH, 1);
         d = Util.converterCalendarToDate(cal);
-        datejFormattedTextField.setText(Util.getDateString(d));
+        datajDateChooser.setDate(d);
         cal.add(Calendar.MONTH, 1);
         Date d2 = Util.converterCalendarToDate(cal);
-        dateProxAvjFormattedTextField.setText(Util.getDateString(d2));
+        proxDatajDateChooser.setDate(d2);
+        
     }
 
     public JPanel getjPaneAnamnese() {

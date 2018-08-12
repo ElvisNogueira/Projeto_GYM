@@ -278,7 +278,7 @@ public class FuncionariosJFrame extends javax.swing.JFrame {
         jTableFuncionarios.getColumnModel().getColumn(0).setResizable(false);
         jTableFuncionarios.getColumnModel().getColumn(1).setPreferredWidth(350);
         jTableFuncionarios.getColumnModel().getColumn(1).setResizable(false);
-        jTableFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(123);
+        jTableFuncionarios.getColumnModel().getColumn(2).setPreferredWidth(179);
         jTableFuncionarios.getColumnModel().getColumn(2).setResizable(false);
         jTableFuncionarios.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
