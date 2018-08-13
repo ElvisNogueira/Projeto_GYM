@@ -45,6 +45,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jLabeSair = new javax.swing.JLabel();
         jLabelMax = new javax.swing.JLabel();
         jLabelMin = new javax.swing.JLabel();
+        logoutjLabel = new javax.swing.JLabel();
         jPanelAlunos = new javax.swing.JPanel();
         jLabelAlunos = new javax.swing.JLabel();
         jLabelIconAlunos = new javax.swing.JLabel();
@@ -63,12 +64,6 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanelFinanceiro = new javax.swing.JPanel();
         jLabelFinanceiro1 = new javax.swing.JLabel();
         jLabelIconFinanceiro1 = new javax.swing.JLabel();
-        jPanelCongiguracao = new javax.swing.JPanel();
-        jLabellExercicios1 = new javax.swing.JLabel();
-        jLabelIconlExer1 = new javax.swing.JLabel();
-        jPanelLogout = new javax.swing.JPanel();
-        jLabellExercicios2 = new javax.swing.JLabel();
-        jLabelIconlExer2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Início");
@@ -137,6 +132,13 @@ public class HomeJFrame extends javax.swing.JFrame {
             }
         });
 
+        logoutjLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Logout_Rounded_Up_30px_1_1.png"))); // NOI18N
+        logoutjLabel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                logoutjLabelMousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelCabecarioLayout = new javax.swing.GroupLayout(jPanelCabecario);
         jPanelCabecario.setLayout(jPanelCabecarioLayout);
         jPanelCabecarioLayout.setHorizontalGroup(
@@ -162,6 +164,8 @@ public class HomeJFrame extends javax.swing.JFrame {
                     .addGroup(jPanelCabecarioLayout.createSequentialGroup()
                         .addComponent(jLabeGym)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(logoutjLabel)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabelMin)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabelMax)
@@ -190,9 +194,10 @@ public class HomeJFrame extends javax.swing.JFrame {
                                 .addComponent(jLabel3)))
                         .addGap(70, 70, 70))
                     .addGroup(jPanelCabecarioLayout.createSequentialGroup()
-                        .addGroup(jPanelCabecarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelMax)
-                            .addComponent(jLabelMin))
+                        .addGroup(jPanelCabecarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabelMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabelMin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logoutjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanelCabecarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -236,7 +241,7 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanelAlunosLayout.setVerticalGroup(
             jPanelAlunosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelAlunosLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(24, Short.MAX_VALUE)
                 .addComponent(jLabelIconAlunos)
                 .addGap(18, 18, 18)
                 .addComponent(jLabelAlunos)
@@ -453,91 +458,6 @@ public class HomeJFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanelCongiguracao.setToolTipText("Configurações da academia");
-        jPanelCongiguracao.setPreferredSize(new java.awt.Dimension(140, 120));
-        jPanelCongiguracao.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanelCongiguracaoMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanelCongiguracaoMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelCongiguracaoMousePressed(evt);
-            }
-        });
-
-        jLabellExercicios1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabellExercicios1.setForeground(new java.awt.Color(45, 118, 232));
-        jLabellExercicios1.setText("Configurações");
-
-        jLabelIconlExer1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Settings_64px.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanelCongiguracaoLayout = new javax.swing.GroupLayout(jPanelCongiguracao);
-        jPanelCongiguracao.setLayout(jPanelCongiguracaoLayout);
-        jPanelCongiguracaoLayout.setHorizontalGroup(
-            jPanelCongiguracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCongiguracaoLayout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanelCongiguracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongiguracaoLayout.createSequentialGroup()
-                        .addComponent(jLabellExercicios1)
-                        .addGap(25, 25, 25))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCongiguracaoLayout.createSequentialGroup()
-                        .addComponent(jLabelIconlExer1)
-                        .addGap(36, 36, 36))))
-        );
-        jPanelCongiguracaoLayout.setVerticalGroup(
-            jPanelCongiguracaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelCongiguracaoLayout.createSequentialGroup()
-                .addContainerGap(21, Short.MAX_VALUE)
-                .addComponent(jLabelIconlExer1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabellExercicios1)
-                .addContainerGap())
-        );
-
-        jPanelLogout.setToolTipText("Fazer logout no sistema");
-        jPanelLogout.setPreferredSize(new java.awt.Dimension(140, 120));
-        jPanelLogout.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jPanelLogoutMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jPanelLogoutMouseExited(evt);
-            }
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jPanelLogoutMousePressed(evt);
-            }
-        });
-
-        jLabellExercicios2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabellExercicios2.setForeground(new java.awt.Color(45, 118, 232));
-        jLabellExercicios2.setText("  Logout");
-
-        jLabelIconlExer2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Logout_Rounded_Up_50px.png"))); // NOI18N
-
-        javax.swing.GroupLayout jPanelLogoutLayout = new javax.swing.GroupLayout(jPanelLogout);
-        jPanelLogout.setLayout(jPanelLogoutLayout);
-        jPanelLogoutLayout.setHorizontalGroup(
-            jPanelLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLogoutLayout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(jPanelLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelIconlExer2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLabellExercicios2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(44, Short.MAX_VALUE))
-        );
-        jPanelLogoutLayout.setVerticalGroup(
-            jPanelLogoutLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelLogoutLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jLabelIconlExer2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(jLabellExercicios2)
-                .addContainerGap())
-        );
-
         javax.swing.GroupLayout jPanelBackgroundLayout = new javax.swing.GroupLayout(jPanelBackground);
         jPanelBackground.setLayout(jPanelBackgroundLayout);
         jPanelBackgroundLayout.setHorizontalGroup(
@@ -547,20 +467,16 @@ public class HomeJFrame extends javax.swing.JFrame {
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addComponent(jPanelAlunos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(70, 70, 70)
                         .addComponent(jPanelFuncionarios, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                         .addComponent(jPanelRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(50, 50, 50)
+                        .addGap(70, 70, 70)
                         .addComponent(jPanelFinanceiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(50, 50, 50)
+                .addGap(70, 70, 70)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanelInfo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelExercicio, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
-                .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanelCongiguracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelLogout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanelCabecario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -568,19 +484,17 @@ public class HomeJFrame extends javax.swing.JFrame {
             jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackgroundLayout.createSequentialGroup()
                 .addComponent(jPanelCabecario, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jPanelFuncionarios, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelExercicio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelCongiguracao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanelAlunos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(50, 50, 50)
+                .addGap(70, 70, 70)
                 .addGroup(jPanelBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanelRelatorio, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanelLogout, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelFinanceiro, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanelInfo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -690,22 +604,6 @@ public class HomeJFrame extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_jLabeSairMousePressed
 
-    private void jPanelLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelLogoutMouseEntered
-        setColor(jPanelLogout);
-    }//GEN-LAST:event_jPanelLogoutMouseEntered
-
-    private void jPanelLogoutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelLogoutMouseExited
-        resetColor(jPanelLogout);
-    }//GEN-LAST:event_jPanelLogoutMouseExited
-
-    private void jPanelLogoutMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelLogoutMousePressed
-        dispose();
-        // ESTA CERTO?
-        LoginJFrame login = new LoginJFrame();
-        login.setVisible(true);
-        new LoginControlador(login);
-    }//GEN-LAST:event_jPanelLogoutMousePressed
-
     private void jLabelMaxMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMaxMousePressed
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }//GEN-LAST:event_jLabelMaxMousePressed
@@ -714,17 +612,12 @@ public class HomeJFrame extends javax.swing.JFrame {
         setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabelMinMousePressed
 
-    private void jPanelCongiguracaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMousePressed
-        new AcademiaCadastroJFrame().show();
-    }//GEN-LAST:event_jPanelCongiguracaoMousePressed
-
-    private void jPanelCongiguracaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMouseExited
-        resetColor(jPanelCongiguracao);
-    }//GEN-LAST:event_jPanelCongiguracaoMouseExited
-
-    private void jPanelCongiguracaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMouseEntered
-        setColor(jPanelCongiguracao);
-    }//GEN-LAST:event_jPanelCongiguracaoMouseEntered
+    private void logoutjLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logoutjLabelMousePressed
+        dispose();
+        LoginJFrame login = new LoginJFrame();
+        login.setVisible(true);
+        new LoginControlador(login);
+    }//GEN-LAST:event_logoutjLabelMousePressed
 
     // ME: 
     public static void setColor(JPanel panel){
@@ -751,28 +644,23 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabelIconFinanceiro;
     private javax.swing.JLabel jLabelIconFinanceiro1;
     private javax.swing.JLabel jLabelIconlExer;
-    private javax.swing.JLabel jLabelIconlExer1;
-    private javax.swing.JLabel jLabelIconlExer2;
     private javax.swing.JLabel jLabelIconlFuncionarios;
     private javax.swing.JLabel jLabelIconlInfo;
     private javax.swing.JLabel jLabelMax;
     private javax.swing.JLabel jLabelMin;
     private javax.swing.JLabel jLabellExercicios;
-    private javax.swing.JLabel jLabellExercicios1;
-    private javax.swing.JLabel jLabellExercicios2;
     private javax.swing.JLabel jLabellFuncionarios;
     private javax.swing.JLabel jLabellInfo;
     private javax.swing.JPanel jPanelAlunos;
     private javax.swing.JPanel jPanelBackground;
     private javax.swing.JPanel jPanelCabecario;
-    private javax.swing.JPanel jPanelCongiguracao;
     private javax.swing.JPanel jPanelExercicio;
     private javax.swing.JPanel jPanelFinanceiro;
     private javax.swing.JPanel jPanelFuncionarios;
     private javax.swing.JPanel jPanelInfo;
-    private javax.swing.JPanel jPanelLogout;
     private javax.swing.JPanel jPanelRelatorio;
     private javax.swing.JSeparator jSeparator;
     private javax.swing.JTextField jTextFieldPesquisar;
+    private javax.swing.JLabel logoutjLabel;
     // End of variables declaration//GEN-END:variables
 }
