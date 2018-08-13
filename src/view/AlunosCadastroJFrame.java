@@ -85,7 +85,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         jLabelNumero = new javax.swing.JLabel();
         jFormattedTextFieldDiaVenc = new javax.swing.JFormattedTextField();
         jLabelId1 = new javax.swing.JLabel();
-        jTextFieldValorMens = new javax.swing.JTextField();
+        jTextFieldValorMens = new JtextFieldSomenteNumeros();
         jComboBoxPlano = new javax.swing.JComboBox<>();
         jLabelId2 = new javax.swing.JLabel();
         jLabelId3 = new javax.swing.JLabel();
@@ -385,7 +385,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelNumero)
                                             .addComponent(jTextFieldNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                                        .addGap(30, 30, 30)
                                         .addGroup(jPanelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabelUF)
                                             .addComponent(jComboBoxUF, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -913,8 +913,10 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                 a=Projeto_GYM.fachada.editarAluno(getAluno());
                 Mensagem.exibirMensagem("Aluno editado com sucesso!");
             }
-        }else
+        }else{
             Mensagem.exibirErro();
+        }
+        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jPanelAvalicaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelAvalicaoMouseEntered
@@ -1068,29 +1070,41 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public Aluno getAluno(){
-        int num = Integer.parseInt(getjTextFieldNumero().getText());
-        
-        a.setCpf(this.getjFormattedTextFieldCPF1().getText());
-        a.setData_nascimento(Util.converterCalendarToDate2(dataNasjDateChooser.getCalendar()));
-        a.setNome(getjTextFieldNome().getText());
-        a.setSexo(getjComboBoxSexo1().getSelectedItem().toString()+"");
-        a.setStatus(getjComboBoxStatus().getSelectedItem()+"");
-        a.setRg(getjTextFieldRG().getText());
-        a.setEmail(getjTextFieldemail().getText());
-        a.setCelular(getjFormattedTextFieldCelular().getText());
-        a.setVencimento_mens(Integer.parseInt(jFormattedTextFieldDiaVenc.getText()));
-        a.setPlano(jComboBoxPlano.getSelectedItem()+"");
-        a.setValorPlano(Float.parseFloat(jTextFieldValorMens.getText()));
-        //Acrescentar campo de data de vencimento da mensalidade
-        
-        a.getEndereco().setBairro(getjTextFieldBairro().getText());
-        a.getEndereco().setCep(getjFormattedTextFieldCEP().getText());
-        a.getEndereco().setCidade(getjTextFieldCidade().getText());
-        a.getEndereco().setLogradouro(getjTextFieldLogradouro().getText());
-        a.getEndereco().setNum(num);
-        a.getEndereco().setUf(getjComboBoxUF().getSelectedItem()+"");
-        
-        return a;
+       
+        if((jTextFieldValorMens.getText().equals("")|| jFormattedTextFieldDiaVenc.getText().equals(""))||
+            jTextFieldNome.getText().equals("")|| jTextFieldRG.getText().equals("") ||
+            jFormattedTextFieldCPF1.getText().equals("   .   .   -  ")|| jFormattedTextFieldCelular.getText().equals("(  )     -    ") ||
+            jTextFieldLogradouro.getText().equals("") || jTextFieldCidade.getText().equals("") ||
+            jTextFieldBairro.getText().equals("") || jTextFieldNumero.getText().equals("") ||
+            jFormattedTextFieldCEP.getText().equals("      -   ") || jTextFieldemail.getText().equals("") ||
+            (dataNasjDateChooser.getDate() == null)){
+            
+            Mensagem.exibirMensagem("Preencha todos os campos");            
+            return null;
+            
+        }else{
+            int num = Integer.parseInt(getjTextFieldNumero().getText());
+            a.setCpf(this.getjFormattedTextFieldCPF1().getText());
+            a.setData_nascimento(Util.converterCalendarToDate2(dataNasjDateChooser.getCalendar()));
+            a.setNome(getjTextFieldNome().getText());
+            a.setSexo(getjComboBoxSexo1().getSelectedItem().toString()+"");
+            a.setStatus(getjComboBoxStatus().getSelectedItem()+"");
+            a.setRg(getjTextFieldRG().getText());
+            a.setEmail(getjTextFieldemail().getText());
+            a.setCelular(getjFormattedTextFieldCelular().getText());
+            a.setVencimento_mens(Integer.parseInt(jFormattedTextFieldDiaVenc.getText()));
+            a.setPlano(jComboBoxPlano.getSelectedItem()+"");
+            a.setValorPlano(Float.parseFloat(jTextFieldValorMens.getText()));
+            //Acrescentar campo de data de vencimento da mensalidade
+
+            a.getEndereco().setBairro(getjTextFieldBairro().getText());
+            a.getEndereco().setCep(getjFormattedTextFieldCEP().getText());
+            a.getEndereco().setCidade(getjTextFieldCidade().getText());
+            a.getEndereco().setLogradouro(getjTextFieldLogradouro().getText());
+            a.getEndereco().setNum(num);
+            a.getEndereco().setUf(getjComboBoxUF().getSelectedItem()+"");
+            return a;
+        }
     }
     
     public void setAluno(Aluno a){

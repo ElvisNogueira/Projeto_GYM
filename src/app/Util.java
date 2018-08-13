@@ -21,6 +21,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import model.Aluno;
 import model.Conta;
+import model.FichaExercicio;
 import model.Parcelas;
 import view.Mensagem;
 
@@ -172,6 +173,15 @@ public class Util {
                   }
                  
          } 
+    }
+    
+    public static int getIndiceByID(ArrayList<FichaExercicio> exercicios, FichaExercicio busca){
+        for(int i=0;i<exercicios.size();i++){
+            if(exercicios.get(i).getId()== busca.getId()){
+               return i;
+            }
+        }
+        return -1;
     }
          
 }

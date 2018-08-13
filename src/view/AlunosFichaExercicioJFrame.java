@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.Collections;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import model.Aluno;
 import model.Exercicio;
 import model.FichaDeTreino;
@@ -39,6 +40,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     private ArrayList<FichaExercicio> sex = new ArrayList<>();
     private ArrayList<FichaExercicio> sab = new ArrayList<>();
     private ArrayList<FichaExercicio> dom = new ArrayList<>();
+    private ArrayList<FichaExercicio> itensEditar = new ArrayList<>();
     private String obj, obs;
     
     
@@ -424,6 +426,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 "Exercício", "Série", "Rep.", "Obs."
             }
         ));
+        segundajTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                segundajTableMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(segundajTable);
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -445,6 +452,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 "Exercício", "Série", "Rep.", "Obs."
             }
         ));
+        tercajTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tercajTableMouseClicked(evt);
+            }
+        });
         jScrollPane3.setViewportView(tercajTable);
 
         quajTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -458,6 +470,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 "Exercício", "Série", "Rep.", "Obs."
             }
         ));
+        quajTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                quajTableMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(quajTable);
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -475,6 +492,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 "Exercício", "Série", "Rep.", "Obs."
             }
         ));
+        quijTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                quijTableMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(quijTable);
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -492,6 +514,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 "Exercício", "Série", "Rep.", "Obs."
             }
         ));
+        sexjTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sexjTableMouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(sexjTable);
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -509,6 +536,11 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 "Exercício", "Série", "Rep.", "Obs."
             }
         ));
+        sabjTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sabjTableMouseClicked(evt);
+            }
+        });
         jScrollPane7.setViewportView(sabjTable);
 
         jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -772,8 +804,14 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSalvarActionPerformed
-        Projeto_GYM.fachada.cadastrarFichaDeTreino(getFicha());
-        dispose();
+        if(jTextField1.getText().isEmpty()){
+            Projeto_GYM.fachada.cadastrarFichaDeTreino(getFicha());
+            dispose();
+        }else{
+            Projeto_GYM.fachada.editarFichaDeTreino(getFicha());
+            dispose();
+        }
+        
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelarActionPerformed
@@ -789,8 +827,13 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void jButtonIncluir12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluir12ActionPerformed
-        miniGet();
-        preencherTabelas();
+        if(jTextField1.getText().isEmpty()){
+            miniGet();
+            preencherTabelas();
+        }else{
+            miniGetEdit();
+            preencherTabelas();
+        }
     }//GEN-LAST:event_jButtonIncluir12ActionPerformed
 
     private void jTextFieldRepeticoe12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRepeticoe12ActionPerformed
@@ -808,8 +851,91 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     private void jComboBoxTipoExercActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoExercActionPerformed
         preencherComboBox();
     }//GEN-LAST:event_jComboBoxTipoExercActionPerformed
-   
 
+    private void segundajTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_segundajTableMouseClicked
+        
+        if(!jTextField1.getText().isEmpty()){
+            segundajTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = segundajTable.getValueAt(segundajTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(segundajTable.getValueAt(segundajTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    }//GEN-LAST:event_segundajTableMouseClicked
+
+    private void tercajTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tercajTableMouseClicked
+        if(!jTextField1.getText().isEmpty()){
+            tercajTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = tercajTable.getValueAt(tercajTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(tercajTable.getValueAt(tercajTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    }//GEN-LAST:event_tercajTableMouseClicked
+
+    private void sexjTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sexjTableMouseClicked
+            if(!jTextField1.getText().isEmpty()){
+            sexjTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = sexjTable.getValueAt(sexjTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(sexjTable.getValueAt(sexjTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    }//GEN-LAST:event_sexjTableMouseClicked
+
+    private void quajTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quajTableMouseClicked
+        if(!jTextField1.getText().isEmpty()){
+            quajTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = quajTable.getValueAt(quajTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(quajTable.getValueAt(quajTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    }//GEN-LAST:event_quajTableMouseClicked
+
+    private void quijTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_quijTableMouseClicked
+        if(!jTextField1.getText().isEmpty()){
+            quijTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = quijTable.getValueAt(quijTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(quijTable.getValueAt(quijTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    }//GEN-LAST:event_quijTableMouseClicked
+
+    private void sabjTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sabjTableMouseClicked
+        if(!jTextField1.getText().isEmpty()){
+            sabjTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = sabjTable.getValueAt(sabjTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(sabjTable.getValueAt(sabjTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    }//GEN-LAST:event_sabjTableMouseClicked
+   
+    private void domjTableMouseClicked(java.awt.event.MouseEvent evt) {                                       
+        if(!jTextField1.getText().isEmpty()){
+            domjTable.clearSelection();
+            FichaExercicio fAux = new FichaExercicio();
+            String exercicioNome = domjTable.getValueAt(domjTable.getSelectedRow(), 0)+"";
+            int rep = Integer.parseInt(domjTable.getValueAt(domjTable.getSelectedRow(), 2)+""); 
+            fAux.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(exercicioNome));
+            fAux.setRepeticoes(rep);
+            itensEditar=selectLinhas(fAux);
+        }
+    } 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser dataIniciojDateChooser;
     private com.toedter.calendar.JDateChooser dataReavjDateChooser;
@@ -923,7 +1049,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     public void setFicha(FichaDeTreino f){
         dataIniciojDateChooser.setDate(f.getData());
         dataReavjDateChooser.setDate(f.getDataReavaliacao());
-        
         ficha.setInstrutor(f.getInstrutor());
         ficha.setAluno(f.getAluno());
         jTextField3.setText(f.getObg());
@@ -1004,6 +1129,81 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         Collections.sort(dom,new ComparadorFichaExercicio());
     }
     
+    public void miniGetEdit(){
+        fichaExer.setRepeticoes(Integer.parseInt(jTextFieldRepeticoe12.getText()));
+        fichaExer.setOrdem(Integer.parseInt(jSpinnerOrdem12.getValue().toString()));
+        fichaExer.setSerie(Integer.parseInt(jSpinnerSerie12.getValue().toString()));
+        fichaExer.setExercicio(Fachada.getInstance().getExercicioNomeExercicio(jComboExercicio.getSelectedItem() + ""));
+        fichaExer.setObs(jTextField16.getText());
+        
+        
+        for(FichaExercicio fex : itensEditar){
+            int indice=-1;
+            if(fex.getDia().equals("segunda")){
+                indice = Util.getIndiceByID(seg, fex);
+                if(indice!=-1){
+                    seg.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            
+            if(fex.getDia().equals("terça")){
+                indice = Util.getIndiceByID(ter, fex);
+                if(indice!=-1){
+                    ter.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            if(fex.getDia().equals("quarta")){
+                indice = Util.getIndiceByID(qua, fex);
+                if(indice!=-1){
+                    qua.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            if(fex.getDia().equals("quinta")){
+                indice = Util.getIndiceByID(qui, fex);
+                if(indice!=-1){
+                    qui.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            if(fex.getDia().equals("sexta")){
+                indice = Util.getIndiceByID(sex, fex);
+                if(indice!=-1){
+                    sex.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            if(fex.getDia().equals("sabado")){
+                indice = Util.getIndiceByID(sab, fex);
+                if(indice!=-1){
+                    sab.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            if(fex.getDia().equals("domingo")){
+                indice = Util.getIndiceByID(dom, fex);
+                if(indice!=-1){
+                    dom.set(indice,fichaExer);
+                    indice=-1;
+                }
+            }
+            
+        }
+        itensEditar.clear();
+        
+        Collections.sort(seg,new ComparadorFichaExercicio());
+        Collections.sort(ter,new ComparadorFichaExercicio());
+        Collections.sort(qua,new ComparadorFichaExercicio());
+        Collections.sort(qui,new ComparadorFichaExercicio());
+        Collections.sort(sex,new ComparadorFichaExercicio());
+        Collections.sort(sab,new ComparadorFichaExercicio());
+        Collections.sort(dom,new ComparadorFichaExercicio());
+    }
+    
+    
+    
     private void preencherComboBox(){
         ArrayList<Exercicio> e = Projeto_GYM.fachada.getAllTipoExercicio(jComboBoxTipoExerc.getSelectedItem()+"");
         if(e!=null){
@@ -1012,6 +1212,76 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 jComboExercicio.addItem(ex.getNome());
             }
         }
+    }
+    
+    public ArrayList <FichaExercicio> selectLinhas(FichaExercicio f){
+        ArrayList <FichaExercicio> linhasSelecionadas = new ArrayList<>();
+        
+        for(int i=0;i<seg.size();i++){
+            if(f.getExercicio().getNome().equals(seg.get(i).getExercicio().getNome()) && f.getRepeticoes()==seg.get(i).getRepeticoes()){
+                segundajTable.setRowSelectionInterval(i, i);
+                linhasSelecionadas.add(seg.get(i));
+                segjCheckBox10.setSelected(true);
+                
+            }
+            
+        }
+        for(int i=0;i<ter.size();i++){
+            if(f.getExercicio().getNome().equals(ter.get(i).getExercicio().getNome()) && f.getRepeticoes()==ter.get(i).getRepeticoes()){
+                tercajTable.setRowSelectionInterval(i, i);
+
+                linhasSelecionadas.add(ter.get(i));
+                terjCheckBox10.setSelected(true);
+               
+            }
+        }
+        
+        for(int i=0;i<qua.size();i++){
+            if(f.getExercicio().getNome().equals(qua.get(i).getExercicio().getNome()) && f.getRepeticoes()==qua.get(i).getRepeticoes()){
+                quajTable.setRowSelectionInterval(i, i);
+                linhasSelecionadas.add(qua.get(i));
+                quajCheckBox10.setSelected(true);
+                
+            }
+        }
+        
+        for(int i=0;i<qui.size();i++){
+            if(f.getExercicio().getNome().equals(qui.get(i).getExercicio().getNome()) && f.getRepeticoes()==qui.get(i).getRepeticoes()){
+                quijTable.setRowSelectionInterval(i, i);
+                linhasSelecionadas.add(qui.get(i));
+                quijCheckBox10.setSelected(true);
+                
+            }
+        }
+        
+        for(int i=0;i<sex.size();i++){
+            if(f.getExercicio().getNome().equals(sex.get(i).getExercicio().getNome()) && f.getRepeticoes()==sex.get(i).getRepeticoes()){
+                sexjTable.setRowSelectionInterval(i, i);
+                linhasSelecionadas.add(sex.get(i));
+                sexjCheckBox10.setSelected(true);
+               
+            }
+        }
+        
+        for(int i=0;i<sab.size();i++){
+            if(f.getExercicio().getNome().equals(sab.get(i).getExercicio().getNome()) && f.getRepeticoes()==sab.get(i).getRepeticoes()){
+                sabjTable.setRowSelectionInterval(i, i);
+                linhasSelecionadas.add(sab.get(i));
+                sabjCheckBox10.setSelected(true);
+                
+            }
+        }
+        
+        for(int i=0;i<dom.size();i++){
+            if(f.getExercicio().getNome().equals(dom.get(i).getExercicio().getNome()) && f.getRepeticoes()==dom.get(i).getRepeticoes()){
+                domjTable.setRowSelectionInterval(i, i);
+                linhasSelecionadas.add(dom.get(i));
+                domjCheckBox10.setSelected(true);
+                
+            }
+        }
+        return linhasSelecionadas;
+        
     }
     
     private void preencherTabelas(){

@@ -29,7 +29,6 @@ public class FichaDeTreinoBusiness {
         try {
             dao.cadastrar(f);
             for(FichaExercicio e : f.getExercicios()){
-                Mensagem.exibirMensagem(e.getDia()+" "+f.getExercicios().size());
                 Projeto_GYM.fachada.cadastrarFichaExercicio(e);
             }
             Mensagem.exibirMensagem("Ficha de Treino cadastrado com sucesso!");
@@ -39,7 +38,15 @@ public class FichaDeTreinoBusiness {
     }
     
     public void editar(FichaDeTreino f){
-        dao.editar(f);
+        try {
+            dao.editar(f);
+            for(FichaExercicio e : f.getExercicios()){
+                Projeto_GYM.fachada.editarFichaExercicio(e);
+            }
+            Mensagem.exibirMensagem("Ficha de Treino cadastrado com sucesso!");
+        } catch (Exception e) {
+            Mensagem.exibirMensagem("Erro ao cadastrar Ficha de Treino!");
+        }
     }
     
     public void excluir(FichaDeTreino f){

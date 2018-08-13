@@ -225,7 +225,11 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
     private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        // TODO add your handling code here:
+        int id = Integer.parseInt(jTableAlunos.getValueAt(jTableAlunos.getSelectedRow(), 0)+"");
+        System.out.println(id+"");
+        AlunosFichaExercicioJFrame tela = new AlunosFichaExercicioJFrame(aluno);
+        tela.setFicha(Fachada.getInstance().getByIdFichaDeTreino(id));
+        tela.show();
     }//GEN-LAST:event_jButtonEditarActionPerformed
 
     private void jTextFieldProsucarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProsucarActionPerformed
