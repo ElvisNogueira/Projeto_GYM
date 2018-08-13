@@ -25,6 +25,7 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
     public AlunosFichaHomeJFrame(Aluno aluno) {
         this.aluno = aluno;
         initComponents();
+        
         preencherTabela(Fachada.getInstance().getByAlunoFichaTreino(aluno.getId()));
     }
 
@@ -44,10 +45,7 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
         jTableAlunos = new javax.swing.JTable();
         jButtonCadastrar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
-        jLabelProcurar = new javax.swing.JLabel();
-        jTextFieldProsucar = new javax.swing.JTextField();
-        jLabelIconPesquisar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Avaliação física");
@@ -128,32 +126,12 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonEditar.setBackground(new java.awt.Color(45, 118, 232));
-        jButtonEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButtonEditar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEditar.setText("Editar");
-        jButtonEditar.setToolTipText("Editar avaliação fisica");
-        jButtonEditar.setMaximumSize(new java.awt.Dimension(89, 23));
-        jButtonEditar.setMinimumSize(new java.awt.Dimension(89, 23));
-        jButtonEditar.setPreferredSize(new java.awt.Dimension(89, 23));
-        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarActionPerformed(evt);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
             }
         });
-
-        jLabelProcurar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabelProcurar.setForeground(new java.awt.Color(45, 118, 232));
-        jLabelProcurar.setText("Procurar");
-
-        jTextFieldProsucar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProsucarActionPerformed(evt);
-            }
-        });
-
-        jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px.png"))); // NOI18N
-        jLabelIconPesquisar.setToolTipText("Pesquisar");
 
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
@@ -161,44 +139,33 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelBackLayout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabelProcurar)
+                    .addGroup(jPanelBackLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanelBackLayout.createSequentialGroup()
+                        .addContainerGap(81, Short.MAX_VALUE)
                         .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanelBackLayout.createSequentialGroup()
-                                .addComponent(jTextFieldProsucar, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanelBackLayout.createSequentialGroup()
                                 .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(39, 39, 39)
-                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanelBackLayout.setVerticalGroup(
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackLayout.createSequentialGroup()
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBackLayout.createSequentialGroup()
-                        .addContainerGap(163, Short.MAX_VALUE)
-                        .addComponent(jLabelProcurar))
-                    .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldProsucar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(57, 57, 57)
+                .addComponent(jLabel1)
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -224,18 +191,6 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        int id = Integer.parseInt(jTableAlunos.getValueAt(jTableAlunos.getSelectedRow(), 0)+"");
-        System.out.println(id+"");
-        AlunosFichaExercicioJFrame tela = new AlunosFichaExercicioJFrame(aluno);
-        tela.setFicha(Fachada.getInstance().getByIdFichaDeTreino(id));
-        tela.show();
-    }//GEN-LAST:event_jButtonEditarActionPerformed
-
-    private void jTextFieldProsucarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProsucarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProsucarActionPerformed
-
     private void jTableAlunosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAlunosKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTableAlunosKeyPressed
@@ -254,19 +209,20 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableAlunosMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        preencherTabela(Fachada.getInstance().getByAlunoFichaTreino(aluno.getId()));
+    }//GEN-LAST:event_jLabel1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
-    private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JLabel jLabeAlunos;
-    private javax.swing.JLabel jLabelIconPesquisar;
-    private javax.swing.JLabel jLabelProcurar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelBack;
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAlunos;
-    private javax.swing.JTextField jTextFieldProsucar;
     // End of variables declaration//GEN-END:variables
 
     public void preencherTabela(ArrayList<FichaDeTreino> fichaDeTreinos){

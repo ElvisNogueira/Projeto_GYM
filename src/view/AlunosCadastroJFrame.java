@@ -85,7 +85,7 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
         jLabelNumero = new javax.swing.JLabel();
         jFormattedTextFieldDiaVenc = new javax.swing.JFormattedTextField();
         jLabelId1 = new javax.swing.JLabel();
-        jTextFieldValorMens = new JtextFieldSomenteNumeros();
+        jTextFieldValorMens = new javax.swing.JFormattedTextField();
         jComboBoxPlano = new javax.swing.JComboBox<>();
         jLabelId2 = new javax.swing.JLabel();
         jLabelId3 = new javax.swing.JLabel();

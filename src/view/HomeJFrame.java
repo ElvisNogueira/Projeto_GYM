@@ -37,9 +37,6 @@ public class HomeJFrame extends javax.swing.JFrame {
         jPanelCabecario = new javax.swing.JPanel();
         jLabeAcademia = new javax.swing.JLabel();
         jLabeGym = new javax.swing.JLabel();
-        jTextFieldPesquisar = new javax.swing.JTextField();
-        jSeparator = new javax.swing.JSeparator();
-        jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabeAcademia1 = new javax.swing.JLabel();
         jLabeSair = new javax.swing.JLabel();
@@ -85,20 +82,6 @@ public class HomeJFrame extends javax.swing.JFrame {
         jLabeGym.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 55)); // NOI18N
         jLabeGym.setForeground(new java.awt.Color(255, 255, 255));
         jLabeGym.setText("GYM");
-
-        jTextFieldPesquisar.setBackground(new java.awt.Color(45, 118, 232));
-        jTextFieldPesquisar.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextFieldPesquisar.setForeground(new java.awt.Color(255, 255, 255));
-        jTextFieldPesquisar.setToolTipText("Digite texto para pesquisa");
-        jTextFieldPesquisar.setBorder(null);
-        jTextFieldPesquisar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldPesquisarActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/search_20px_1.png"))); // NOI18N
-        jLabel1.setToolTipText("Pesquisar");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/3.png"))); // NOI18N
 
@@ -154,16 +137,10 @@ public class HomeJFrame extends javax.swing.JFrame {
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabeAcademia1))
                             .addComponent(jLabeAcademia))
-                        .addGap(83, 83, 83)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanelCabecarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSeparator)
-                            .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 10, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanelCabecarioLayout.createSequentialGroup()
                         .addComponent(jLabeGym)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 371, Short.MAX_VALUE)
                         .addComponent(logoutjLabel)
                         .addGap(18, 18, 18)
                         .addComponent(jLabelMin)))
@@ -198,13 +175,7 @@ public class HomeJFrame extends javax.swing.JFrame {
                             .addComponent(jLabelMax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabelMin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(logoutjLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelCabecarioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTextFieldPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(10, 10, 10)
-                        .addComponent(jSeparator, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(54, 54, 54))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanelAlunos.setToolTipText("Cadastro de alunos");
@@ -581,10 +552,6 @@ public class HomeJFrame extends javax.swing.JFrame {
         setColor(jPanelAlunos);
     }//GEN-LAST:event_jPanelAlunosMouseEntered
 
-    private void jTextFieldPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPesquisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldPesquisarActionPerformed
-
     private void jPanelFinanceiroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelFinanceiroMouseEntered
         setColor(jPanelFinanceiro);
     }//GEN-LAST:event_jPanelFinanceiroMouseEntered
@@ -635,7 +602,6 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabeAcademia1;
     private javax.swing.JLabel jLabeGym;
     private javax.swing.JLabel jLabeSair;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelAlunos;
     private javax.swing.JLabel jLabelFinanceiro;
@@ -659,8 +625,6 @@ public class HomeJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelFuncionarios;
     private javax.swing.JPanel jPanelInfo;
     private javax.swing.JPanel jPanelRelatorio;
-    private javax.swing.JSeparator jSeparator;
-    private javax.swing.JTextField jTextFieldPesquisar;
     private javax.swing.JLabel logoutjLabel;
     // End of variables declaration//GEN-END:variables
 }

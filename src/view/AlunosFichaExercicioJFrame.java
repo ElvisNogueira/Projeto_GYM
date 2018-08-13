@@ -136,7 +136,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         jScrollPane8 = new javax.swing.JScrollPane();
         domjTable = new javax.swing.JTable();
         jLabel7 = new javax.swing.JLabel();
-        jButtonImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Cadastrar avaliação física");
@@ -748,17 +747,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
 
         jTabbedPaneAvaliacao.addTab("Treino", jPaneTreino);
 
-        jButtonImprimir.setBackground(new java.awt.Color(45, 118, 232));
-        jButtonImprimir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButtonImprimir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonImprimir.setText("Imprimir");
-        jButtonImprimir.setToolTipText("Salvar");
-        jButtonImprimir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonImprimirActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
         jPanelBackLayout.setHorizontalGroup(
@@ -770,9 +758,7 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addComponent(jButtonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
+                .addGap(92, 92, 92))
         );
         jPanelBackLayout.setVerticalGroup(
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -782,7 +768,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 .addComponent(jTabbedPaneAvaliacao, javax.swing.GroupLayout.PREFERRED_SIZE, 527, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButtonSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -821,10 +806,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
-
-    private void jButtonImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonImprimirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButtonImprimirActionPerformed
 
     private void jButtonIncluir12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIncluir12ActionPerformed
         if(jTextField1.getText().isEmpty()){
@@ -943,7 +924,6 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
     private javax.swing.JTable domjTable;
     private javax.swing.JScrollPane fichaDiajScrollPane;
     private javax.swing.JButton jButtonCancelar;
-    private javax.swing.JButton jButtonImprimir;
     private javax.swing.JButton jButtonIncluir12;
     private javax.swing.JButton jButtonSalvar;
     private javax.swing.JComboBox<String> jComboBoxTipoExerc;

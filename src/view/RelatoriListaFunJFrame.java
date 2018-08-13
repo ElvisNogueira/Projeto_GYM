@@ -171,7 +171,7 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
         
         ArrayList<Funcionario> funcionarioLista = new ArrayList<>();
         for(Funcionario f : funcionarios){
-            if(f.getStatus().equals("ativo")){
+            if(f.getStatus().equals("Ativo")){
                 funcionarioLista.add(f);
             }
         }        
@@ -207,7 +207,7 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
             
             ArrayList<Funcionario> funcionarioLista = new ArrayList<>();
             for(Funcionario f : funcionarios){
-                if(f.getStatus().equals("ativo")){
+                if(f.getStatus().equals("Ativo")){
                     funcionarioLista.add(f);
                 }
              } 

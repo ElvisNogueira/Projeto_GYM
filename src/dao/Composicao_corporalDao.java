@@ -23,7 +23,7 @@ public class Composicao_corporalDao {
     
     public void cadastrar(Composicao_corporal c){
         try {
-            statement=SQLUtil.prepareStatement(SQLUtil.UPDATE_COMPOSICAO_CORPORAL);
+            statement=SQLUtil.prepareStatement(SQLUtil.INSERIR_COMPOSICAO_CORPORAL);
             
             statement.setFloat(1, c.getPeso_gorda());
             statement.setFloat(2, c.getPeso_magra());

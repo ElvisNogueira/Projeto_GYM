@@ -45,14 +45,12 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
         jPanelBack = new javax.swing.JPanel();
         jPanelBlue = new javax.swing.JPanel();
         jLabeAlunos = new javax.swing.JLabel();
+        jButtonExcluir = new javax.swing.JButton();
+        jButtonEditar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAvFísica = new javax.swing.JTable();
         jButtonCadastrar = new javax.swing.JButton();
-        jButtonExcluir = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
-        jLabelProcurar = new javax.swing.JLabel();
-        jTextFieldProsucar = new javax.swing.JTextField();
-        jLabelIconPesquisar = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Avaliação física");
@@ -84,6 +82,34 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
                 .addComponent(jLabeAlunos)
                 .addGap(28, 28, 28))
         );
+
+        jButtonExcluir.setBackground(new java.awt.Color(45, 118, 232));
+        jButtonExcluir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonExcluir.setText("Excluir");
+        jButtonExcluir.setToolTipText("Excluir avaliação fisica");
+        jButtonExcluir.setMaximumSize(new java.awt.Dimension(89, 23));
+        jButtonExcluir.setMinimumSize(new java.awt.Dimension(89, 23));
+        jButtonExcluir.setPreferredSize(new java.awt.Dimension(89, 23));
+        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExcluirActionPerformed(evt);
+            }
+        });
+
+        jButtonEditar.setBackground(new java.awt.Color(45, 118, 232));
+        jButtonEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButtonEditar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonEditar.setText("Editar");
+        jButtonEditar.setToolTipText("Editar avaliação fisica");
+        jButtonEditar.setMaximumSize(new java.awt.Dimension(89, 23));
+        jButtonEditar.setMinimumSize(new java.awt.Dimension(89, 23));
+        jButtonEditar.setPreferredSize(new java.awt.Dimension(89, 23));
+        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditarActionPerformed(evt);
+            }
+        });
 
         jTableAvFísica.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jTableAvFísica.setModel(new javax.swing.table.DefaultTableModel(
@@ -118,46 +144,12 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
             }
         });
 
-        jButtonExcluir.setBackground(new java.awt.Color(45, 118, 232));
-        jButtonExcluir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButtonExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonExcluir.setText("Excluir");
-        jButtonExcluir.setToolTipText("Excluir avaliação fisica");
-        jButtonExcluir.setMaximumSize(new java.awt.Dimension(89, 23));
-        jButtonExcluir.setMinimumSize(new java.awt.Dimension(89, 23));
-        jButtonExcluir.setPreferredSize(new java.awt.Dimension(89, 23));
-        jButtonExcluir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonExcluirActionPerformed(evt);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Refresh_25px.png"))); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
             }
         });
-
-        jButtonEditar.setBackground(new java.awt.Color(45, 118, 232));
-        jButtonEditar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButtonEditar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonEditar.setText("Editar");
-        jButtonEditar.setToolTipText("Editar avaliação fisica");
-        jButtonEditar.setMaximumSize(new java.awt.Dimension(89, 23));
-        jButtonEditar.setMinimumSize(new java.awt.Dimension(89, 23));
-        jButtonEditar.setPreferredSize(new java.awt.Dimension(89, 23));
-        jButtonEditar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonEditarActionPerformed(evt);
-            }
-        });
-
-        jLabelProcurar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabelProcurar.setForeground(new java.awt.Color(45, 118, 232));
-        jLabelProcurar.setText("Procurar");
-
-        jTextFieldProsucar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldProsucarActionPerformed(evt);
-            }
-        });
-
-        jLabelIconPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icons8_Search_20px.png"))); // NOI18N
-        jLabelIconPesquisar.setToolTipText("Pesquisar");
 
         javax.swing.GroupLayout jPanelBackLayout = new javax.swing.GroupLayout(jPanelBack);
         jPanelBack.setLayout(jPanelBackLayout);
@@ -165,44 +157,33 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelBackLayout.createSequentialGroup()
-                .addContainerGap(70, Short.MAX_VALUE)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBackLayout.createSequentialGroup()
-                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelProcurar)
-                            .addComponent(jTextFieldProsucar, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addContainerGap(54, Short.MAX_VALUE)
+                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(jPanelBackLayout.createSequentialGroup()
                             .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(136, 136, 136)
+                            .addGap(130, 130, 130)
                             .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(131, 131, 131)
+                            .addGap(137, 137, 137)
                             .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 561, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(0, 85, Short.MAX_VALUE))
         );
         jPanelBackLayout.setVerticalGroup(
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelBackLayout.createSequentialGroup()
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelBackLayout.createSequentialGroup()
-                        .addContainerGap(163, Short.MAX_VALUE)
-                        .addComponent(jLabelProcurar))
-                    .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextFieldProsucar, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE))
-                .addGap(36, 36, 36)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addComponent(jPanelBlue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(49, Short.MAX_VALUE))
+                    .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,28 +211,6 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
             Mensagem.exibirMensagem("Acesso permitido apenas para instrutores!");
     }//GEN-LAST:event_jButtonCadastrarActionPerformed
 
-    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        Avaliacao a =  Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(
-                jTableAvFísica.getValueAt(jTableAvFísica.getSelectedRow(), 0)+""));
-        Fachada.getInstance().excluirAvaliacao(a);
-        carregarTabela(dados());
-
-    }//GEN-LAST:event_jButtonExcluirActionPerformed
-
-    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
-        Instrutor i = Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
-                    jTableAvFísica.getSelectedRow(), 0)+"")).getInstrutor();
-           
-            AlunosAvaliacaoJFrame tela = new AlunosAvaliacaoJFrame(a,i, objetivo);
-            tela.setAvaliacao( Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
-                    jTableAvFísica.getSelectedRow(), 0)+"")));
-            tela.show();
-    }//GEN-LAST:event_jButtonEditarActionPerformed
-
-    private void jTextFieldProsucarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldProsucarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldProsucarActionPerformed
-
     private void jTableAvFísicaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAvFísicaMouseEntered
 
     }//GEN-LAST:event_jTableAvFísicaMouseEntered
@@ -273,19 +232,38 @@ public class AlunosAvaliacaoHomeJFrame extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTableAvFísicaMouseClicked
 
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        carregarTabela(dados());
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jButtonEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditarActionPerformed
+            Instrutor i = Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
+                jTableAvFísica.getSelectedRow(), 0)+"")).getInstrutor();
+
+    AlunosAvaliacaoJFrame tela = new AlunosAvaliacaoJFrame(a,i, objetivo);
+    tela.setAvaliacao( Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(jTableAvFísica.getValueAt(
+        jTableAvFísica.getSelectedRow(), 0)+"")));
+        tela.show();
+    }//GEN-LAST:event_jButtonEditarActionPerformed
+
+    private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
+            Avaliacao a =  Fachada.getInstance().getByIdAvaliacao(Integer.parseInt(
+                jTableAvFísica.getValueAt(jTableAvFísica.getSelectedRow(), 0)+""));
+        Fachada.getInstance().excluirAvaliacao(a);
+        carregarTabela(dados());
+    }//GEN-LAST:event_jButtonExcluirActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonExcluir;
     private javax.swing.JLabel jLabeAlunos;
-    private javax.swing.JLabel jLabelIconPesquisar;
-    private javax.swing.JLabel jLabelProcurar;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelBack;
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableAvFísica;
-    private javax.swing.JTextField jTextFieldProsucar;
     // End of variables declaration//GEN-END:variables
 
     private void carregarTabela(ArrayList<Avaliacao> avaliacao){
