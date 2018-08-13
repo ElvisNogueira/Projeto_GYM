@@ -47,7 +47,7 @@ public class FichaDeTreinoBusiness {
     }
     
     public FichaDeTreino getById(int i){
-        return dao.getById(0);
+        return dao.getById(i);
     }
     
      public ArrayList<FichaDeTreino> getByAlunoId(int id){

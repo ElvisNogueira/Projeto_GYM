@@ -5,6 +5,7 @@
  */
 package view;
 
+import app.Util;
 import fachada.Fachada;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -90,6 +91,16 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
                 "Ficha nº", "Nome Aluno", "Instrutor"
             }
         ));
+        jTableAlunos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAlunosMouseClicked(evt);
+            }
+        });
+        jTableAlunos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTableAlunosKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableAlunos);
 
         jButtonCadastrar.setBackground(new java.awt.Color(45, 118, 232));
@@ -150,22 +161,23 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanelBlue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanelBackLayout.createSequentialGroup()
-                .addContainerGap(87, Short.MAX_VALUE)
-                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelProcurar)
-                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanelBackLayout.createSequentialGroup()
-                            .addComponent(jTextFieldProsucar, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanelBackLayout.createSequentialGroup()
-                            .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(39, 39, 39)
-                            .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabelProcurar)
+                        .addGroup(jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanelBackLayout.createSequentialGroup()
+                                .addComponent(jTextFieldProsucar, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(38, 38, 38)
+                                .addComponent(jLabelIconPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanelBackLayout.createSequentialGroup()
+                                .addComponent(jButtonCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(39, 39, 39)
+                                .addComponent(jButtonExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(80, Short.MAX_VALUE))
         );
         jPanelBackLayout.setVerticalGroup(
             jPanelBackLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,6 +232,24 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldProsucarActionPerformed
 
+    private void jTableAlunosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAlunosKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTableAlunosKeyPressed
+
+    private void jTableAlunosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAlunosMouseClicked
+        
+        if(evt.getClickCount()==2){
+           int id = Integer.parseInt(jTableAlunos.getValueAt(jTableAlunos.getSelectedRow(), 0)+"");
+            System.out.println(id+"");
+           AlunosFichaExercicioJFrame tela = new AlunosFichaExercicioJFrame(aluno);
+           tela.setFicha(Fachada.getInstance().getByIdFichaDeTreino(id));
+           Util.bloquearCampos(tela.getjPaneTreino());
+           Util.bloquearCampos(tela.getjPanelDetalhes());
+           tela.show();
+           
+        }
+    }//GEN-LAST:event_jTableAlunosMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonCadastrar;
@@ -249,7 +279,7 @@ public class AlunosFichaHomeJFrame extends javax.swing.JFrame {
         jTableAlunos.getColumnModel().getColumn(0).setResizable(false);
         jTableAlunos.getColumnModel().getColumn(1).setPreferredWidth(590);
         jTableAlunos.getColumnModel().getColumn(1).setResizable(false);
-        jTableAlunos.getColumnModel().getColumn(2).setPreferredWidth(10);
+        jTableAlunos.getColumnModel().getColumn(2).setPreferredWidth(116);
         jTableAlunos.getColumnModel().getColumn(2).setResizable(false);
         jTableAlunos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }

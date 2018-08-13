@@ -690,18 +690,6 @@ public class HomeJFrame extends javax.swing.JFrame {
        System.exit(0);
     }//GEN-LAST:event_jLabeSairMousePressed
 
-    private void jPanelCongiguracaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMouseEntered
-        setColor(jPanelCongiguracao);
-    }//GEN-LAST:event_jPanelCongiguracaoMouseEntered
-
-    private void jPanelCongiguracaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMouseExited
-        resetColor(jPanelCongiguracao);
-    }//GEN-LAST:event_jPanelCongiguracaoMouseExited
-
-    private void jPanelCongiguracaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMousePressed
-       new AcademiaCadastroJFrame().show();
-    }//GEN-LAST:event_jPanelCongiguracaoMousePressed
-
     private void jPanelLogoutMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelLogoutMouseEntered
         setColor(jPanelLogout);
     }//GEN-LAST:event_jPanelLogoutMouseEntered
@@ -725,6 +713,18 @@ public class HomeJFrame extends javax.swing.JFrame {
     private void jLabelMinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabelMinMousePressed
         setExtendedState(JFrame.ICONIFIED);
     }//GEN-LAST:event_jLabelMinMousePressed
+
+    private void jPanelCongiguracaoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMousePressed
+        new AcademiaCadastroJFrame().show();
+    }//GEN-LAST:event_jPanelCongiguracaoMousePressed
+
+    private void jPanelCongiguracaoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMouseExited
+        resetColor(jPanelCongiguracao);
+    }//GEN-LAST:event_jPanelCongiguracaoMouseExited
+
+    private void jPanelCongiguracaoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanelCongiguracaoMouseEntered
+        setColor(jPanelCongiguracao);
+    }//GEN-LAST:event_jPanelCongiguracaoMouseEntered
 
     // ME: 
     public static void setColor(JPanel panel){

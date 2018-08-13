@@ -949,7 +949,6 @@ public class AlunosCadastroJFrame extends javax.swing.JFrame {
                 p.setServico(parc.getConta().getDescricao());
                 p.setValor(parc.getValor());
                 
-                Fachada.getInstance().editarParcelas(parc);
                 tela = new AlunosLancarFaturaJFrame(p, a);
                 tela.set();
                 tela.show();

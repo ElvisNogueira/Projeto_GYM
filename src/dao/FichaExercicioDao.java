@@ -31,6 +31,7 @@ public class FichaExercicioDao {
             statement.setString(3, f.getDia());
             statement.setInt(4, f.getExercicio().getId());
             statement.setInt(5, SQLUtil.getLastIdTabela("ficha_de_treino"));
+            statement.setInt(6, f.getSerie());
             
             statement.execute();
         } catch (Exception ex) {
@@ -55,8 +56,9 @@ public class FichaExercicioDao {
             statement.setInt(2, f.getOrdem());
             statement.setString(3, f.getDia());
             statement.setInt(4, f.getExercicio().getId());
-            statement.setInt(5, SQLUtil.getLastIdTabela("ficha_de_treino"));
+            statement.setInt(5, f.getFichaDeTreino());
             statement.setInt(6, f.getId());
+            statement.setInt(7, f.getSerie());
             
             statement.execute();
         } catch (Exception ex) {
@@ -92,8 +94,9 @@ public class FichaExercicioDao {
             f.setRepeticoes(result.getInt(2));
             f.setOrdem(result.getInt(3));
             f.setDia(result.getString(4));
-            f.setExercicio(Fachada.getInstance().getByIdExercicio(result.getInt(5)));
-            f.setId(result.getInt(6));
+            f.setSerie(result.getInt(5));
+            f.setExercicio(Fachada.getInstance().getByIdExercicio(result.getInt(6)));
+            f.setFichaDeTreino(result.getInt(7));
         } catch (SQLException ex) {
             Logger.getLogger(FichaExercicioDao.class.getName()).log(Level.SEVERE, null, ex);
         }

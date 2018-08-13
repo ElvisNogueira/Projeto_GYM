@@ -45,7 +45,7 @@ public class SQLUtil {
     public static String INSERIR_INSTRUTOR = "insert into instrutor (cref,funcionario_id) values (?,?)";
     public static String INSERIR_FICHA_DE_TREINO = "insert into ficha_de_treino (instrutor_id,aluno_id,objetivo,observacao,data,dataReavaliacao) "
             + "values (?,?,?,?,?,?)";
-    public static String INSERIR_FICHA_EXERCICIO = "insert into ficha_exercicio (repeticoes,ordem,dia,exercicio_id,ficha_treino_id) values (?,?,?,?,?)";
+    public static String INSERIR_FICHA_EXERCICIO = "insert into ficha_exercicio (repeticoes,ordem,dia,exercicio_id,ficha_treino_id,serie) values (?,?,?,?,?,?)";
     public static String INSERIR_ANAMNESE = "insert into anamnese (tabagismo,restricaoArticular,cardiopatias,medicamentos,"
             + "hipertensao,outros,diabetes,probPulmonares,ativFisica,nivel,tabagismoObs,restricaoArticularObs,cardiopatiasObs,"
             + "medicamentosObs,hipertensaoObs,outrosObs,diabetesObs,probPulmonaresObs,ativFisicaObs) values (?,?,?,?,?,?,?,?,?,?,"
@@ -138,7 +138,7 @@ public class SQLUtil {
             + "braco_esquerdo=?,coxa_direita=?,abdomem=?,torax=?,quadril=?,panturrilha_direita=?,braco_direito=?, "
             + "ante_braco_direito=?,ante_braco_esquerdo=? where id=?";
     public static String UPDATE_FICHA_EXERCICIO = "update ficha_exercicio set repeticoes=?,ordem=?,dia=?,exercicio_id=?,"
-            + "ficha_treino_id=? where id=?";
+            + "ficha_treino_id=?,serie=? where id=?";
     public static String UPDATE_FICHA_DE_TREINO = "update ficha_de_treino set instrutor_id=?,aluno_id=?,objetivo=?,"
             + "observacao=?,data=?,dataReavaliacao=? where id=?";
     public static String UPDATE_PAGAR_PARCELA = "update parcelas set status='Pago' "

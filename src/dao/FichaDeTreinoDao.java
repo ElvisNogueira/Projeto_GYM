@@ -102,12 +102,14 @@ public class FichaDeTreinoDao {
         FichaDeTreino f = new FichaDeTreino();
         try {
             f.setId(result.getInt(1));
+            f.setExercicios(Fachada.getInstance().getFichaExercByIdFichaTreino(f.getId()));
             f.setInstrutor(Fachada.getInstance().getByIdInstrutor(result.getInt(2)));
             f.setAluno(Fachada.getInstance().getByIdAluno(result.getInt(3)));
             f.setObg(result.getString(4));
             f.setObs(result.getString(5));
             f.setData(result.getDate(6));
             f.setDataReavaliacao(result.getDate(7));
+            
         } catch (SQLException ex) {
             Logger.getLogger(FichaDeTreinoDao.class.getName()).log(Level.SEVERE, null, ex);
         }

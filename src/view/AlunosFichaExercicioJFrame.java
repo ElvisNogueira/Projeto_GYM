@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import model.Aluno;
 import model.Exercicio;
@@ -947,6 +948,14 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
                 dom.add(e);
         }   
         
+        Collections.sort(seg,new ComparadorFichaExercicio());
+        Collections.sort(ter,new ComparadorFichaExercicio());
+        Collections.sort(qua,new ComparadorFichaExercicio());
+        Collections.sort(qui,new ComparadorFichaExercicio());
+        Collections.sort(sex,new ComparadorFichaExercicio());
+        Collections.sort(sab,new ComparadorFichaExercicio());
+        Collections.sort(dom,new ComparadorFichaExercicio());
+        
         preencherTabelas();
              
     }
@@ -1124,5 +1133,15 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         domjTable.getColumnModel().getColumn(3).setResizable(false);
         domjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
+
+    public JPanel getjPaneTreino() {
+        return jPaneTreino;
+    }
+
+    public JPanel getjPanelDetalhes() {
+        return jPanelDetalhes;
+    }
+    
+    
 
 }
