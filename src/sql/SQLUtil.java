@@ -97,7 +97,7 @@ public class SQLUtil {
             + "(select * from parcelas where aluno_id = ?) as parcelas_alias) ";
    
     public static String SELECT_PARCELAS_ATRASADAS = "select * from parcelas where status='Atrasado' order by aluno_id";
-    
+    public static String SELECT_PARCELAS_ATRASADAS_POR_ALUNO = "select * from parcelas where aluno_id=? and status='Atrasado'";
     
     public static String SELECT_PARCELA_ALUUNO_VENCER = "select * from (select * from parcelas where id=(select max(id) "
             + "from (select * from parcelas where aluno_id = ?) as parcelas_alias)) as "

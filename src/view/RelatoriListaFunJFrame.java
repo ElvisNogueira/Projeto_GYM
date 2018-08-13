@@ -5,8 +5,25 @@
  */
 package view;
 
+import app.Util;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import fachada.Fachada;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import model.Aluno;
 import model.Funcionario;
@@ -135,7 +152,7 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gerarPDFjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPDFjButtonActionPerformed
-        
+        gerarPDF(Fachada.getInstance().getAllFuncionario());
     }//GEN-LAST:event_gerarPDFjButtonActionPerformed
 
 
@@ -154,11 +171,10 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
         
         ArrayList<Funcionario> funcionarioLista = new ArrayList<>();
         for(Funcionario f : funcionarios){
-            if(f.getStatus().equals("ativo")){
+            if(f.getStatus().equals("Ativo")){
                 funcionarioLista.add(f);
             }
-        }
-        
+        }        
         for(Funcionario a:funcionarioLista){
             dados.add(new Object[]{a.getId(),a.getNome(), a.getCpf()});
         }
@@ -174,6 +190,54 @@ public class RelatoriListaFunJFrame extends javax.swing.JFrame {
 
         alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
-
-
+   
+     public void gerarPDF(ArrayList<Funcionario> funcionarios){
+        Document doc = new Document();
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream("Relatorio de Funcionarios.pdf"));
+            
+            Font fontCab = new Font(Font.FontFamily.TIMES_ROMAN,14,Font.BOLD,BaseColor.BLACK);
+            Font fontTexto = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
+            PdfPTable table = new PdfPTable(3);
+            
+            table.addCell(new Paragraph("Id", fontTexto));
+            table.addCell(new Paragraph("Nome", fontTexto));
+            table.addCell(new Paragraph("CPF", fontTexto));
+            
+            ArrayList<Funcionario> funcionarioLista = new ArrayList<>();
+            for(Funcionario f : funcionarios){
+                if(f.getStatus().equals("Ativo")){
+                    funcionarioLista.add(f);
+                }
+             } 
+            int i=0;
+            for(Funcionario f:funcionarioLista){
+                table.addCell(new Paragraph(""+f.getId(), fontTexto));
+                table.addCell(new Paragraph(""+f.getNome(), fontTexto));                
+                table.addCell(new Paragraph(""+f.getCpf(), fontTexto));
+                i++;
+                    
+            }
+                        
+            doc.open();            
+            doc.add(new Paragraph(Util.getDatasRel(new Date()),fontTexto));
+            doc.add(new Paragraph("GYM - Relatório de Funcionários\n\n",fontCab));
+            doc.add(table);
+            doc.add(new Paragraph("\n\nTotal de Funcionários: " + i,fontTexto));
+            
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            doc.close();
+        }
+        
+        try {
+            Desktop.getDesktop().open(new File("Relatorio de Funcionarios.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+   
 }

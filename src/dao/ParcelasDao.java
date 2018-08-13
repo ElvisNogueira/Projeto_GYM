@@ -184,6 +184,7 @@ public class ParcelasDao {
         return parcelas;
     }
     
+    
     private Parcelas get(ResultSet result){
         Parcelas p = new Parcelas();
        

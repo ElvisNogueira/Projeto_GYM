@@ -8,6 +8,7 @@ package app;
 import fachada.Fachada;
 import java.awt.Component;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -51,6 +52,12 @@ public class Util {
        
         data = dia+mes+ano;
         return data;
+    }
+    
+    public static String getDatasRel(java.util.Date date){
+        SimpleDateFormat formatar = new SimpleDateFormat("dd/MM/yyyy");
+        String dataFormatada = formatar.format(date);
+        return dataFormatada;
     }
     
     public static Date converterCalendarToDate(Calendar cal){

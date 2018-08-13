@@ -5,8 +5,24 @@
  */
 package view;
 
+import app.Util;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import fachada.Fachada;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import model.Aluno;
 import model.ModeloTabela;
@@ -135,7 +151,7 @@ public class RelatorioListaAluJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gerarPDFjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPDFjButtonActionPerformed
-        // TODO add your handling code here:
+        gerarPDF(Fachada.getInstance().getAllAluno());
     }//GEN-LAST:event_gerarPDFjButtonActionPerformed
 
 
@@ -174,4 +190,52 @@ public class RelatorioListaAluJFrame extends javax.swing.JFrame {
         alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
     }
 
+    public void gerarPDF(ArrayList<Aluno> alunos){
+        Document doc = new Document();
+         try {
+            ArrayList<Aluno> alunoslista = new ArrayList<>();
+            
+            PdfWriter.getInstance(doc, new FileOutputStream("Relatorio de Alunos.pdf"));
+            
+            Font fontCab = new Font(Font.FontFamily.TIMES_ROMAN,14,Font.BOLD,BaseColor.BLACK);
+            Font fontTexto = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
+            PdfPTable table = new PdfPTable(3);
+            
+            table.addCell(new Paragraph("Id", fontTexto));
+            table.addCell(new Paragraph("Nome", fontTexto));
+            table.addCell(new Paragraph("CPF", fontTexto));
+            
+            for(Aluno a : alunos){
+                if(a.getStatus().equals("Ativo"))
+                    alunoslista.add(a);
+            }
+            
+            int i=0;
+            for(Aluno a:alunoslista){
+                table.addCell(new Paragraph(""+a.getId(), fontTexto));
+                table.addCell(new Paragraph(""+a.getNome(), fontTexto));                
+                table.addCell(new Paragraph(""+a.getCpf(), fontTexto));
+                i++;
+            }
+
+            
+            doc.open();            
+            doc.add(new Paragraph(Util.getDatasRel(new Date()),fontTexto));
+            doc.add(new Paragraph("GYM - Relatório de Alunos\n\n",fontCab));
+            doc.add(table);
+            doc.add(new Paragraph("\n\nTotal de Alunos: " + i,fontTexto));
+            
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            doc.close();
+        }
+        
+        try {
+            Desktop.getDesktop().open(new File("Relatorio de Alunos.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

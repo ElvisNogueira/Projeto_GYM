@@ -505,4 +505,8 @@ public class Fachada {
     public void atualizarParcelasAtrasadas(){
         parcelasBusiness.atualizarParcelasAtrasadas();
     }
+    
+    public ArrayList<Aluno> getAlunosCredito(){
+        return alunoBusiness.getAlunosCredito();
+    }
 }

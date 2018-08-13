@@ -919,6 +919,38 @@ public class AlunosFichaExercicioJFrame extends javax.swing.JFrame {
         return ficha;
     }
     
+    public void setFicha(FichaDeTreino f){
+        dataIniciojDateChooser.setDate(f.getData());
+        dataReavjDateChooser.setDate(f.getDataReavaliacao());
+        
+        ficha.setInstrutor(f.getInstrutor());
+        ficha.setAluno(f.getAluno());
+        jTextField3.setText(f.getObg());
+        jTextArea1.setText(f.getObs());
+        jTextFieldNomeProf.setText(f.getInstrutor().getFuncionario().getNome());
+        jTextField1.setText(f.getId()+"");
+        
+        for(FichaExercicio e : f.getExercicios()){
+            if(e.getDia().equals("segunda"))
+                seg.add(e);
+            if(e.getDia().equals("terça"))
+                ter.add(e);
+            if(e.getDia().equals("quarta"))
+                qua.add(e);
+            if(e.getDia().equals("quinta"))
+                qui.add(e);
+            if(e.getDia().equals("sexta"))
+                sex.add(e);
+            if(e.getDia().equals("sabado"))
+                sab.add(e);
+            if(e.getDia().equals("domingo"))
+                dom.add(e);
+        }   
+        
+        preencherTabelas();
+             
+    }
+    
     public void miniGet(){
         fichaExer.setRepeticoes(Integer.parseInt(jTextFieldRepeticoe12.getText()));
         fichaExer.setOrdem(Integer.parseInt(jSpinnerOrdem12.getValue().toString()));

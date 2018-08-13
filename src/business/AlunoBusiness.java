@@ -61,5 +61,15 @@ public class AlunoBusiness {
         }
         return alunosBusca;
     }
+    
+    public ArrayList<Aluno> getAlunosCredito(){
+        ArrayList<Aluno> alunos = new ArrayList<>();
+        for(Aluno a : dao.getAll()){
+            if(dao.getAlunosCred(a.getId())){
+                alunos.add(a);
+            }
+        }
+        return alunos;
+    }
 
 }

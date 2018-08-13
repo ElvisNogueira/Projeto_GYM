@@ -6,9 +6,23 @@
 package view;
 
 import app.Util;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import fachada.Fachada;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import model.ControleFinanceiro;
 import model.ModeloTabela;
@@ -225,7 +239,7 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gerarPDFjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPDFjButtonActionPerformed
-        
+        gerarPDF(Fachada.getInstance().getAllControleFinanceiro());
     }//GEN-LAST:event_gerarPDFjButtonActionPerformed
 
     private void jComboBoxServico1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxServico1ActionPerformed
@@ -298,4 +312,53 @@ public class RelatorioFluxoCaixaJFrame extends javax.swing.JFrame {
         alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);    
     }
 
+    public void gerarPDF(ArrayList<ControleFinanceiro> financeiro){
+        Document doc = new Document();
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream("Relatorio do Fluxo do caixa.pdf"));
+            
+            Font fontCab = new Font(Font.FontFamily.TIMES_ROMAN,14,Font.BOLD,BaseColor.BLACK);
+            Font fontTexto = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
+            PdfPTable table = new PdfPTable(5);
+            
+            table.addCell(new Paragraph("Id", fontTexto));
+            table.addCell(new Paragraph("Data", fontTexto));
+            table.addCell(new Paragraph("Hístorico", fontTexto));
+            table.addCell(new Paragraph("Descrição", fontTexto));
+            table.addCell(new Paragraph("Valor", fontTexto));
+            
+            ArrayList<ControleFinanceiro> financeiroLista = new ArrayList<>();
+            
+            for(ControleFinanceiro c : financeiro){
+                financeiroLista.add(c);
+            }
+            
+            for(ControleFinanceiro c : financeiroLista){
+                table.addCell(new Paragraph(""+c.getId(), fontTexto));
+                table.addCell(new Paragraph(""+c.getData(), fontTexto));                
+                table.addCell(new Paragraph(""+c.getDescricao(), fontTexto));  
+                table.addCell(new Paragraph(""+c.getConta().getDescricao(), fontTexto));              
+                table.addCell(new Paragraph(""+c.getValor(), fontTexto));
+            }
+                     
+            doc.open();            
+            doc.add(new Paragraph(Util.getDatasRel(new java.util.Date()),fontTexto));
+            doc.add(new Paragraph("GYM - Relatorio do Fluxo do caixa\n\n",fontCab));
+            doc.add(table);
+            
+            
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            doc.close();
+        }
+        
+        try {
+            Desktop.getDesktop().open(new File("Relatorio do Fluxo do caixa.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

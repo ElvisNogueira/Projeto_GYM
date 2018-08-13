@@ -5,6 +5,29 @@
  */
 package view;
 
+import app.Util;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import fachada.Fachada;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import model.Aluno;
+import model.Funcionario;
+import model.ModeloTabela;
+
 /**
  *
  * @author Insinuante
@@ -16,6 +39,7 @@ public class RelatorioListaCredJFrame extends javax.swing.JFrame {
      */
     public RelatorioListaCredJFrame() {
         initComponents();
+        preencherTabela(Fachada.getInstance().getAlunosCredito());
     }
 
     /**
@@ -127,7 +151,7 @@ public class RelatorioListaCredJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gerarPDFjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPDFjButtonActionPerformed
-        // TODO add your handling code here:
+        gerarPDF(Fachada.getInstance().getAlunosCredito());
     }//GEN-LAST:event_gerarPDFjButtonActionPerformed
 
 
@@ -139,4 +163,77 @@ public class RelatorioListaCredJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelBlue;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    public void preencherTabela(ArrayList<Aluno> alunos){
+        String[] colunas = new String[]{"ID","NOME", "CPF"};
+        ArrayList<Object[]> dados = new ArrayList<>();
+        System.out.println(alunos.size()+"");
+        ArrayList<Aluno> lista = new ArrayList<>();
+        for(Aluno f : alunos){
+            if(f.getStatus().equals("Ativo")){
+                System.out.println(f.getNome()+"\n");
+                lista.add(f);
+            }
+        }        
+        for(Aluno a:lista){
+            dados.add(new Object[]{a.getId(),a.getNome(), a.getCpf()});
+        }
+        System.out.println(dados.size()+"");
+
+        ModeloTabela modeloTabela =  new ModeloTabela(dados, colunas);   
+        alunoCredjTable.setModel(modeloTabela);      
+        alunoCredjTable.getColumnModel().getColumn(0).setPreferredWidth(40);
+        alunoCredjTable.getColumnModel().getColumn(0).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(1).setPreferredWidth(400);
+        alunoCredjTable.getColumnModel().getColumn(1).setResizable(false);
+        alunoCredjTable.getColumnModel().getColumn(2).setPreferredWidth(210);
+        alunoCredjTable.getColumnModel().getColumn(2).setResizable(false);
+
+        alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    }
+    
+     public void gerarPDF(ArrayList<Aluno> alunos){
+        Document doc = new Document();
+         try {
+            ArrayList<Aluno> alunoslista = new ArrayList<>();
+            
+            PdfWriter.getInstance(doc, new FileOutputStream("Relatorio de Alunos em Cretido.pdf"));
+            
+            Font fontCab = new Font(Font.FontFamily.TIMES_ROMAN,14,Font.BOLD,BaseColor.BLACK);
+            Font fontTexto = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
+            PdfPTable table = new PdfPTable(3);
+            
+            table.addCell(new Paragraph("Id", fontTexto));
+            table.addCell(new Paragraph("Nome", fontTexto));
+            table.addCell(new Paragraph("CPF", fontTexto));
+            
+            for(Aluno a : alunos){
+                if(a.getStatus().equals("Ativo"))
+                    alunoslista.add(a);
+            }
+            
+            for(Aluno a:alunoslista){
+                table.addCell(new Paragraph(""+a.getId(), fontTexto));
+                table.addCell(new Paragraph(""+a.getNome(), fontTexto));                
+                table.addCell(new Paragraph(""+a.getCpf(), fontTexto));
+            }
+
+            doc.open();            
+            doc.add(new Paragraph(Util.getDatasRel(new Date()),fontTexto));
+            doc.add(new Paragraph("GYM - Relatorio de Alunos em Cretido\n\n",fontCab));
+            doc.add(table);
+            
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            doc.close();
+        }
+        
+        try {
+            Desktop.getDesktop().open(new File("Relatorio de Alunos em Cretido.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

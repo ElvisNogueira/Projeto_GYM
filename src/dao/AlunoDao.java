@@ -116,6 +116,26 @@ public class AlunoDao {
         return alunos;
     }
     
+    public boolean getAlunosCred(int id){
+        ResultSet result;
+        try {
+            statement = SQLUtil.prepareStatement(SQLUtil.SELECT_PARCELAS_ATRASADAS_POR_ALUNO);
+            statement.setInt(1, id);
+            result = statement.executeQuery();
+            
+            
+            if(result.next()){
+                return false;
+            }
+//            System.out.println(get(result).getNome()+"");
+        } catch (Exception ex) {
+            Logger.getLogger(AlunoDao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+
+        return true;
+    }
+    
     private Aluno get(ResultSet result){
         Aluno a = new Aluno();
         Fachada f = Fachada.getInstance();

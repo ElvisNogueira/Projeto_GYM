@@ -5,10 +5,25 @@
  */
 package view;
 
+import app.Util;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import fachada.Fachada;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
-import model.Aluno;
 import model.ModeloTabela;
 import model.Parcelas;
 
@@ -135,7 +150,7 @@ public class RelatorioListaDebitoJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void gerarPDFjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerarPDFjButtonActionPerformed
-        // TODO add your handling code here:
+        gerarPDF(Fachada.getInstance().getParcelasVencidas());
     }//GEN-LAST:event_gerarPDFjButtonActionPerformed
 
 
@@ -173,5 +188,51 @@ public class RelatorioListaDebitoJFrame extends javax.swing.JFrame {
         alunoCredjTable.getColumnModel().getColumn(5).setResizable(false);
         
         alunoCredjTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+    }
+    
+    public void gerarPDF(ArrayList<Parcelas> parcelas){
+        Document doc = new Document();
+        try {
+            
+            PdfWriter.getInstance(doc, new FileOutputStream("Relatorio de Parcelas em debito.pdf"));
+            
+            Font fontCab = new Font(Font.FontFamily.TIMES_ROMAN,14,Font.BOLD,BaseColor.BLACK);
+            Font fontTexto = new Font(Font.FontFamily.TIMES_ROMAN,12,Font.NORMAL,BaseColor.BLACK);
+            PdfPTable table = new PdfPTable(6);
+            
+            table.addCell(new Paragraph("Id", fontTexto));
+            table.addCell(new Paragraph("Nome", fontTexto));
+            table.addCell(new Paragraph("Parcelas", fontTexto));
+            table.addCell(new Paragraph("Valor", fontTexto));
+            table.addCell(new Paragraph("Data", fontTexto));
+            table.addCell(new Paragraph("Celular", fontTexto));
+            
+            for(Parcelas p : parcelas){
+                table.addCell(new Paragraph(""+p.getId(), fontTexto));
+                table.addCell(new Paragraph(""+p.getAlunos().getNome(), fontTexto));                
+                table.addCell(new Paragraph(""+p.getConta().getDescricao(), fontTexto));
+                table.addCell(new Paragraph(""+p.getValor(), fontTexto));    
+                table.addCell(new Paragraph(""+p.getData_de_Vencimento(), fontTexto));   
+                table.addCell(new Paragraph(""+p.getAlunos().getCelular(), fontTexto));
+             }
+            
+            doc.open();            
+            doc.add(new Paragraph(Util.getDatasRel(new Date()),fontTexto));
+            doc.add(new Paragraph("GYM - Relatório de Parcelas em débito\n\n",fontCab));
+            doc.add(table);
+            
+            
+        } catch (FileNotFoundException | DocumentException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }finally{
+            doc.close();
+        }
+        
+        try {
+            Desktop.getDesktop().open(new File("Relatorio de Parcelas em debito.pdf"));
+        } catch (IOException ex) {
+            Logger.getLogger(RelatoriListaFunJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 }
